@@ -85,7 +85,7 @@
                                                 <select v-model="p.tipo" class="form-control" :disabled="true">
                                                     <option value="NOTICIAS" selected>Noticia</option>
                                                     <option value="EVENTOS">Evento</option>
-                                                    <option value="CORONAVIRUS">Coronavirus</option>
+                                                    <option value="CURSOS">Cursos</option>
                                                     <option value="VIDEOTECA">Videoteca</option>
                                                 </select>
                                             </div>
@@ -153,6 +153,35 @@
                                                 <label for="dos">No</label>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class=" col-12">
+                        <div class="card">
+                            <div class="card-header" style="height: 62px;">
+                                <i class="fa fa-check"></i> Agregar video
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group row text-right align-items-center">
+                                    <div class="col-12 col-md-2 " >
+                                        <label for="title">URL</label>
+                                    </div>
+                                    <div class="col-12 col-md-9 mr-1">
+                                        <input v-model="p.urlVideo" type="text" placeholder="ejemplo: https://youtu.be/4YS-ivzwPgs?list=RDMM8j1xiiAZhIQ" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row text-right align-items-center">
+                                    <div class="col-12 col-md-2 " >
+                                        <label for="title">Tipo de red social</label>
+                                    </div>
+                                    <div class="col-12 col-md-9 mr-1">
+                                       <select v-model="p.redSocial" class="form-control">
+                                            <option value="1" selected>YouTube</option>
+                                            <option value="2">Facebook</option>
+                                            <option value="3">TickTok</option> 
+                                        </select>
                                     </div>
                                 </div>
                             </div>

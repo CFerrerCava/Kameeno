@@ -2142,6 +2142,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   //props: ['id'],
   data: function data() {
@@ -2539,6 +2568,35 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70625,11 +70683,9 @@ var render = function() {
                                 _vm._v("Evento")
                               ]),
                               _vm._v(" "),
-                              _c(
-                                "option",
-                                { attrs: { value: "CORONAVIRUS" } },
-                                [_vm._v("Coronavirus")]
-                              ),
+                              _c("option", { attrs: { value: "CURSOS" } }, [
+                                _vm._v("Cursos")
+                              ]),
                               _vm._v(" "),
                               _c("option", { attrs: { value: "VIDEOTECA" } }, [
                                 _vm._v("Videoteca")
@@ -70884,6 +70940,113 @@ var render = function() {
                 )
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: " col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-block" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group row text-right align-items-center"
+                  },
+                  [
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-9 mr-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.p.urlVideo,
+                            expression: "p.urlVideo"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder:
+                            "ejemplo: https://youtu.be/4YS-ivzwPgs?list=RDMM8j1xiiAZhIQ"
+                        },
+                        domProps: { value: _vm.p.urlVideo },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.p, "urlVideo", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group row text-right align-items-center"
+                  },
+                  [
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-9 mr-1" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.p.redSocial,
+                              expression: "p.redSocial"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.p,
+                                "redSocial",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "1", selected: "" } },
+                            [_vm._v("YouTube")]
+                          ),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Facebook")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("TickTok")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ])
           ])
         ])
       ]),
@@ -70995,6 +71158,35 @@ var staticRenderFns = [
         _vm._v(" Slide\n                        ")
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header", staticStyle: { height: "62px" } },
+      [
+        _c("i", { staticClass: "fa fa-check" }),
+        _vm._v(" Agregar video\n                        ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-2 " }, [
+      _c("label", { attrs: { for: "title" } }, [_vm._v("URL")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-2 " }, [
+      _c("label", { attrs: { for: "title" } }, [_vm._v("Tipo de red social")])
+    ])
   }
 ]
 render._withStripped = true
@@ -71546,11 +71738,9 @@ var render = function() {
                                 _vm._v("Evento")
                               ]),
                               _vm._v(" "),
-                              _c(
-                                "option",
-                                { attrs: { value: "CORONAVIRUS" } },
-                                [_vm._v("Coronavirus")]
-                              ),
+                              _c("option", { attrs: { value: "CURSO" } }, [
+                                _vm._v("Coronavirus")
+                              ]),
                               _vm._v(" "),
                               _c("option", { attrs: { value: "VIDEOTECA" } }, [
                                 _vm._v("Videoteca")
@@ -71805,6 +71995,113 @@ var render = function() {
                 )
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: " col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-block" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group row text-right align-items-center"
+                  },
+                  [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-9 mr-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.p.urlVideo,
+                            expression: "p.urlVideo"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder:
+                            "ejemplo: https://youtu.be/4YS-ivzwPgs?list=RDMM8j1xiiAZhIQ"
+                        },
+                        domProps: { value: _vm.p.urlVideo },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.p, "urlVideo", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group row text-right align-items-center"
+                  },
+                  [
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-9 mr-1" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.p.redSocial,
+                              expression: "p.redSocial"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.p,
+                                "redSocial",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "1", selected: "" } },
+                            [_vm._v("YouTube")]
+                          ),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Facebook")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("TickTok")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ])
           ])
         ])
       ]),
@@ -71906,6 +72203,35 @@ var staticRenderFns = [
         _vm._v(" Slide\n                        ")
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header", staticStyle: { height: "62px" } },
+      [
+        _c("i", { staticClass: "fa fa-check" }),
+        _vm._v(" Agregar video\n                        ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-2 " }, [
+      _c("label", { attrs: { for: "title" } }, [_vm._v("URL")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-2 " }, [
+      _c("label", { attrs: { for: "title" } }, [_vm._v("Tipo de red social")])
+    ])
   }
 ]
 render._withStripped = true
