@@ -24,6 +24,7 @@
         "ckeditor4-vue": "^0.2.0",
         "vue": "^2.6.11",
         "vue-file-agent": "^1.6.2",
+        "vue-summernote": "^1.0.3",
         "vue-sweetalert2": "^3.0.3"
     }
 }
