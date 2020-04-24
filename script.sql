@@ -226,7 +226,9 @@ ALTER TABLE respuesta_cuestionario
 ADD FOREIGN KEY R_44 (id_cuestionariopersona) REFERENCES rol_medico_paciente_cuestionarios (id_cuestionariopersona);
 
 ALTER TABLE respuesta_cuestionario
-ADD FOREIGN KEY R_46a (id_det_pre) REFERENCES detalle_pregunta (id_det_pre);ALTER TABLE respuesta_cuestionario
+ADD FOREIGN KEY R_46a (id_det_pre) REFERENCES detalle_pregunta (id_det_pre);
+
+ALTER TABLE respuesta_cuestionario
 ADD FOREIGN KEY R_46b (id_preguntas) REFERENCES detalle_pregunta (id_preguntas);
 
 ALTER TABLE rol_medico
