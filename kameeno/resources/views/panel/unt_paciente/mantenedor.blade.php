@@ -8,11 +8,6 @@
 				<h4 class="card-title">Gestor de contenidos v2</h4>
 			</div>
 			<div class="card-body" id="app_vue">
-				<!--
-					<contenido-registrar></contenido-registrar>
-					<contenido-listar></contenido-listar>
-					<contenido-editar :id="254"></contenido-editar>
-				-->
 					<contenido></contenido>
 			</div>
 		</div>
