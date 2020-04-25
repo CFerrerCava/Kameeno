@@ -46,6 +46,7 @@ Vue.component('contenido', require('./components/Contenido.vue').default);
 Vue.component('contenido-registrar', require('./components/Contenido_Registrar.vue').default);
 Vue.component('contenido-listar', require('./components/Contenido_Listar.vue').default);
 Vue.component('contenido-editar', require('./components/Contenido_Editar.vue').default);
+Vue.component('form-register-unt-paciente', require('./components/FormRegisterUNTPaciente.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('index'); });
 Route::any('/panel','ContenidoController2@mantenedor');
+Route::get('/unt-a-tus-pacientes', function(){ return view('client.unt_paciente.index'); })->name('untAtusPacientes');
