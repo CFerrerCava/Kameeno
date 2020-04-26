@@ -6,7 +6,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ContenidoController2 extends Controller
+class ContenidoController extends Controller
 {
     private static $rutaArchivosTemporal = 'temp/';
     private static $formatoHoraFecha_MMSQL = "d/m/Y H:i:s";
@@ -14,7 +14,7 @@ class ContenidoController2 extends Controller
     private static $prefijoRutaArchivosProduccion = '';
 
     public function mantenedor($Estado='.', Request $request){
-        
+
         // if(!Controller::logueado())
         //     return view('login');
         if ($Estado == 'addContenido') return $this->addContenido($request);

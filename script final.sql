@@ -15,6 +15,7 @@ CREATE TABLE contacto
 CREATE TABLE cuestionarios
 (
 	id_cuestionario      INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nombre               VARCHAR(100) NULL,
 	tipo                 VARCHAR(150) NULL,
 	estado               VARCHAR(20) NULL,
 	descripcion          TEXT NOT NULL
