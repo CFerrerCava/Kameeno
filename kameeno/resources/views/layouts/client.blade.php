@@ -11,6 +11,7 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
         <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -26,7 +27,9 @@
             @yield('content')
              <!-- Copyright Section-->
             <section class="copyright py-4 text-center text-white">
-                <div class="container"><small>Copyright © Nortec 2020</small></div>
+                <div class="container"><small>Copyright © Nortec ©  <script>
+                    document.write(new Date().getFullYear())
+                 </script></small></div>
             </section>
             <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
             <div class="scroll-to-top d-lg-none position-fixed">
