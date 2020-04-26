@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use GuzzleHttp\Client;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('/reniec', function (GuzzleHttp\Client $client, Request $request){
+    $response = $client->request('GET', "/dni/$request->dni");
+    $data = json_decode($response->getBody());
+    return response()->json($data);
 });
