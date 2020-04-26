@@ -39,63 +39,130 @@
                                 <form id="msform">
                                     <!-- progressbar -->
                                     <ul id="progressbar">
-                                        <li class="active" id="account"><strong>Personal</strong></li>
-                                        <li id="personal"><strong>Personal</strong></li>
-                                        <li id="payment"><strong>Payment</strong></li>
-                                        <li id="confirm"><strong>Finish</strong></li>
+                                        <li class="active" id="personal"><strong>Personal</strong></li>
+                                        <li id="familia"><strong>Familiar</strong></li>
+                                        <li id="salud"><strong>Salud</strong></li>
+                                        <li id="payment"><strong>Laboral</strong></li>
+                                        <li id="confirm"><strong>Final</strong></li>
                                     </ul> <!-- fieldsets -->
                                     <fieldset>
                                         <div class="form-card">
-                                            <h2 class="fs-title">Informacion Personal</h2> <input type="email" name="email" placeholder="Sexo" /> <input type="text" name="uname" placeholder="UserName" /> <input type="password" name="pwd" placeholder="Password" /> <input type="password" name="cpwd" placeholder="Confirm Password" />
-                                        </div> <input type="button" name="next" class="next action-button" value="Next Step" />
-                                    </fieldset>
-                                    <fieldset>
-                                        <div class="form-card">
-                                            <h2 class="fs-title">Personal Information</h2> <input type="text" name="fname" placeholder="First Name" /> <input type="text" name="lname" placeholder="Last Name" /> <input type="text" name="phno" placeholder="Contact No." /> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
-                                        </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
-                                    </fieldset>
-                                    <fieldset>
-                                        <div class="form-card">
-                                            <h2 class="fs-title">Payment Information</h2>
-                                            <div class="radio-group">
-                                                <div class='radio' data-value="credit"><img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px"></div>
-                                                <div class='radio' data-value="paypal"><img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px"></div> <br>
-                                            </div> <label class="pay">Card Holder Name*</label> <input type="text" name="holdername" placeholder="" />
+                                            <h2 class="fs-title">Informacion Personal</h2>
                                             <div class="row">
-                                                <div class="col-9"> <label class="pay">Card Number*</label> <input type="text" name="cardno" placeholder="" /> </div>
-                                                <div class="col-3"> <label class="pay">CVC*</label> <input type="password" name="cvcpwd" placeholder="***" /> </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="edad" placeholder="Edad" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option selected>Sexo</option>
+                                                        <option>Masculino</option>
+                                                        <option>Femenino</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <input type="text" name="nacimiento" placeholder="Fecha Nacimiento" />
+                                            {{-- <input type="text" name="celular" placeholder="#Celular" />
+                                            <input type="password" name="pwd" placeholder="Password" />
+                                            <input type="password" name="cpwd" placeholder="Confirm Password" /> --}}
+                                        </div> <input type="button" name="next" class="next action-button" value="Siguiente" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Informacion Familiar</h2>
+                                            <input type="text" name="nameFamiliar" placeholder="Nombres y Apellidos" />
+                                            <input type="text" name="celFamiliar" placeholder="#Celular" />
+                                            <input type="text" name="emailFamiliar" placeholder="Correo Electronico" />
+                                            <input type="text" name="DireFamiliar" placeholder="Domicilio" />
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Anterior" />
+                                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Info Salud</h2>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option selected disabled>Seguro Salud</option>
+                                                        <option>SIS</option>
+                                                        <option>ESSALUD</option>
+                                                        <option>Otro</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="cent_salud" placeholder="Centro de Salud Cercano" />
+                                                </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-3"> <label class="pay">Expiry Date*</label> </div>
-                                                <div class="col-9"> <select class="list-dt" id="month" name="expmonth">
-                                                        <option selected>Month</option>
-                                                        <option>January</option>
-                                                        <option>February</option>
-                                                        <option>March</option>
-                                                        <option>April</option>
-                                                        <option>May</option>
-                                                        <option>June</option>
-                                                        <option>July</option>
-                                                        <option>August</option>
-                                                        <option>September</option>
-                                                        <option>October</option>
-                                                        <option>November</option>
-                                                        <option>December</option>
-                                                    </select> <select class="list-dt" id="year" name="expyear">
-                                                        <option selected>Year</option>
-                                                    </select> </div>
+                                                <div class="col-md-12" >
+                                                    <select class="form-control">
+                                                        <option selected disabled>Enfermedad</option>
+                                                        <option>Diabetes Mellitus</option>
+                                                        <option>Enfermedad reumatológica con uso continuo de antinflamatorios /corticoides</option>
+                                                        <option>Uso permanente de antinflamatorios o corticoides por otras causas.</option>
+                                                    </select>
+                                                </div>
+                                            </div> <br>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <select class="form-control">
+                                                        <option selected disabled>Sigue Tratamiento</option>
+                                                        <option>Si</option>
+                                                        <option>No</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" class="next action-button" value="Confirm" />
+                                            {{-- <input type="text" name="celular" placeholder="#Celular" />
+                                            <input type="password" name="pwd" placeholder="Password" />
+                                            <input type="password" name="cpwd" placeholder="Confirm Password" /> --}}
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Anterior" />
+                                        <input type="button" name="next" class="next action-button" value="Siguiente" />
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-card">
-                                            <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                            <h2 class="fs-title">Informacion Laboral</h2>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <select class="form-control">
+                                                        <option selected disabled>Ocupacion Laboral</option>
+                                                        <option>Docente </option>
+                                                        <option>Personal Administrativo</option>
+                                                    </select>
+                                                </div>
+                                            </div> <br>
+                                            <div class="row">
+                                                <div class="col-md-12" >
+                                                    <select class="form-control">
+                                                        <option selected disabled>Facultad</option>
+                                                        <option value="">Ciencias Biológicas</option>
+                                                        <option value="">Ciencias Económicas</option>
+
+                                                    </select>
+                                                </div>
+                                            </div> <br>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <select class="form-control">
+                                                        <option selected disabled>Escuela profesional </option>
+                                                        <option>Derecho</option>
+                                                        <option>Medicina</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div> <input type="button" name="previous" class="previous action-button-previous" value="Anterior" /> <input type="button" name="make_payment" class="next action-button" value="Finalizar" />
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title text-center">Exitoso !</h2> <br><br>
                                             <div class="row justify-content-center">
                                                 <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
                                             </div> <br><br>
                                             <div class="row justify-content-center">
                                                 <div class="col-7 text-center">
-                                                    <h5>You Have Successfully Signed Up</h5>
+                                                    <h5>El registro de sus datos se realizo de manera exitosa !!</h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,9 +218,11 @@
 
 @section('styles')
 <style>
+
 #grad1 {
     background-color: #9C27B0;
     background-image: linear-gradient(40deg,#ffd86f,#fc6262) !important;
+
 }
 
 #msform {
@@ -295,7 +364,7 @@ select.list-dt:focus {
 #progressbar li {
     list-style-type: none;
     font-size: 12px;
-    width: 25%;
+    width: 20%;
     float: left;
     position: relative
 }
@@ -308,6 +377,14 @@ select.list-dt:focus {
 #progressbar #personal:before {
     font-family: FontAwesome;
     content: "\f007"
+}
+#progressbar #salud:before {
+    font-family: FontAwesome;
+    content: "\f0f1"
+}
+#progressbar #familia:before {
+    font-family: FontAwesome;
+    content: "\f0c0"
 }
 
 #progressbar #payment:before {
