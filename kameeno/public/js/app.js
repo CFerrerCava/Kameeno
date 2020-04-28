@@ -2869,9 +2869,6 @@ __webpack_require__.r(__webpack_exports__);
         key: 'nombre',
         label: 'Nombre'
       }, {
-        key: 'tipo',
-        label: 'Tipo'
-      }, {
         key: 'estado',
         label: 'Estado'
       }]
@@ -2983,26 +2980,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      temporaaaal: '',
       c: {
+        id_cuestionario: 0,
         nombre: '',
-        tipo: '',
         descripcion: '',
         preguntas: [] //modeloPreguntas
 
@@ -3020,7 +3003,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     agregarEncuesta: function agregarEncuesta() {
-      console.log(this.c);
+      var ruta = this.c.id_cuestionario == 0 ? 'addCuestionario' : 'updCuestionario';
+      axios.post('/panel/cuestionario/' + ruta, {
+        datos: this.c
+      }).then(function (response) {})["catch"](function (error) {})["finally"](function () {});
     },
 
     /**/
@@ -3031,6 +3017,7 @@ __webpack_require__.r(__webpack_exports__);
       var copia = Object.assign({}, this.modeloPreguntas);
       copia.detalle = [];
       this.c.preguntas.push(copia);
+      this.agregarClave(copia);
     },
 
     /**/
@@ -3041,7 +3028,24 @@ __webpack_require__.r(__webpack_exports__);
     agregarClave: function agregarClave(itemPregunta) {
       var copia = Object.assign({}, this.modeloDetallePreguntas);
       itemPregunta.detalle.push(copia);
+    },
+
+    /**/
+    cargarPublicacion: function cargarPublicacion(id) {
+      var that = this;
+      axios.post('/panel/cuestionario/getCuestionario', {
+        id: id
+      }).then(function (response) {
+        console.log(response.data);
+        that.c = response.data;
+      });
     }
+  },
+  mounted: function mounted() {
+    //this.cargarPublicacion(0);
+    this.cargarPublicacion(78);
+  },
+  created: function created() {//this.cargarPublicacion(this.id);
   }
 });
 
@@ -73717,63 +73721,6 @@ var render = function() {
             _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "col-12 col-md-9 mr-1" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.c.tipo,
-                      expression: "c.tipo"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.c,
-                        "tipo",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Seleccione")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Ingreso" } }, [
-                    _vm._v("Cuestionario de ingreso")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Progreso" } }, [
-                    _vm._v("Cuestionario de progreso")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Salida" } }, [
-                    _vm._v("Cuestionario de salida")
-                  ])
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group row text-center" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12 col-md-9 mr-1" }, [
               _c("textarea", {
                 directives: [
                   {
@@ -73803,7 +73750,7 @@ var render = function() {
           "div",
           { staticClass: "card pt-1 pb-3" },
           [
-            _vm._m(4),
+            _vm._m(3),
             _vm._v(" "),
             _vm._l(_vm.c.preguntas, function(itemPregunta, index) {
               return _c(
@@ -73863,7 +73810,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-12 col-md-9 mr-1 border" }, [
                     _c("table", { staticClass: "table" }, [
-                      _vm._m(5, true),
+                      _vm._m(4, true),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -73911,7 +73858,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "text", placeholder: "Valor" },
+                                attrs: { type: "number", placeholder: "Valor" },
                                 domProps: { value: itemClave.valor },
                                 on: {
                                   input: function($event) {
@@ -74017,14 +73964,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 col-md-2" }, [
       _c("label", [_vm._v("Nombre")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-md-2" }, [
-      _c("label", { attrs: { for: "contenido" } }, [_vm._v("Tipo")])
     ])
   },
   function() {
@@ -87235,14 +87174,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/Cuestionario_Registrar.vue ***!
   \************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Cuestionario_Registrar_vue_vue_type_template_id_2c122004___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cuestionario_Registrar.vue?vue&type=template&id=2c122004& */ "./resources/js/components/Cuestionario_Registrar.vue?vue&type=template&id=2c122004&");
 /* harmony import */ var _Cuestionario_Registrar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cuestionario_Registrar.vue?vue&type=script&lang=js& */ "./resources/js/components/Cuestionario_Registrar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Cuestionario_Registrar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Cuestionario_Registrar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -87272,7 +87212,7 @@ component.options.__file = "resources/js/components/Cuestionario_Registrar.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/Cuestionario_Registrar.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87456,8 +87396,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\empresa\Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\empresa\Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\_Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\_Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -25,7 +25,6 @@ export default {
 	      columnas: [
 			  { key: 'id_cuestionario', label: 'Id' },
 			  { key: 'nombre', label: 'Nombre' },
-			  { key: 'tipo', label: 'Tipo' },
 			  { key: 'estado', label: 'Estado' }
 	      ]
     }

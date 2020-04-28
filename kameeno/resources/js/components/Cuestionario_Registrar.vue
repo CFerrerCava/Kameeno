@@ -16,19 +16,6 @@
 					</div>
 					<div class="form-group row text-center">
 						<div class="col-12 col-md-2" >
-							<label for="contenido">Tipo</label>
-						</div>
-						<div class="col-12 col-md-9 mr-1">
-							<select v-model="c.tipo" class="form-control">
-								<option value="" selected>Seleccione</option>
-								<option value="Ingreso">Cuestionario de ingreso</option>
-								<option value="Progreso">Cuestionario de progreso</option>
-								<option value="Salida">Cuestionario de salida</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group row text-center">
-						<div class="col-12 col-md-2" >
 							<label for="contenido">Descripción</label>
 						</div>
 						<div class="col-12 col-md-9 mr-1">
@@ -67,7 +54,7 @@
 											<input v-model="itemClave.opcion" type="text" placeholder="Opcion" class="form-control">
 										</td>
 										<td>
-											<input v-model="itemClave.valor" type="text" placeholder="Valor" class="form-control">
+											<input v-model="itemClave.valor" type="number" placeholder="Valor" class="form-control">
 										</td>
 									</tr>
 								</tbody>
@@ -96,10 +83,9 @@
 export default {
     data: function() {
         return {
-			temporaaaal: '',
             c: {
+				id_cuestionario: 0,
 				nombre: '',
-				tipo: '',
 				descripcion: '',
 				preguntas: [] //modeloPreguntas
             },
@@ -112,7 +98,16 @@ export default {
     },
     methods: {
         agregarEncuesta: function(){
-			console.log(this.c);
+			var ruta = (this.c.id_cuestionario == 0)?'addCuestionario':'updCuestionario';
+			axios.post('/panel/cuestionario/'+ruta, {datos: this.c})
+            .then(function(response) {
+            })
+			.catch(function(error){
+
+			})
+			.finally(function(){
+
+			});
         },
 		/**/
 		quitarPregunta: function(index){
@@ -122,6 +117,7 @@ export default {
 			let copia = Object.assign({}, this.modeloPreguntas);
 			copia.detalle = [];
 			this.c.preguntas.push(copia);
+			this.agregarClave(copia);
 		},
 		/**/
 		quitarClave: function(itemPregunta){
@@ -131,7 +127,23 @@ export default {
 		agregarClave: function(itemPregunta){
 			let copia = Object.assign({}, this.modeloDetallePreguntas);
 			itemPregunta.detalle.push(copia);
-		}
-    }
+		},
+		/**/
+        cargarPublicacion: function(id){
+            var that = this;
+            axios.post('/panel/cuestionario/getCuestionario', {id:id})
+            .then(function (response) {
+				console.log(response.data);
+                that.c = response.data;
+            });
+        },
+    },
+	mounted() {
+		//this.cargarPublicacion(0);
+		this.cargarPublicacion(78);
+	},
+	created: function(){
+		//this.cargarPublicacion(this.id);
+	}
 };
 </script>
