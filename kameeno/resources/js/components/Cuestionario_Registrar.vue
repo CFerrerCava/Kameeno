@@ -121,8 +121,8 @@ export default {
 		},
 		/**/
 		quitarClave: function(itemPregunta){
-			var posmax = itemPregunta.length;
-			itemPregunta.detalle.splice(posmax, 1);
+			var posmax = itemPregunta.detalle.length;
+			itemPregunta.detalle.splice(posmax-1, 1);
 		},
 		agregarClave: function(itemPregunta){
 			let copia = Object.assign({}, this.modeloDetallePreguntas);
