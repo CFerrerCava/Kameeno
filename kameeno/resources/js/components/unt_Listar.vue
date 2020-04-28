@@ -115,8 +115,14 @@
         </div>
 				<div>					
 					<b-modal ref="my-modal" hide-footer title="Ficha de paciente">
-						<div class="d-block text-center">
-							<h3>Hello From My Modal!</h3>
+						<div class="d-block">
+							 <b-list-group>
+								<b-list-group-item>Cras justo odio</b-list-group-item>
+								<b-list-group-item>Dapibus ac facilisis in</b-list-group-item>
+								<b-list-group-item>Morbi leo risus</b-list-group-item>
+								<b-list-group-item>Porta ac consectetur ac</b-list-group-item>
+								<b-list-group-item>Vestibulum at eros</b-list-group-item>
+							</b-list-group>
 						</div>
 						<b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
 						<b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
