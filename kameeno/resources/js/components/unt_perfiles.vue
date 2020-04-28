@@ -1,5 +1,8 @@
 <template>
-    <div class="container text-center">         
+    <div class="container text-center">    
+        <div class="text-right">
+            <button class="btn btn-primary" @click="new_perfil()">Nuevo perfil</button>
+        </div>     
         <div class="row">
             <div class="table-responsive">
                 <b-container fluid>
@@ -64,10 +67,8 @@
                     <template v-slot:cell(actions)="row">
 											<a v-if="row.item.estado!='DESACTIVADO'"></a>
 											<b-dropdown id="dropdown-1" variant="primary" text="Elegir acción" class="m-md-2">
-												<b-dropdown-item v-on:click="VerFicha(row.item.DNI)">Ver ficha de paciente</b-dropdown-item>
-												<b-dropdown-divider></b-dropdown-divider>
-												<b-dropdown-item v-on:click="RegistraHistoria(row.item.DNI)">Nuevo registro</b-dropdown-item>
-												<b-dropdown-divider></b-dropdown-divider>
+												<b-dropdown-item v-on:click="VerFicha(row.item.DNI)">Ver ficha de médico</b-dropdown-item>
+												<b-dropdown-divider></b-dropdown-divider> 
 												<b-dropdown-item v-on:click="Derivar(row.item.DNI)">Derivar</b-dropdown-item>											 
 												<b-dropdown-item v-on:click="CambiarEstado(row.item.DNI)">Cambiar estado</b-dropdown-item>										 
 											</b-dropdown>
@@ -152,6 +153,12 @@
 						</div>
 						<b-button class="mt-3" variant="outline-success" block @click="hideModal('modal-estado')">Cerrar</b-button>						 
 					</b-modal>
+                    <b-modal ref="modal-new" hide-footer title="Nuevo Perfil">
+						<div class="d-block">
+						 
+						</div>
+						<b-button class="mt-3" variant="outline-success" block @click="hideModal('modal-new')">Cerrar</b-button>						 
+					</b-modal>
 				</div>
     </div>
 		
@@ -160,26 +167,40 @@
 <script>
 export default {
   data() {
-    return {
-			
+    return {			
      	items: [
-          { paciente: 'Dickerson Macdonald', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Larsen Shaw', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Geneva Wilson', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Jami Carney', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Dickerson Macdonald', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Larsen Shaw', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Geneva Wilson', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Jami Carney', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Dickerson Macdonald', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Larsen Shaw', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Geneva Wilson', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Jami Carney', DNI:'73437870', telefono:'902007640',estado:'?' }
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
+            { nombre:'Dickerson Macdonald', DNI:'73437870',	fecha_registro:'2020/05/20',estado:'asdd', },
         ],
       fields: [ 
-          { key: 'paciente', label: 'Paciente', sortable: true},
+          { key: 'nombre', label: 'Médico', sortable: true},
           { key: 'DNI', label: 'DNI', sortable: true},
-          { key: 'telefono', label: 'Teléfono', sortable: true},
+          { key: 'fecha_registro', label: 'Teléfono', sortable: true},
           { key: 'estado', label: 'Estado', sortable: true},           
           { key: 'actions', label: 'Aciones'}
       ],
@@ -213,7 +234,10 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-		},
+        },
+        new_perfil: function () {
+            this.showModal('modal-new');
+        },
 		VerFicha: function (DNI) {
 			this.showModal('modal-ficha');
 		},
