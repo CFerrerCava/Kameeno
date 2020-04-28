@@ -19,6 +19,8 @@ Route::get('/formulario',function(){
 });
 Route::get('/unt-a-tus-pacientes', function(){ return view('client.unt_paciente.index'); })->name('untAtusPacientes');
 
-Route::any('/panel','ContenidoController2@mantenedor');
+Route::any('/panel','ContenidoController@mantenedor');
+Route::any('/panel/unt-a-tu-paciente','panel_untController@mantenedor');
+Route::any('/panel/unt-a-tu-paciente/{vista?}','panel_untController@mantenedor');
 Route::any('/panel/cuestionario','CuestionarioController@mantenedor');
 Route::any('/panel/cuestionario/{param}','CuestionarioController@mantenedor');
