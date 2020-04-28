@@ -8,6 +8,10 @@
 				<h4 class="card-title">Pacientes</h4>
 			</div>
 			<div class="card-body" id="app_vue">
+				<!--Estados de paciente:
+	En monitoreo
+	Derivado
+	Alerta-->
 				 <unt-listar></unt-listar>
 			</div>
 		</div>
