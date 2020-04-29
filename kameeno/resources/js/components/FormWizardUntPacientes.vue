@@ -58,7 +58,7 @@
                         <b-form-radio-group id="radio-group-2" v-model="seguroSalud" name="radio-sub-component">
                             <b-form-radio value="SIS">SIS</b-form-radio>
                             <b-form-radio value="EsSalud">EsSalud</b-form-radio>
-                            <b-form-radio value="Otro">Otro</b-form-radio>
+                            <b-form-radio value="Otro">Otritto</b-form-radio>
                         </b-form-radio-group>
                     </b-form-group>
                 </div>
@@ -69,12 +69,11 @@
             </div>
             <div class="row">
                 <div class="col-md-12" >
-                    <select class="form-control">
-                        <option selected disabled>Enfermedad</option>
-                        <option>Diabetes Mellitus</option>
-                        <option>Enfermedad reumatológica con uso continuo de antinflamatorios /corticoides</option>
-                        <option>Uso permanente de antinflamatorios o corticoides por otras causas.</option>
-                    </select>
+                    <select class="selectpicker" multiple data-live-search="true">
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+</select>
                 </div>
             </div> <br>
             <div class="row">
