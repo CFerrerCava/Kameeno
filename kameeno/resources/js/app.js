@@ -43,6 +43,7 @@ window.Vue = require('vue');
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('form-register-unt-paciente', require('./components/FormRegisterUNTPaciente.vue').default);
+Vue.component('form-wizard-unt-paciente', require('./components/FormWizardUntPacientes.vue').default);
 
 Vue.component('contenido', require('./components/Contenido.vue').default);
 Vue.component('contenido-registrar', require('./components/Contenido_Registrar.vue').default);
