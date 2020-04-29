@@ -3105,31 +3105,62 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      successful: false,
+      error: true,
       dni: '',
+      email: '',
       names: '',
-      error: '',
-      expresion: /[0-9]+/i,
+      errorDni: '',
+      errorEmail: '',
+      reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       busy: null,
-      timeout: null
+      nameBtn: 'Validar datos'
     };
   },
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   computed: {
-    nameState: function nameState() {
-      if (isNaN(this.dni) && this.dni.length > 0) {
-        this.error = 'Formato no válido';
-        return false;
-      }
+    dniState: function dniState() {
+      this.names = '';
+      this.nameBtn = 'Validar datos';
 
-      if (this.dni.length > 8) {
-        this.error = 'El número de DNI no puede superar los 8 dígitos';
+      if (this.dni.length > 0) {
+        if (isNaN(this.dni)) this.errorDni = 'Formato no válido';else if (this.dni.length > 8) this.errorDni = 'El número de DNI no puede superar los 8 dígitos';else if (this.dni.length === 8) {
+          this.error = false;
+          return true;
+        }
+        this.error = true;
         return false;
       }
+    },
+    emailState: function emailState() {
+      this.names = '';
+      this.nameBtn = 'Validar datos';
+      return this.email == "" ? null : this.reg.test(this.email) ? true : false;
     }
   },
   methods: {
@@ -3141,17 +3172,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.t0 = _this.nameBtn;
+                _context.next = _context.t0 === 'Validar datos' ? 3 : 10;
+                break;
+
+              case 3:
+                if (!(_this.error || !_this.reg.test(_this.email))) {
+                  _context.next = 6;
+                  break;
+                }
+
+                alert('Los datos ingresados no son válidos');
+                return _context.abrupt("break", 18);
+
+              case 6:
                 _this.busy = true;
-                _context.next = 3;
+                _context.next = 9;
                 return axios.post('api/reniec', {
                   dni: _this.dni
                 }).then(function (_ref) {
                   var data = _ref.data;
                   _this.names = "".concat(data.apellido_paterno.replace(/&Ntilde;/gi, 'Ñ'), " ").concat(data.apellido_materno.replace(/&Ntilde;/gi, 'Ñ'), " ").concat(data.nombres);
                   _this.busy = null;
+                  _this.nameBtn = 'Confirmar registro';
                 });
 
-              case 3:
+              case 9:
+                return _context.abrupt("break", 18);
+
+              case 10:
+                if (!(_this.names === '')) {
+                  _context.next = 14;
+                  break;
+                }
+
+                alert('El número de DNI ingresado, no pudo ser validado');
+                _context.next = 17;
+                break;
+
+              case 14:
+                _this.busy = true;
+                _context.next = 17;
+                return axios.post('api/sendEmailUntPacientes', {
+                  dni: _this.dni,
+                  names: _this.names,
+                  email: _this.email
+                }).then(function (response) {
+                  console.log(response.data.msg);
+                  _this.busy = null;
+                  _this.successful = true;
+                });
+
+              case 17:
+                return _context.abrupt("break", 18);
+
+              case 18:
               case "end":
                 return _context.stop();
             }
@@ -43013,6 +43088,25 @@ exports.push([module.i, ".vue-file-agent,.vue-file-agent *{-webkit-box-sizing:bo
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.messageFinal[data-v-4b8fd72c]{\n    color:#2c3e50;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/lib/css-base.js":
 /*!*************************************************!*\
   !*** ./node_modules/css-loader/lib/css-base.js ***!
@@ -64607,6 +64701,36 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -73779,10 +73903,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73817,7 +73941,7 @@ var render = function() {
           _c("b-form-input", {
             attrs: {
               id: "input-live",
-              state: _vm.nameState,
+              state: _vm.dniState,
               "aria-describedby": "input-live-help input-live-feedback",
               placeholder: "Ingrese el número de su dni",
               trim: ""
@@ -73834,8 +73958,35 @@ var render = function() {
           _c(
             "b-form-invalid-feedback",
             { attrs: { id: "input-live-feedback" } },
-            [_vm._v("\r\n            " + _vm._s(_vm.error) + "\r\n        ")]
+            [_vm._v("\n            " + _vm._s(_vm.errorDni) + "\n        ")]
           )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+          _vm._v(" "),
+          _c("b-form-input", {
+            attrs: {
+              type: "email",
+              id: "email",
+              state: _vm.emailState,
+              "aria-describedby": "input-live-help input-live-feedback",
+              placeholder: "Ingrese el número de su dni",
+              trim: ""
+            },
+            model: {
+              value: _vm.email,
+              callback: function($$v) {
+                _vm.email = $$v
+              },
+              expression: "email"
+            }
+          })
         ],
         1
       ),
@@ -73868,30 +74019,40 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c(
-        "b-overlay",
-        {
-          staticClass: "d-inline-block",
-          attrs: {
-            show: _vm.busy,
-            rounded: "",
-            opacity: "0.6",
-            "spinner-small": "",
-            "spinner-variant": "primary"
-          }
-        },
-        [
-          _c(
-            "b-button",
+      _vm.successful === true
+        ? _c("h6", { staticClass: "messageFinal" }, [
+            _vm._v(
+              "Su datos fueron registrados exitosamente, por favor revise su correo electrónico para continuar."
+            )
+          ])
+        : _c(
+            "b-overlay",
             {
-              ref: "button",
-              attrs: { disabled: _vm.busy, variant: "primary", type: "submit" }
+              staticClass: "d-inline-block",
+              attrs: {
+                show: _vm.busy,
+                rounded: "",
+                opacity: "0.6",
+                "spinner-small": "",
+                "spinner-variant": "primary"
+              }
             },
-            [_vm._v("\r\n            Registrarme\r\n        ")]
+            [
+              _c(
+                "b-button",
+                {
+                  ref: "button",
+                  attrs: {
+                    disabled: _vm.busy,
+                    variant: "primary",
+                    type: "submit"
+                  }
+                },
+                [_vm._v("\n            " + _vm._s(_vm.nameBtn) + "\n        ")]
+              )
+            ],
+            1
           )
-        ],
-        1
-      )
     ],
     1
   )
@@ -86640,9 +86801,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c& */ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&");
+/* harmony import */ var _FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true& */ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true&");
 /* harmony import */ var _FormRegisterUNTPaciente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormRegisterUNTPaciente.vue?vue&type=script&lang=js& */ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css& */ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -86650,13 +86813,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _FormRegisterUNTPaciente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "4b8fd72c",
   null
   
 )
@@ -86682,19 +86845,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=style&index=0&id=4b8fd72c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_style_index_0_id_4b8fd72c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true& ***!
+  \********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormRegisterUNTPaciente.vue?vue&type=template&id=4b8fd72c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormRegisterUNTPaciente_vue_vue_type_template_id_4b8fd72c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -86718,8 +86897,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\_Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\_Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Javier\Documents\Briceño\Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Javier\Documents\Briceño\Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

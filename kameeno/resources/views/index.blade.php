@@ -53,15 +53,15 @@
             <!-- Portfolio Grid Items-->
             <div class="row">
                 <!-- Portfolio Item 1-->
-                <div class=" col-12 mb-5">
+                <div class=" col-12 col-lg-6 mb-5">
                     <a class="portfolio-item portfolio-item-large mx-auto" href="{{route('untAtusPacientes')}}">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption align-items-center justify-content-center h-100 w-100 d-none d-lg-flex">
                             <div class="portfolio-item-caption-content text-center text-white">
                                 <h4>UNT A TUS PACIENTES</h4>
-                                <p>El propósito de este proyecto es brindar teleconsejería a docentes y personal administrativo con enfermedades crónicas de riesgo a complicación grave ante contagio de COVID-19 de la Universidad Nacional de Trujillo mediante una red cerrada de monitoreo virtual a cargo de profesionales médicos.</p>
+                                <p>Teleconsejería a docentes y personal administrativo con enfermedades crónicas de riesgo a complicación grave ante contagio de COVID-19 de la Universidad Nacional de Trujillo.</p>
                             </div>
                         </div>
-                        <img class="img-fluid" src="/assets_client/img/portfolio/unt.png" alt="" />
+                        <img class="img-fluid" src="/assets_client/img/portfolio/untPacientes.jpeg" alt="" />
                     </a>
                 </div>
             </div>

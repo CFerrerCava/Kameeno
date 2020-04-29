@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterUntPacientes;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,4 +25,10 @@ Route::post('/reniec', function (GuzzleHttp\Client $client, Request $request){
     $response = $client->request('GET', "/dni/$request->dni");
     $data = json_decode($response->getBody());
     return response()->json($data);
+});
+
+Route::post('/sendEmailUntPacientes', function(Request $request){
+    $url = "www.google.com";
+    Mail::to($request->email)->send(new RegisterUntPacientes($request->names, $request->dni, $url));
+    return response()->json(["msg"=>"Envio exitoso"]);
 });

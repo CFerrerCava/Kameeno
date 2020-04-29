@@ -18,11 +18,11 @@
     <div class="container">
 
         <!-- Portfolio Grid Items-->
-        <div class="row">
+        <div class="row justify-content-center">
             <!-- Portfolio Item 1-->
-            <div class=" col-12 mb-5">
+            <div class=" col-12 col-lg-6 mb-5 float-left">
                 <div class="portfolio-item portfolio-item-large mx-auto">
-                    <img class="img-fluid" src="/assets_client/img/portfolio/unt.png" alt="" />
+                    <img class="img-fluid" src="/assets_client/img/portfolio/untPacientes.jpeg" alt="" />
                 </div>
             </div>
         </div>
@@ -97,19 +97,29 @@
 
 @section('styles')
 <style>
-@media (min-width: 992px) {
     .fixed-top{
-        background: linear-gradient(40deg,#45cafc,#303f9f) !important;
-        height: 80px !important;
+        background: #3f51b5 !important;
     }
-}
-  #mainNav.navbar-shrink{
-    background: linear-gradient(40deg,#45cafc,#303f9f) !important;
-  }
+    .bg-primary{
+        background: #1abc9c !important;
+    }
+    @media (min-width: 992px) {
+        .fixed-top{
+            background: #3f51b5 !important;
+            height: 80px !important;
+        }
+    }
+    #mainNav.navbar-shrink{
+        background: #3f51b5 !important;
+    }
 
-.text-content{
-    font-size: 1.3em;
-    text-align: justify;
-}
+    .text-content{
+        font-size: 1.3em;
+        text-align: justify;
+    }
+
+    .copyright{
+        background: #3f51b5 !important;
+    }
 </style>
 @endsection

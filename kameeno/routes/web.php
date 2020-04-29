@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () { return view('index'); });
-Route::get('/formulario',function(){
-    return view('client.unt_paciente.formDataPersonal');
-});
+Route::get('/formulario',function(){return view('client.unt_paciente.formDataPersonal');});
 Route::get('/unt-a-tus-pacientes', function(){ return view('client.unt_paciente.index'); })->name('untAtusPacientes');
 
 Route::any('/panel','ContenidoController2@mantenedor');
