@@ -3022,8 +3022,8 @@ __webpack_require__.r(__webpack_exports__);
 
     /**/
     quitarClave: function quitarClave(itemPregunta) {
-      var posmax = itemPregunta.length;
-      itemPregunta.detalle.splice(posmax, 1);
+      var posmax = itemPregunta.detalle.length;
+      itemPregunta.detalle.splice(posmax - 1, 1);
     },
     agregarClave: function agregarClave(itemPregunta) {
       var copia = Object.assign({}, this.modeloDetallePreguntas);
@@ -3380,26 +3380,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      paciente: {
-        nombre: nombre,
-        ap_pat: ap_pat,
-        ap_mat: ap_mat,
-        DNI: DNI,
-        fecha_registro: fecha_registro,
-        fecha_nac: fecha_nac,
-        sexo: sexo,
-        estado_civil: estado_civil,
-        direccion: direccion,
-        telefono: telefono,
-        correo: correo,
-        estado: estado,
-        facultad: facultad,
-        ocupacion: ocupacion,
-        seguro: seguro
-      },
       items: [{
         paciente: 'Dickerson Macdonald',
         DNI: '73437870',
@@ -3486,7 +3500,24 @@ __webpack_require__.r(__webpack_exports__);
       perPage: 5,
       pageOptions: [5, 10, 15],
       filter: null,
-      filterOn: []
+      filterOn: [],
+      Datapaciente: {
+        nombre: '',
+        ap_pat: '',
+        ap_mat: '',
+        DNI: '',
+        fecha_registro: '',
+        fecha_nac: '',
+        sexo: '',
+        estado_civil: '',
+        direccion: '',
+        telefono: '',
+        correo: '',
+        estado: '',
+        facultad: '',
+        ocupacion: '',
+        seguro: ''
+      }
     };
   },
   methods: {
@@ -3496,16 +3527,428 @@ __webpack_require__.r(__webpack_exports__);
       this.currentPage = 1;
     },
     VerFicha: function VerFicha(DNI) {
-      this.showModal();
+      this.showModal('modal-ficha');
     },
-    RegistraHistoria: function RegistraHistoria(DNI) {},
-    Derivar: function Derivar(DNI) {},
-    CambiarEstado: function CambiarEstado(DNI) {},
-    showModal: function showModal() {
-      this.$refs['my-modal'].show();
+    RegistraHistoria: function RegistraHistoria(DNI) {
+      this.showModal('modal-registro');
     },
-    hideModal: function hideModal() {
-      this.$refs['my-modal'].hide();
+    Derivar: function Derivar(DNI) {
+      this.showModal('modal-derivar');
+    },
+    CambiarEstado: function CambiarEstado(DNI) {
+      this.showModal('modal-estado');
+    },
+    showModal: function showModal(string) {
+      this.$refs[string].show();
+    },
+    hideModal: function hideModal(string) {
+      this.$refs[string].hide();
+    },
+    mensajeError: function mensajeError(datos) {
+      Vue.swal.fire('Error', 'sucedió un error, intente nuevamente', 'error');
+    },
+    cargarContenidos: function cargarContenidos() {
+      var that = this;
+      axios.post('contenidos/listContenido').then(function (response) {
+        that.items = response.data;
+        that.onFiltered(that.items); //totalRows = that.items.length;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.totalRows = this.items.length;
+  },
+  created: function created() {//this.cargarContenidos();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/unt_perfiles.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/unt_perfiles.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      items: [{
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }, {
+        nombre: 'Dickerson Macdonald',
+        DNI: '73437870',
+        fecha_registro: '2020/05/20',
+        estado: 'asdd'
+      }],
+      fields: [{
+        key: 'nombre',
+        label: 'Médico',
+        sortable: true
+      }, {
+        key: 'DNI',
+        label: 'DNI',
+        sortable: true
+      }, {
+        key: 'fecha_registro',
+        label: 'Teléfono',
+        sortable: true
+      }, {
+        key: 'estado',
+        label: 'Estado',
+        sortable: true
+      }, {
+        key: 'actions',
+        label: 'Aciones'
+      }],
+      totalRows: 1,
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 10, 15],
+      filter: null,
+      filterOn: [],
+      Datapaciente: {
+        nombre: '',
+        ap_pat: '',
+        ap_mat: '',
+        DNI: '',
+        fecha_registro: '',
+        fecha_nac: '',
+        sexo: '',
+        estado_civil: '',
+        direccion: '',
+        telefono: '',
+        correo: '',
+        estado: '',
+        facultad: '',
+        ocupacion: '',
+        seguro: ''
+      }
+    };
+  },
+  methods: {
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    new_perfil: function new_perfil() {
+      this.showModal('modal-new');
+    },
+    VerFicha: function VerFicha(DNI) {
+      this.showModal('modal-ficha');
+    },
+    RegistraHistoria: function RegistraHistoria(DNI) {
+      this.showModal('modal-registro');
+    },
+    Derivar: function Derivar(DNI) {
+      this.showModal('modal-derivar');
+    },
+    CambiarEstado: function CambiarEstado(DNI) {
+      this.showModal('modal-estado');
+    },
+    showModal: function showModal(string) {
+      this.$refs[string].show();
+    },
+    hideModal: function hideModal(string) {
+      this.$refs[string].hide();
     },
     mensajeError: function mensajeError(datos) {
       Vue.swal.fire('Error', 'sucedió un error, intente nuevamente', 'error');
@@ -74629,32 +75072,583 @@ var render = function() {
         _c(
           "b-modal",
           {
-            ref: "my-modal",
+            ref: "modal-ficha",
             attrs: { "hide-footer": "", title: "Ficha de paciente" }
           },
           [
-            _c("div", { staticClass: "d-block text-center" }, [
-              _c("h3", [_vm._v("Hello From My Modal!")])
-            ]),
+            _c("div", { staticClass: "d-block" }),
             _vm._v(" "),
             _c(
               "b-button",
               {
                 staticClass: "mt-3",
-                attrs: { variant: "outline-danger", block: "" },
-                on: { click: _vm.hideModal }
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-ficha")
+                  }
+                }
               },
-              [_vm._v("Close Me")]
-            ),
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-registro",
+            attrs: { "hide-footer": "", title: "Historia clínica" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
             _vm._v(" "),
             _c(
               "b-button",
               {
-                staticClass: "mt-2",
-                attrs: { variant: "outline-warning", block: "" },
-                on: { click: _vm.toggleModal }
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-registro")
+                  }
+                }
               },
-              [_vm._v("Toggle Me")]
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-derivar",
+            attrs: { "hide-footer": "", title: "Derivar" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-derivar")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-estado",
+            attrs: { "hide-footer": "", title: "Cambiar estado" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-estado")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/unt_perfiles.vue?vue&type=template&id=795429ee&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/unt_perfiles.vue?vue&type=template&id=795429ee& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container text-center" }, [
+    _c("div", { staticClass: "text-right" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              return _vm.new_perfil()
+            }
+          }
+        },
+        [_vm._v("Nuevo perfil")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "table-responsive" },
+        [
+          _c(
+            "b-container",
+            { attrs: { fluid: "" } },
+            [
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-col",
+                    { staticClass: "my-1", attrs: { sm: "6", md: "6" } },
+                    [
+                      _c(
+                        "b-form-group",
+                        {
+                          staticClass: "mb-0",
+                          attrs: {
+                            label: "Buscar",
+                            "label-cols-sm": "3",
+                            "label-align-sm": "right",
+                            "label-size": "sm",
+                            "label-for": "filterInput"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            { attrs: { size: "sm" } },
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "search",
+                                  id: "filterInput",
+                                  placeholder: "Texto"
+                                },
+                                model: {
+                                  value: _vm.filter,
+                                  callback: function($$v) {
+                                    _vm.filter = $$v
+                                  },
+                                  expression: "filter"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "b-input-group-append",
+                                [
+                                  _c(
+                                    "b-button",
+                                    {
+                                      staticClass: "mt-0",
+                                      attrs: { disabled: !_vm.filter },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.filter = ""
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Limpiar")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "my-1", attrs: { sm: "6", md: "6" } },
+                    [
+                      _c(
+                        "b-form-group",
+                        {
+                          staticClass: "mb-0",
+                          attrs: {
+                            label: "Ver solo",
+                            "label-cols-sm": "6",
+                            "label-cols-md": "4",
+                            "label-cols-lg": "3",
+                            "label-align-sm": "left",
+                            "label-size": "sm",
+                            "label-for": "perPageSelect"
+                          }
+                        },
+                        [
+                          _c("b-form-select", {
+                            attrs: {
+                              id: "perPageSelect",
+                              size: "sm",
+                              options: _vm.pageOptions
+                            },
+                            model: {
+                              value: _vm.perPage,
+                              callback: function($$v) {
+                                _vm.perPage = $$v
+                              },
+                              expression: "perPage"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("b-table", {
+                attrs: {
+                  "show-empty": "",
+                  small: "",
+                  stacked: "md",
+                  items: _vm.items,
+                  fields: _vm.fields,
+                  "current-page": _vm.currentPage,
+                  "per-page": _vm.perPage,
+                  filter: _vm.filter,
+                  filterIncludedFields: _vm.filterOn
+                },
+                on: { filtered: _vm.onFiltered },
+                scopedSlots: _vm._u([
+                  {
+                    key: "cell(name)",
+                    fn: function(row) {
+                      return [
+                        _vm._v(
+                          "\n                      " +
+                            _vm._s(row.value.first) +
+                            " " +
+                            _vm._s(row.value.last) +
+                            "\n                    "
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(actions)",
+                    fn: function(row) {
+                      return [
+                        row.item.estado != "DESACTIVADO" ? _c("a") : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "b-dropdown",
+                          {
+                            staticClass: "m-md-2",
+                            attrs: {
+                              id: "dropdown-1",
+                              variant: "primary",
+                              text: "Elegir acción"
+                            }
+                          },
+                          [
+                            _c(
+                              "b-dropdown-item",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.VerFicha(row.item.DNI)
+                                  }
+                                }
+                              },
+                              [_vm._v("Ver ficha de médico")]
+                            ),
+                            _vm._v(" "),
+                            _c("b-dropdown-divider"),
+                            _vm._v(" "),
+                            _c(
+                              "b-dropdown-item",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.Derivar(row.item.DNI)
+                                  }
+                                }
+                              },
+                              [_vm._v("Derivar")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-dropdown-item",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.CambiarEstado(row.item.DNI)
+                                  }
+                                }
+                              },
+                              [_vm._v("Cambiar estado")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "row-details",
+                    fn: function(row) {
+                      return [
+                        _c("b-card", [
+                          _c(
+                            "ul",
+                            _vm._l(row.item, function(value, key) {
+                              return _c("li", { key: key }, [
+                                _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                              ])
+                            }),
+                            0
+                          )
+                        ])
+                      ]
+                    }
+                  }
+                ])
+              }),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-col",
+                    { staticClass: "my-1", attrs: { sm: "6", md: "6" } },
+                    [
+                      _c(
+                        "b-form-group",
+                        {
+                          staticClass: "mb-0",
+                          attrs: {
+                            label: "Publicaciones por página",
+                            "label-cols-sm": "6",
+                            "label-cols-md": "4",
+                            "label-cols-lg": "3",
+                            "label-align-sm": "right",
+                            "label-size": "sm",
+                            "label-for": "perPageSelect"
+                          }
+                        },
+                        [
+                          _c("b-form-select", {
+                            attrs: {
+                              id: "perPageSelect",
+                              size: "sm",
+                              options: _vm.pageOptions
+                            },
+                            model: {
+                              value: _vm.perPage,
+                              callback: function($$v) {
+                                _vm.perPage = $$v
+                              },
+                              expression: "perPage"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "my-1", attrs: { sm: "6", md: "6" } },
+                    [
+                      _c("b-pagination", {
+                        staticClass: "my-0",
+                        attrs: {
+                          "total-rows": _vm.totalRows,
+                          "per-page": _vm.perPage,
+                          align: "fill",
+                          size: "sm"
+                        },
+                        model: {
+                          value: _vm.currentPage,
+                          callback: function($$v) {
+                            _vm.currentPage = $$v
+                          },
+                          expression: "currentPage"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c(
+          "b-modal",
+          {
+            ref: "modal-ficha",
+            attrs: { "hide-footer": "", title: "Ficha de paciente" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-ficha")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-registro",
+            attrs: { "hide-footer": "", title: "Historia clínica" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-registro")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-derivar",
+            attrs: { "hide-footer": "", title: "Derivar" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-derivar")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-estado",
+            attrs: { "hide-footer": "", title: "Cambiar estado" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-estado")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-modal",
+          {
+            ref: "modal-new",
+            attrs: { "hide-footer": "", title: "Nuevo Perfil" }
+          },
+          [
+            _c("div", { staticClass: "d-block" }),
+            _vm._v(" "),
+            _c(
+              "b-button",
+              {
+                staticClass: "mt-3",
+                attrs: { variant: "outline-success", block: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("modal-new")
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
             )
           ],
           1
@@ -86940,6 +87934,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('contenido-registrar', __we
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('contenido-listar', __webpack_require__(/*! ./components/Contenido_Listar.vue */ "./resources/js/components/Contenido_Listar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('contenido-editar', __webpack_require__(/*! ./components/Contenido_Editar.vue */ "./resources/js/components/Contenido_Editar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('unt-listar', __webpack_require__(/*! ./components/unt_Listar.vue */ "./resources/js/components/unt_Listar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('unt-perfiles', __webpack_require__(/*! ./components/unt_perfiles.vue */ "./resources/js/components/unt_perfiles.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('cuestionario-listar', __webpack_require__(/*! ./components/Cuestionario_Listar.vue */ "./resources/js/components/Cuestionario_Listar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('cuestionario-registrar', __webpack_require__(/*! ./components/Cuestionario_Registrar.vue */ "./resources/js/components/Cuestionario_Registrar.vue")["default"]);
 /**
@@ -87335,15 +88330,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/Cuestionario_Registrar.vue ***!
   \************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Cuestionario_Registrar_vue_vue_type_template_id_2c122004___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cuestionario_Registrar.vue?vue&type=template&id=2c122004& */ "./resources/js/components/Cuestionario_Registrar.vue?vue&type=template&id=2c122004&");
 /* harmony import */ var _Cuestionario_Registrar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cuestionario_Registrar.vue?vue&type=script&lang=js& */ "./resources/js/components/Cuestionario_Registrar.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Cuestionario_Registrar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Cuestionario_Registrar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -87373,7 +88367,7 @@ component.options.__file = "resources/js/components/Cuestionario_Registrar.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/Cuestionario_Registrar.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87552,6 +88546,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_Listar_vue_vue_type_template_id_40a07f84___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_Listar_vue_vue_type_template_id_40a07f84___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/unt_perfiles.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/unt_perfiles.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _unt_perfiles_vue_vue_type_template_id_795429ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./unt_perfiles.vue?vue&type=template&id=795429ee& */ "./resources/js/components/unt_perfiles.vue?vue&type=template&id=795429ee&");
+/* harmony import */ var _unt_perfiles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./unt_perfiles.vue?vue&type=script&lang=js& */ "./resources/js/components/unt_perfiles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _unt_perfiles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _unt_perfiles_vue_vue_type_template_id_795429ee___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _unt_perfiles_vue_vue_type_template_id_795429ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/unt_perfiles.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/unt_perfiles.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/unt_perfiles.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_perfiles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./unt_perfiles.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/unt_perfiles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_perfiles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/unt_perfiles.vue?vue&type=template&id=795429ee&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/unt_perfiles.vue?vue&type=template&id=795429ee& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_perfiles_vue_vue_type_template_id_795429ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./unt_perfiles.vue?vue&type=template&id=795429ee& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/unt_perfiles.vue?vue&type=template&id=795429ee&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_perfiles_vue_vue_type_template_id_795429ee___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_unt_perfiles_vue_vue_type_template_id_795429ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

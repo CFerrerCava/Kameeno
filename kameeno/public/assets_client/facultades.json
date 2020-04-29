@@ -1,0 +1,17 @@
+[
+    {
+        "id":1,
+        "name": "Facultad de Ingenieria",
+        "state":false
+    },
+    {
+        "id":2,
+        "name": "Facultad de Ingenieria Quimica",
+        "state":false
+    },
+    {
+        "id":3,
+        "name": "Facultad de Sociales",
+        "state":false
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "id":1,
+        "name":"Ingeniería de Sistemas",
+        "state":false,
+        "facultadId":1
+    },
+    {
+        "id":2,
+        "name":"Ingeniería Quimica",
+        "state":false,
+        "facultadId":2
+    }
+]
