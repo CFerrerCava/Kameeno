@@ -16,7 +16,6 @@ CREATE TABLE cuestionarios
 (
 	id_cuestionario      INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	nombre               VARCHAR(100) NULL,
-	tipo                 VARCHAR(150) NULL,
 	estado               VARCHAR(20) NULL,
 	descripcion          TEXT NOT NULL
 );
@@ -130,7 +129,8 @@ CREATE TABLE preguntas
 	id_preguntas         INTEGER PRIMARY KEY AUTO_INCREMENT,
 	pregunta             VARCHAR(20) NOT NULL,
 	id_cuestionario      INTEGER NOT NULL,
-	estado               VARCHAR(20) NOT NULL
+	estado               VARCHAR(20) NOT NULL,
+	orden                INTEGER NULL
 );
 
 CREATE TABLE respuesta_cuestionario
