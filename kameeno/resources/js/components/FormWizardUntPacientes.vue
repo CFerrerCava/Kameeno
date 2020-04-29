@@ -58,7 +58,7 @@
                         <b-form-radio-group id="radio-group-2" v-model="seguroSalud" name="radio-sub-component">
                             <b-form-radio value="SIS">SIS</b-form-radio>
                             <b-form-radio value="EsSalud">EsSalud</b-form-radio>
-                            <b-form-radio value="Otro">Otro</b-form-radio>
+                            <b-form-radio value="Otro">Otroiii</b-form-radio>
                         </b-form-radio-group>
                     </b-form-group>
                 </div>
@@ -68,13 +68,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" >
-                    <select class="form-control">
-                        <option selected disabled>Enfermedad</option>
-                        <option>Diabetes Mellitus</option>
-                        <option>Enfermedad reumatológica con uso continuo de antinflamatorios /corticoides</option>
-                        <option>Uso permanente de antinflamatorios o corticoides por otras causas.</option>
-                    </select>
+                <div class="col-md-12">
+                    <b-form-select v-model="selected" :options="options" multiple :select-size="5"></b-form-select>
+                    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+                </div>
                 </div>
             </div> <br>
             <div class="row">
@@ -148,6 +145,24 @@
 </template>
 
 <script>
+  export default {
+    data() {
+      return {
+        selected: ['b'], // Array reference
+        options: [
+          { value: 'a', text: 'Enfermedad 01' },
+          { value: 'b', text: 'Enfermedad 02' },
+          { value: 'c', text: 'Enfermedad 03' },
+          { value: 'd', text: 'Enfermedad 04 descativada', disabled: true }
+        ]
+      }
+    },
+  }
+</script>
+
+
+
+<!--<script>
     export default {
         data(){
             return{
@@ -172,4 +187,4 @@
         methods: {
         }
     }
-</script>
+</script> -->

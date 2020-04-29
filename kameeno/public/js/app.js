@@ -3398,30 +3398,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      edad: '',
-      sexo: '',
-      fechaNacimiento: '',
-      namesFamiliar: '',
-      celFamiliar: '',
-      emailFamiliar: '',
-      direccionFamiliar: '',
-      seguroSalud: '',
-      centroSalud: '',
-      tratamiento: '',
-      especificacion: ''
+      selected: ['b'],
+      // Array reference
+      options: [{
+        value: 'a',
+        text: 'Enfermedad 01'
+      }, {
+        value: 'b',
+        text: 'Enfermedad 02'
+      }, {
+        value: 'c',
+        text: 'Enfermedad 03'
+      }, {
+        value: 'd',
+        text: 'Enfermedad 04 descativada',
+        disabled: true
+      }]
     };
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
-  computed: {},
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -74807,7 +74804,7 @@ var render = function() {
           _c(
             "b-form-invalid-feedback",
             { attrs: { id: "input-live-feedback" } },
-            [_vm._v("\n            " + _vm._s(_vm.errorDni) + "\n        ")]
+            [_vm._v("\r\n            " + _vm._s(_vm.errorDni) + "\r\n        ")]
           )
         ],
         1
@@ -74897,7 +74894,11 @@ var render = function() {
                     type: "submit"
                   }
                 },
-                [_vm._v("\n            " + _vm._s(_vm.nameBtn) + "\n        ")]
+                [
+                  _vm._v(
+                    "\r\n            " + _vm._s(_vm.nameBtn) + "\r\n        "
+                  )
+                ]
               )
             ],
             1
@@ -75197,7 +75198,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("b-form-radio", { attrs: { value: "Otro" } }, [
-                        _vm._v("Otro")
+                        _vm._v("Otroiii")
                       ])
                     ],
                     1
@@ -75241,81 +75242,101 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
             { staticClass: "col-md-12" },
             [
-              _c(
-                "b-form-group",
-                { attrs: { label: "¿Sigue algún tratamiento?" } },
-                [
-                  _c(
-                    "b-form-radio-group",
-                    {
-                      attrs: {
-                        id: "radio-group-3",
-                        name: "radio-sub-component"
-                      },
-                      model: {
-                        value: _vm.tratamiento,
-                        callback: function($$v) {
-                          _vm.tratamiento = $$v
-                        },
-                        expression: "tratamiento"
-                      }
-                    },
-                    [
-                      _c("b-form-radio", { attrs: { value: "si" } }, [
-                        _vm._v("Si")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-form-radio", { attrs: { value: "no" } }, [
-                        _vm._v("No")
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+              _c("b-form-select", {
+                attrs: { options: _vm.options, multiple: "", "select-size": 5 },
+                model: {
+                  value: _vm.selected,
+                  callback: function($$v) {
+                    _vm.selected = $$v
+                  },
+                  expression: "selected"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-3" }, [
+                _vm._v("Selected: "),
+                _c("strong", [_vm._v(_vm._s(_vm.selected))])
+              ])
             ],
             1
-          ),
-          _vm._v(" "),
-          _vm.tratamiento === "si"
-            ? _c("div", { staticClass: "col-md-12" }, [
-                _c("label", { attrs: { for: "" } }, [
-                  _vm._v("Especifique el tratamiento")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.especificacion,
-                      expression: "especificacion"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.especificacion },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.especificacion = $event.target.value
-                    }
-                  }
-                })
-              ])
-            : _vm._e()
+          )
         ])
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-12" },
+          [
+            _c(
+              "b-form-group",
+              { attrs: { label: "¿Sigue algún tratamiento?" } },
+              [
+                _c(
+                  "b-form-radio-group",
+                  {
+                    attrs: { id: "radio-group-3", name: "radio-sub-component" },
+                    model: {
+                      value: _vm.tratamiento,
+                      callback: function($$v) {
+                        _vm.tratamiento = $$v
+                      },
+                      expression: "tratamiento"
+                    }
+                  },
+                  [
+                    _c("b-form-radio", { attrs: { value: "si" } }, [
+                      _vm._v("Si")
+                    ]),
+                    _vm._v(" "),
+                    _c("b-form-radio", { attrs: { value: "no" } }, [
+                      _vm._v("No")
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.tratamiento === "si"
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _c("label", { attrs: { for: "" } }, [
+                _vm._v("Especifique el tratamiento")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.especificacion,
+                    expression: "especificacion"
+                  }
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.especificacion },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.especificacion = $event.target.value
+                  }
+                }
+              })
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("input", {
@@ -75329,9 +75350,9 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(1),
     _vm._v(" "),
-    _vm._m(3)
+    _vm._m(2)
   ])
 }
 var staticRenderFns = [
@@ -75355,34 +75376,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", { attrs: { id: "confirm" } }, [_c("strong", [_vm._v("Final")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("select", { staticClass: "form-control" }, [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("Enfermedad")
-          ]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Diabetes Mellitus")]),
-          _vm._v(" "),
-          _c("option", [
-            _vm._v(
-              "Enfermedad reumatológica con uso continuo de antinflamatorios /corticoides"
-            )
-          ]),
-          _vm._v(" "),
-          _c("option", [
-            _vm._v(
-              "Uso permanente de antinflamatorios o corticoides por otras causas."
-            )
-          ])
-        ])
-      ])
     ])
   },
   function() {
@@ -89258,14 +89251,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/FormWizardUntPacientes.vue ***!
   \************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormWizardUntPacientes_vue_vue_type_template_id_352e1e81___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormWizardUntPacientes.vue?vue&type=template&id=352e1e81& */ "./resources/js/components/FormWizardUntPacientes.vue?vue&type=template&id=352e1e81&");
 /* harmony import */ var _FormWizardUntPacientes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormWizardUntPacientes.vue?vue&type=script&lang=js& */ "./resources/js/components/FormWizardUntPacientes.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _FormWizardUntPacientes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _FormWizardUntPacientes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -89295,7 +89289,7 @@ component.options.__file = "resources/js/components/FormWizardUntPacientes.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/FormWizardUntPacientes.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -89479,8 +89473,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Javier\Documents\Briceño\Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Javier\Documents\Briceño\Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\RobertGutierrez\Desktop\Nortec\Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\RobertGutierrez\Desktop\Nortec\Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
