@@ -371,4 +371,11 @@ return false;
 
 });
     </script>
+     <script>
+   $(document).ready(function() {
+        $('#multiple-checkboxes').multiselect({
+          includeSelectAllOption: true,
+        });
+    });
+    </script>
 @endsection

@@ -16,7 +16,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/assets_client/css/styles.css" rel="stylesheet" />
         @yield('styles')
@@ -51,12 +51,7 @@
         <!-- Core theme JS-->
         <script src="/assets_client/js/scripts.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-        <script>
-            $(function(){
-                $('select').selectpicker();
-            });
-        </script>
+
         @yield('scripts')
     </body>
 </html>
