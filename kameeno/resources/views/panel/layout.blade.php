@@ -18,10 +18,10 @@
   z-index: 1;
   width: 150px;
   height: 150px;
-   
- 
+
+
 }
- 
+
 
 #app {
   display: none;
@@ -31,12 +31,14 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
- 
+
   <link rel="stylesheet" href="{!! asset('assets_panel/css/bootstrap.min.css') !!}">
   <link rel="stylesheet" href="{!! asset('assets_panel/css/now-ui-dashboard.css') !!}">
-  <link rel="stylesheet" href="{!! asset('assets_panel/js/plugins/datatables/jquery.dataTables.min.css') !!}">  
-  <link rel="stylesheet" href="{!! asset('assets_panel/js/plugins/datatables/dataTables.bootstrap4.css') !!}">  
-  
+  <link rel="stylesheet" href="{!! asset('assets_panel/js/plugins/datatables/jquery.dataTables.min.css') !!}">
+  <link rel="stylesheet" href="{!! asset('assets_panel/js/plugins/datatables/dataTables.bootstrap4.css') !!}">
+
+  <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
 </head>
 
 <body class="">
@@ -49,18 +51,18 @@
         <!-- <a href="http://www.creative-tim.com" class="simple-text logo-mini">
         <img src="{{ asset('imagenes/foto.JPG') }}" alt="mi foto">
         </a> -->
-        
+
         <img src="{{ asset('assets_panel/img/LOGO WEB.jpg') }}" alt="mi foto">
         </a>
       </div>
-      <div class="sidebar-wrapper" id="sidebar-wrapper">        
-        <ul class="nav  " id="accordion">         
-           
+      <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav  " id="accordion">
+
           <li class=" " id="li_3">
             <a   href="{{url('contenido2')}}"  onclick="return Active('3');">
               <i class="now-ui-icons design-2_ruler-pencil"></i>
               <p  >Gestor de contenidos</p>
-            </a>           
+            </a>
           </li>
           <li class=" " id="li_1" >
             <a href="{{url('perfiles')}}"  onclick="return Active('1');">
@@ -68,7 +70,7 @@
               <p>Crear perfiles</p>
             </a>
           </li>
-         
+
           <!--
           <li class=" " id="li_7">
             <a href="{{url('alquiler')}}"  onclick="return Active('4');">
@@ -107,9 +109,9 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-             
+
             <ul class="navbar-nav">
-              
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons users_single-02"></i>
@@ -123,7 +125,7 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
-               
+
             </ul>
           </div>
         </div>
@@ -137,7 +139,7 @@
       </div>
       <footer class="footer">
         <div class=" container-fluid ">
-        
+
           <div class="copyright" id="copyright">
             &copy; <script>
               document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
@@ -164,28 +166,28 @@
   <script type="text/javascript" src="{!! asset('assets_panel/js/now-ui-dashboard.min.js?v=1.5.0') !!}" ></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script type="text/javascript" src="{!! asset('assets_panel/demo/demo.js') !!}" ></script>
-  
- 
+
+
   <script>
     $(document).ready(function() {
       demo.initDashboardPageCharts();
   });
   </script>
-    
+
 <script language="javascript">
         function doSearch()
         {
             const tableReg = document.getElementById('tabla');
             const searchText = document.getElementById('txt_Buscar').value.toLowerCase();
             let total = 0;
- 
+
             // Recorremos todas las filas con contenido de la tabla
             for (let i = 1; i < tableReg.rows.length; i++) {
                 // Si el td tiene la clase "noSearch" no se busca en su cntenido
                 if (tableReg.rows[i].classList.contains("noSearch")) {
                     continue;
                 }
- 
+
                 let found = false;
                 const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
                 // Recorremos todas las celdas
@@ -205,7 +207,7 @@
                     tableReg.rows[i].style.display = 'none';
                 }
             }
- 
+
             // mostramos las coincidencias
             const lastTR=tableReg.rows[tableReg.rows.length-1];
             const td=lastTR.querySelector("td");
@@ -220,11 +222,11 @@
             }
         }
     </script>
- 
+
 <script>
 var myVar;
 
- 
+
 
 function showPage() {
   document.getElementById("loader").style.display = "none";

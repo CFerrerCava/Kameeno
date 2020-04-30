@@ -11,7 +11,9 @@
 				<!--
 					<cuestionario-listar></cuestionario-listar>
 					<cuestionario-registrar></cuestionario-registrar>
+					<cuestionario-resolver></cuestionario-resolver>
 				-->
+				<cuestionario-resolver></cuestionario-resolver>
 			</div>
 		</div>
 	</div>

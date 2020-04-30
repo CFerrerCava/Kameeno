@@ -52,6 +52,7 @@ Vue.component('contenido-listar', require('./components/Contenido_Listar.vue').d
 Vue.component('contenido-editar', require('./components/Contenido_Editar.vue').default);
 Vue.component('unt-listar', require('./components/unt_Listar.vue').default);
 Vue.component('unt-perfiles', require('./components/unt_perfiles.vue').default);
+
 Vue.component('cuestionario-listar', require('./components/Cuestionario_Listar.vue').default);
 Vue.component('cuestionario-registrar', require('./components/Cuestionario_Registrar.vue').default);
 Vue.component('cuestionario-resolver', require('./components/Cuestionario_Resolver.vue').default);

@@ -136,7 +136,7 @@ export default {
 			itemPregunta.detalle.push(copia);
 		},
 		/**/
-        cargarPublicacion: function(id){
+        cargarCuestionario: function(id){
             var that = this;
             axios.post('/panel/cuestionario/getCuestionario', {id:id})
             .then(function (response) {
@@ -146,11 +146,11 @@ export default {
         },
     },
 	mounted() {
-		//this.cargarPublicacion(0);
-		this.cargarPublicacion(1);
+		//this.cargarCuestionario(0);
+		this.cargarCuestionario(1);
 	},
 	created: function(){
-		//this.cargarPublicacion(this.id);
+		//this.cargarCuestionario(this.id);
 	}
 };
 </script>
