@@ -3435,6 +3435,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['names', 'email', 'dni'],
   data: function data() {
@@ -74939,7 +74957,7 @@ var render = function() {
           _c(
             "b-form-invalid-feedback",
             { attrs: { id: "input-live-feedback" } },
-            [_vm._v("\n            " + _vm._s(_vm.errorDni) + "\n        ")]
+            [_vm._v("\r\n            " + _vm._s(_vm.errorDni) + "\r\n        ")]
           )
         ],
         1
@@ -75029,7 +75047,11 @@ var render = function() {
                     type: "submit"
                   }
                 },
-                [_vm._v("\n            " + _vm._s(_vm.nameBtn) + "\n        ")]
+                [
+                  _vm._v(
+                    "\r\n            " + _vm._s(_vm.nameBtn) + "\r\n        "
+                  )
+                ]
               )
             ],
             1
@@ -75186,48 +75208,16 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-md-6" },
-                [
-                  _c(
-                    "b-form-group",
-                    { attrs: { label: "Sexo" } },
-                    [
-                      _c(
-                        "b-form-radio-group",
-                        {
-                          attrs: {
-                            id: "radio-group-2",
-                            name: "radio-sub-component"
-                          },
-                          model: {
-                            value: _vm.sexo,
-                            callback: function($$v) {
-                              _vm.sexo = $$v
-                            },
-                            expression: "sexo"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-form-radio",
-                            { attrs: { value: "masculino" } },
-                            [_vm._v("Masculino")]
-                          ),
-                          _vm._v(" "),
-                          _c("b-form-radio", { attrs: { value: "femenino" } }, [
-                            _vm._v("Femenino")
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { attrs: { for: "edad" } }, [
+                  _vm._v("Sexo " + _vm._s(_vm.sexo))
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
             ]),
             _vm._v(" "),
             _c("label", { attrs: { for: "fechaNac" } }, [
@@ -75384,7 +75374,7 @@ var render = function() {
       _c("fieldset", [
         _c("div", { staticClass: "form-card" }, [
           _c("h2", { staticClass: "fs-title" }, [
-            _vm._v("Información -  Salud")
+            _vm._v("Información -  Salud ")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -75401,7 +75391,7 @@ var render = function() {
                       {
                         attrs: {
                           id: "radio-group-2",
-                          name: "radio-sub-component"
+                          name: "radio-sub-component2"
                         },
                         model: {
                           value: _vm.seguroSalud,
@@ -75711,7 +75701,7 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _vm._m(3)
     ]
   )
 }
@@ -75726,7 +75716,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", { attrs: { id: "familia" } }, [
-        _c("strong", [_vm._v("Familiar")])
+        _c("strong", [_vm._v("Familia")])
       ]),
       _vm._v(" "),
       _c("li", { attrs: { id: "salud" } }, [_c("strong", [_vm._v("Salud")])]),
@@ -75737,6 +75727,62 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("li", { attrs: { id: "confirm" } }, [_c("strong", [_vm._v("Final")])])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "custom-control custom-radio custom-control-inline" },
+      [
+        _c("input", {
+          staticClass: "custom-control-input",
+          attrs: {
+            type: "radio",
+            id: "defaultInline1",
+            name: "inlineDefaultRadiosExample"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "custom-control-label",
+            attrs: { for: "defaultInline1" }
+          },
+          [_vm._v("Masculino")]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "custom-control custom-radio custom-control-inline" },
+      [
+        _c("input", {
+          staticClass: "custom-control-input",
+          attrs: {
+            type: "radio",
+            id: "defaultInline2",
+            name: "inlineDefaultRadiosExample"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "custom-control-label",
+            attrs: { for: "defaultInline2" }
+          },
+          [_vm._v("Femenino")]
+        )
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -89761,8 +89807,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Javier\Documents\Briceño\Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Javier\Documents\Briceño\Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\RobertGutierrez\Desktop\Nortec\Kameeno\kameeno\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\RobertGutierrez\Desktop\Nortec\Kameeno\kameeno\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

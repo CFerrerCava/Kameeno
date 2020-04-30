@@ -2,12 +2,12 @@
     {
         "id":1,
         "name": "Ciencias Agropecuarias",
-        "state":true
+        "state":false
     },
     {
         "id":2,
         "name": "Ciencias Biológicas",
-        "state":true
+        "state":false
     },
     {
         "id":3,
@@ -22,12 +22,12 @@
     {
         "id":5,
         "name": "Ciencias Sociales",
-        "state":false
+        "state":true
     },
     {
         "id":6,
         "name": "Derecho y Ciencias Políticas",
-        "state":false
+        "state":true
     },
     {
         "id":7,
@@ -52,7 +52,7 @@
     {
         "id":11,
         "name": "Ingeniería",
-        "state":false
+        "state":true
     },
     {
         "id":12,
@@ -62,6 +62,6 @@
     {
         "id":13,
         "name": "Medicina",
-        "state":false
+        "state":true
     }
 ]

@@ -3,7 +3,7 @@
     <!-- progressbar -->
     <ul id="progressbar">
         <li class="active" id="personal"><strong>Personal </strong></li>
-        <li id="familia"><strong>Familiar</strong></li>
+        <li id="familia"><strong>Familia</strong></li>
         <li id="salud"><strong>Salud</strong></li>
         <li id="payment"><strong>Laboral</strong></li>
         <li id="confirm"><strong>Final</strong></li>
@@ -30,12 +30,28 @@
                     <input type="text" id="edad" placeholder="Edad" v-model="edad" />
                 </div>
                 <div class="col-md-6">
-                    <b-form-group label="Sexo">
+                    <label for="edad">Sexo {{sexo}}</label><br>
+                    <!-- <b-form-group label="Sexo">
                         <b-form-radio-group id="radio-group-2" v-model="sexo" name="radio-sub-component">
                             <b-form-radio value="masculino">Masculino</b-form-radio>
                             <b-form-radio value="femenino">Femenino</b-form-radio>
                         </b-form-radio-group>
-                    </b-form-group>
+                    </b-form-group> -->
+                    <!-- Default unchecked -->
+
+                    <!-- Default inline 1-->
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                        <label class="custom-control-label" for="defaultInline1">Masculino</label>
+                    </div>
+
+                    <!-- Default inline 2-->
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                        <label class="custom-control-label" for="defaultInline2">Femenino</label>
+                    </div>
+
                 </div>
             </div>
             <label for="fechaNac">Fecha de nacimiento</label>
@@ -51,8 +67,10 @@
             <input type="text" name="nameFamiliar" placeholder="Nombres y Apellidos" v-model="namesFamiliar"/>
             <label for="">Número de celular</label>
             <input type="text" name="celFamiliar" placeholder="Celular" v-model="celFamiliar" />
+
             <label for="">Correo electrónico</label>
             <input type="text" name="emailFamiliar" placeholder="Correo Electronico" v-model="emailFamiliar" />
+
             <label for="">Dirección</label>
             <input type="text" name="DireFamiliar" placeholder="Dirección" v-model="direccionFamiliar" />
         </div>
@@ -62,11 +80,11 @@
 
     <fieldset>
         <div class="form-card">
-            <h2 class="fs-title">Información -  Salud</h2>
+            <h2 class="fs-title">Información -  Salud </h2>
             <div class="row">
                 <div class="col-md-6">
                     <b-form-group label="Seguro de salud">
-                        <b-form-radio-group id="radio-group-2" v-model="seguroSalud" name="radio-sub-component">
+                        <b-form-radio-group id="radio-group-2" v-model="seguroSalud" name="radio-sub-component2">
                             <b-form-radio value="SIS">SIS</b-form-radio>
                             <b-form-radio value="EsSalud">EsSalud</b-form-radio>
                             <b-form-radio value="Otro">Otro</b-form-radio>
