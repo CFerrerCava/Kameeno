@@ -2,13 +2,13 @@
     {
         "id":1,
         "name":"Zootecnia",
-        "state":false,
+        "state":true,
         "facultadId":1
     },
     {
         "id":2,
         "name":"Ingeniería Agrícola",
-        "state":false,
+        "state":true,
         "facultadId":1
     },
     {
