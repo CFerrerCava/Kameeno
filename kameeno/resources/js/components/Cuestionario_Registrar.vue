@@ -111,13 +111,15 @@ export default {
 
 			})
 			.finally(function(){
-
 			});
         },
 		/**/
 		quitarPregunta: function(index){
 			//this.c.preguntas.splice(index, 1);
-			this.c.preguntas[index].estado = 0;
+			if (this.c.preguntas[index].id_preguntas == null)
+				this.c.preguntas.splice(index, 1);
+			else
+				this.c.preguntas[index].estado = '0';
 		},
 		agregarPregunta: function(){
 			let copia = Object.assign({}, this.modeloPreguntas);
@@ -129,7 +131,10 @@ export default {
 		quitarClave: function(itemPregunta, index){
 			//var posmax = itemPregunta.detalle.length;
 			//itemPregunta.detalle.splice(posmax-1, 1);
-			itemPregunta.detalle[index].estado = '0';
+			if (itemPregunta.detalle[index].id_det_pre == null)
+				itemPregunta.detalle.splice(index, 1);
+			else
+				itemPregunta.detalle[index].estado = '0';
 		},
 		agregarClave: function(itemPregunta){
 			let copia = Object.assign({}, this.modeloDetallePreguntas);
