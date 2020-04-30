@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    cargarContenidos: function(){
+    cargarCuestionario: function(){
 		var that = this;
         axios.post('/panel/cuestionario/list')
         .then(function (response) {
@@ -42,7 +42,7 @@ export default {
   mounted() {
   },
   created: function(){
-      this.cargarContenidos();
+      this.cargarCuestionario();
   }
 }
 </script>

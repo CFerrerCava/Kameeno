@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Cuestionarios extends Model {
     protected $table = 'cuestionarios';
@@ -8,12 +9,13 @@ class Cuestionarios extends Model {
     public $timestamps = false;
     protected $primaryKey = 'id_cuestionario';
 	public static function listar(){
-		return Cuestionarios::select('id_cuestionario', 'nombre', 'estado')->get();
+		return Cuestionarios::select('id_cuestionario', 'nombre', 'fecharegistro','estado')->get();
 	}
 	public static function agregar($nombre, $descripcion){
 		return Cuestionarios::create([
 			'nombre' => $nombre,
 			'descripcion' => $descripcion,
+			'fecharegistro' => Carbon::now()->toTimeString(),
 			'estado' => '1'
 		]);
 	}
@@ -23,8 +25,5 @@ class Cuestionarios extends Model {
 				'nombre' => $nombre,
 				'descripcion' => $descripcion
 			]);
-	}
-	public function preguntas(){
-		return $this->hasMany('App\Preguntas', 'id_cuestionario', 'id_cuestionario');
 	}
 }

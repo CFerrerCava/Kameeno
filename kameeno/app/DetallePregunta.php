@@ -15,11 +15,16 @@ class DetallePregunta extends Model {
 			'estado' => '1'
 		]);
 	}
-	public static function editar($id_det_pre, $opcion, $valor){
+	public static function editar($id_det_pre, $opcion, $valor, $estado){
 		DetallePregunta::where('id_det_pre', $id_det_pre)
 			->update([
 				'opcion' => $opcion,
-				'valor' => $valor
+				'valor' => $valor,
+				'estado' => $estado
 			]);
+	}
+	public static function listar($id_preguntas){
+		return DetallePregunta::where(['id_preguntas' => $id_preguntas, 'estado' => '1'])
+			->get();
 	}
 }
