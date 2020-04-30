@@ -10,8 +10,8 @@
 			<div class="card-body" id="app_vue">
 				<!--
 					<cuestionario-listar></cuestionario-listar>
+					<cuestionario-registrar></cuestionario-registrar>
 				-->
-				<cuestionario-registrar></cuestionario-registrar>
 			</div>
 		</div>
 	</div>

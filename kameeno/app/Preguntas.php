@@ -26,11 +26,12 @@ class Preguntas extends Model {
 			'estado' => '1'
 		]);
 	}
-	public static function editar($id_preguntas, $pregunta){
+	public static function editar($id_preguntas, $pregunta, $estado){
 		Preguntas::where('id_preguntas', $id_preguntas)
-			->update(['pregunta' => $pregunta]);
+			->update(['pregunta' => $pregunta, 'estado' => $estado]);
 	}
-	public function detalle(){
-		return $this->hasMany('App\DetallePregunta', 'id_preguntas', 'id_preguntas');
+	public static function listar($id_cuestionario){
+		return Preguntas::where(['id_cuestionario' => $id_cuestionario, 'estado' => '1'])
+			->get();
 	}
 }

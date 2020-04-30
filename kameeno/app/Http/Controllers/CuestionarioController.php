@@ -16,7 +16,7 @@ class CuestionarioController extends Controller
 	//updCuestionario puede reemplazar a addCuestionario, queda por revisar
     public function mantenedor($param='', Request $request){
         if ($param == 'list') return $this->listContenido($request);
-		else if ($param == 'addCuestionario') return $this->addCuestionario($request);
+		//else if ($param == 'addCuestionario') return $this->addCuestionario($request);
 		else if ($param == 'getCuestionario') return $this->getCuestionario($request);
 		else if ($param == 'updCuestionario') return $this->updCuestionario($request);
         return view('panel.cuestionario.mantenedor');
@@ -35,7 +35,8 @@ class CuestionarioController extends Controller
 			if(isset($preguntaItem['id_preguntas'])){
 				Preguntas::editar(
 					$preguntaItem['id_preguntas'],
-					$preguntaItem['pregunta']
+					$preguntaItem['pregunta'],
+					$preguntaItem['estado']
 				);
 				$idPregunta___ = $preguntaItem['id_preguntas'];
 			}
@@ -48,14 +49,14 @@ class CuestionarioController extends Controller
 			}
 			$detallePregunta = $preguntaItem['detalle'];
 			//dd($detallePregunta);
-
 			foreach ($detallePregunta as $detalleItem) {
 				//id_det_pre
 				if(isset($detalleItem['id_det_pre'])){
 					DetallePregunta::editar(
 						$detalleItem['id_det_pre'],
 						$detalleItem['opcion'],
-						$detalleItem['valor']
+						$detalleItem['valor'],
+						$detalleItem['estado']
 					);
 				}
 				else{
@@ -93,8 +94,10 @@ class CuestionarioController extends Controller
 		}
 		else{
 			$cuestionario = Cuestionarios::find($id);
-			for ($i = 0; $i < count($cuestionario->preguntas); $i++) {
-				$cuestionario->preguntas[$i]->detalle;
+			$cuestionario['preguntas'] = Preguntas::listar($cuestionario->id_cuestionario);
+			for ($i = 0; $i < count($cuestionario['preguntas']); $i++) {
+				$id_preguntas = $cuestionario['preguntas'][$i]->id_preguntas;
+				$cuestionario['preguntas'][$i]['detalle'] = DetallePregunta::listar($id_preguntas);
 			}
 		}
 		return $cuestionario;
