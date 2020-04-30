@@ -1,0 +1,67 @@
+[
+    {
+        "id":1,
+        "name": "Ciencias Agropecuarias",
+        "state":false
+    },
+    {
+        "id":2,
+        "name": "Ciencias Biológicas",
+        "state":false
+    },
+    {
+        "id":3,
+        "name": "Ciencias Económicas",
+        "state":false
+    },
+    {
+        "id":4,
+        "name": "Ciencias Físicas y Matemáticas",
+        "state":false
+    },
+    {
+        "id":5,
+        "name": "Ciencias Sociales",
+        "state":false
+    },
+    {
+        "id":6,
+        "name": "Derecho y Ciencias Políticas",
+        "state":false
+    },
+    {
+        "id":7,
+        "name": "Educación y Ciencias de la Comunicación",
+        "state":false
+    },
+    {
+        "id":8,
+        "name": "Enfermería",
+        "state":false
+    },
+    {
+        "id":9,
+        "name": "Estomatología",
+        "state":false
+    },
+    {
+        "id":10,
+        "name": "Farmacia y Bioquímica",
+        "state":false
+    },
+    {
+        "id":11,
+        "name": "Ingeniería",
+        "state":false
+    },
+    {
+        "id":12,
+        "name": "Ingeniería Química",
+        "state":false
+    },
+    {
+        "id":13,
+        "name": "Medicina",
+        "state":false
+    }
+]

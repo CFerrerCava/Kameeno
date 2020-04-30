@@ -16,6 +16,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/assets_client/css/styles.css" rel="stylesheet" />
         @yield('styles')
@@ -49,6 +50,8 @@
         <script src="/assets_client/mail/contact_me.js"></script>
         <!-- Core theme JS-->
         <script src="/assets_client/js/scripts.js"></script>
+
+
         @yield('scripts')
     </body>
 </html>
