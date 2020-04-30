@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class panel_untController extends Controller
 {
-    public function mantenedor($vista='', Request $request){
+    public function mantenedor($vista='.', Request $request){
         if ($vista == 'list')
          return $this->listContenido($request);
         if ($vista == 'perfiles')

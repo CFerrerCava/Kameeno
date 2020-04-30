@@ -53,7 +53,7 @@ Vue.component('unt-listar', require('./components/unt_Listar.vue').default);
 Vue.component('unt-perfiles', require('./components/unt_perfiles.vue').default);
 Vue.component('cuestionario-listar', require('./components/Cuestionario_Listar.vue').default);
 Vue.component('cuestionario-registrar', require('./components/Cuestionario_Registrar.vue').default);
-
+ 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

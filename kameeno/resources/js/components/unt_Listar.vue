@@ -64,12 +64,13 @@
                     <template v-slot:cell(actions)="row">
 											<a v-if="row.item.estado!='DESACTIVADO'"></a>
 											<b-dropdown id="dropdown-1" variant="primary" text="Elegir acción" class="m-md-2">
-												<b-dropdown-item v-on:click="VerFicha(row.item.DNI)">Ver ficha de paciente</b-dropdown-item>
+												<b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-ficha')">Ver ficha de paciente</b-dropdown-item>
 												<b-dropdown-divider></b-dropdown-divider>
-												<b-dropdown-item v-on:click="RegistraHistoria(row.item.DNI)">Nuevo registro</b-dropdown-item>
+                        <b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-seguimiento')">Ver seguimiento</b-dropdown-item>
+												<b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-registro')">Nuevo registro</b-dropdown-item>
 												<b-dropdown-divider></b-dropdown-divider>
-												<b-dropdown-item v-on:click="Derivar(row.item.DNI)">Derivar</b-dropdown-item>											 
-												<b-dropdown-item v-on:click="CambiarEstado(row.item.DNI)">Cambiar estado</b-dropdown-item>										 
+												<b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-derivar')">Derivar</b-dropdown-item>											 
+												<b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-estado')">Cambiar estado</b-dropdown-item>										 
 											</b-dropdown>
                     </template>
                     <template v-slot:row-details="row">
@@ -116,41 +117,107 @@
 				<div>					
 					<b-modal ref="modal-ficha" hide-footer title="Ficha de paciente">
 						<div class="d-block">
-						 <!-- <p>Nombre: {{paciente.nombre}}</p>
-						 <p>Apellido paterno: {{paciente.ap_pat}}</p>
-						 <p>Apellido materno: {{paciente.ap_mat}}</p>
-						 <p>DNI: {{paciente.DNI}}</p>
-						 <p>Fecha de registro: {{paciente.fecha_registro}}</p>
-						 <p>Fecha de nacimiento: {{paciente.fecha_nac}}</p>
-						 <p>Sexo: {{paciente.sexo}}</p>
-						 <p>Estado civil: {{paciente.estado_civil}}</p>
-						 <p>Dirección: {{paciente.direccion}}</p>
-						 <p>Telefono: {{paciente.telefono}}</p>
-						 <p>Correo: {{paciente.correo}}</p>
-						 <p>Estado: {{paciente.estado}}</p>
-						 <p>Facultad: {{paciente.facultad}}</p>
-						 <p>Ocupación: {{paciente.ocupacion}}</p>
-						 <p>Seguro: {{paciente.seguro}}</p> -->
+              <p>Nombre: {{Datapaciente.nombre}}</p>
+              <p>Apellido paterno: {{Datapaciente.ap_pat}}</p>
+              <p>Apellido materno: {{Datapaciente.ap_mat}}</p>
+              <p>DNI: {{Datapaciente.DNI}}</p>
+              <p>Fecha de registro: {{Datapaciente.fecha_registro}}</p>
+              <p>Fecha de nacimiento: {{Datapaciente.fecha_nac}}</p>
+              <p>Sexo: {{Datapaciente.sexo}}</p>
+              <p>Estado civil: {{Datapaciente.estado_civil}}</p>
+              <p>Dirección: {{Datapaciente.direccion}}</p>
+              <p>Telefono: {{Datapaciente.telefono}}</p>
+              <p>Correo: {{Datapaciente.correo}}</p>
+              <p>Estado: {{Datapaciente.estado}}</p>
+              <p>Facultad: {{Datapaciente.facultad}}</p>
+              <p>Ocupación: {{Datapaciente.ocupacion}}</p>
+              <p>Seguro: {{Datapaciente.seguro}}</p> 
+              <p>Enfermedad: {{Datapaciente.enfermedad}}</p> 
+              <p>Tratamiento: {{Datapaciente.tratamiento}}</p> 
 						</div>
 						<b-button class="mt-3" variant="outline-success" block @click="hideModal('modal-ficha')">Cerrar</b-button>						 
 					</b-modal>
 					<b-modal ref="modal-registro" hide-footer title="Historia clínica">
 						<div class="d-block">
-						 
+              <div class=" row">
+                <div class=" col-12">
+                  <label for=""  >Consulta</label>
+                  <textarea v-model="historia.consulta" cols="30" rows="10" class=" form-control" placeholder="Ingrese texto aquí...">
+
+                  </textarea>
+                </div>
+                <div class=" col-12">
+                  <br>
+                  <label for="" class=" form-control">Respuesta</label>
+                  <textarea  v-model="historia.respuesta" cols="30" rows="10" class=" form-control" placeholder="Ingrese texto aquí...">
+                  </textarea> 
+                </div>               
+              </div>
 						</div>
-						<b-button class="mt-3" variant="outline-success" block @click="hideModal('modal-registro')">Cerrar</b-button>						 
+            <div class=" text-center">
+              <b-button   variant="success" @click="hideModal('modal-registro')">Guardar</b-button>		
+              <b-button   variant="danger" @click="hideModal('modal-registro')">Cerrar</b-button>
+            </div>
 					</b-modal>
 					<b-modal ref="modal-derivar" hide-footer title="Derivar">
 						<div class="d-block">
-						 
+              <div class=" col-12">
+                  <label for=""  >Médico</label>
+                   <select name="" id="" class=" form-control">
+                     <option value=""
+                      v-for="(item, index) in MedicoArray" 
+                      v-bind="item" 
+                      v-bind:index="index"  
+                      v-bind:key="item.id"
+                      >{{item.data}}</option>
+                   </select>
+                </div>
+						  <div class=" text-center">
+                <b-button   variant="success" @click="hideModal('modal-registro')">Guardar</b-button>		
+                <b-button   variant="danger" @click="hideModal('modal-derivar')">Cerrar</b-button>
+              </div>
+						</div>  
+					</b-modal>
+          <b-modal ref="modal-seguimiento" hide-footer title="Seguimiento">
+						<div class="d-block">
+              <div 
+              v-for="(item, index) in historiaArray" 
+              v-bind="item" 
+              v-bind:index="index"  
+              v-bind:key="item.id">
+                <b-card 
+                  tag="article"  
+                >
+                <h3>{{item.fecha}}</h3>
+                  <b-card-text>
+                    <p>Consulta: {{item.consulta}}</p> 
+                    <p>Respuesta: {{item.respuesta}}</p>  
+                  </b-card-text>                  
+                </b-card>
+              </div>
+              
+						  
 						</div>
 						<b-button class="mt-3" variant="outline-success" block @click="hideModal('modal-derivar')">Cerrar</b-button>						 
 					</b-modal>
 					<b-modal ref="modal-estado" hide-footer title="Cambiar estado">
 						<div class="d-block">
-						 
-						</div>
-						<b-button class="mt-3" variant="outline-success" block @click="hideModal('modal-estado')">Cerrar</b-button>						 
+              <div class=" col-12">
+                  <label for=""  >Estado</label>
+                   <select name="" id="" class=" form-control">
+                     <option value=""
+                      v-for="(item, index) in EstadoArray" 
+                      v-bind="item" 
+                      v-bind:index="index"  
+                      v-bind:key="item.id"
+                      >{{item.data}}</option>
+                   </select>
+                </div>
+						  <div class=" text-center">
+                <b-button   variant="success" @click="hideModal('modal-estado')">Guardar</b-button>		
+                <b-button   variant="danger" @click="hideModal('modal-estado')">Cerrar</b-button>
+              </div>
+						</div>					 					 
 					</b-modal>
 				</div>
     </div>
@@ -204,8 +271,24 @@ export default {
 				estado:'',
 				facultad:'',
 				ocupacion:'',
-				seguro:'',
-			},
+        seguro:'',
+        enfermedad:'',
+        tratamiento:''
+      },
+      historia:{
+        consulta:'',
+        respuesta:'',
+        fecha:'' 
+      },
+      DNI:'',
+      historiaArray:[],
+      Medico:{data:''},
+      MedicoArray:[],
+      EstadoArray:[
+        {data:'asd'},
+        {data:'asd'},
+        {data:'asd'}
+        ]
     }
   },
   methods: {
@@ -213,20 +296,48 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-		},
-		VerFicha: function (DNI) {
-			this.showModal('modal-ficha');
+    },
+    verModal: function (DNI, modal) {
+      this.DNI=DNI;
+      switch (modal) {
+        case 'modal-seguimiento':
+          this.VerSeguimiento(DNI);          
+          break;
+        case 'modal-derivar':
+          this.Derivar(DNI);          
+          break;
+        default:
+          break;
+      }
+			this.showModal(modal);
+    },
+		VerFicha: function () {     
+     
 		},
 		RegistraHistoria: function (DNI) {
-			this.showModal('modal-registro');
+     
 		},
 		Derivar: function (DNI) {
-			this.showModal('modal-derivar');
+      var hist=this.Medico;
+      for (let index = 0; index < 5; index++) {       
+        hist.data='asdasd';
+        this.MedicoArray.push(hist);
+      }
 		}
 		,
 		CambiarEstado: function (DNI) {
-			this.showModal('modal-estado');
-		}, 
+   
+    }, 
+    VerSeguimiento: function (DNI) {
+
+      var hist=this.historia;
+      for (let index = 0; index < 5; index++) {
+        hist.consulta='asdasd';
+        hist.respuesta='asdasd';
+        hist.fecha='10/20/20';  
+        this.historiaArray.push(hist);
+      }
+    },
 		showModal(string) {
       this.$refs[string].show()
 		},
