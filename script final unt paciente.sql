@@ -16,8 +16,9 @@ CREATE TABLE cuestionarios
 (
 	id_cuestionario      INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	nombre               VARCHAR(100) NULL,
-	estado               VARCHAR(20) NULL,
-	descripcion          TEXT NOT NULL
+	fecharegistro        DATETIME NOT NULL,
+	descripcion          TEXT NOT NULL,
+	estado               VARCHAR(20) NULL
 );
 
 CREATE TABLE detalle_historia
@@ -49,7 +50,6 @@ CREATE TABLE enfermedad_paciente
 (
 	id_enfermedad        INTEGER NOT NULL,
 	id_paciente          INTEGER NOT NULL,
-	tratamiento          VARCHAR(20) NOT NULL,
 	estado               VARCHAR(20) NOT NULL
 );
 
@@ -83,7 +83,7 @@ CREATE TABLE medico
 	nombre               VARCHAR(20) NOT NULL,
 	ap_pat               VARCHAR(20) NOT NULL,
 	ap_mat               VARCHAR(20) NOT NULL,
-	dni                  VARCHAR(20) NOT NULL,
+	dni                  CHAR(8) NOT NULL,
 	fecharegistro        DATETIME NOT NULL,
 	estado               VARCHAR(20) NOT NULL,
 	usuario              VARCHAR(20) NOT NULL,
@@ -110,24 +110,25 @@ CREATE TABLE paciente
 	nombre               VARCHAR(20) NOT NULL,
 	ap_pat               VARCHAR(20) NOT NULL,
 	ap_mat               VARCHAR(20) NOT NULL,
-	dni                  VARCHAR(11) NOT NULL,
+	dni                  CHAR(8) NOT NULL,
 	fecha_registro       DATE NULL,
 	estado               VARCHAR(20) NULL,
 	fecha_nac            DATE NULL,
 	estado_civil         VARCHAR(20) NULL,
-	direccion            VARCHAR(20) NULL,
+	direccion            VARCHAR(40) NULL,
 	telefono             VARCHAR(20) NULL,
 	sexo                 VARCHAR(20) NULL,
 	correo               VARCHAR(30) NULL,
 	id_facultad          INTEGER NULL,
 	id_ocupacion         INTEGER NULL,
-	id_seguro            INTEGER NULL
+	id_seguro            INTEGER NULL,
+	tratamiento          TEXT NOT NULL
 );
 
 CREATE TABLE preguntas
 (
 	id_preguntas         INTEGER PRIMARY KEY AUTO_INCREMENT,
-	pregunta             VARCHAR(20) NOT NULL,
+	pregunta             VARCHAR(100) NOT NULL,
 	id_cuestionario      INTEGER NOT NULL,
 	estado               VARCHAR(20) NOT NULL,
 	orden                INTEGER NULL

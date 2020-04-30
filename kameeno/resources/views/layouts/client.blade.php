@@ -16,6 +16,8 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+        <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/assets_client/css/styles.css" rel="stylesheet" />
@@ -28,9 +30,7 @@
             @yield('content')
              <!-- Copyright Section-->
             <section class="copyright py-4 text-center text-white">
-                <div class="container"><small>Copyright © Nortec ©  <script>
-                    document.write(new Date().getFullYear())
-                 </script></small></div>
+                <div class="container"><small>Copyright © Nortec © 2020</small></div>
             </section>
             <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
             <div class="scroll-to-top d-lg-none position-fixed">

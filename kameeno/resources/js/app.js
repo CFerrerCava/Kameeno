@@ -44,6 +44,7 @@ window.Vue = require('vue');
 
 Vue.component('form-register-unt-paciente', require('./components/FormRegisterUNTPaciente.vue').default);
 Vue.component('form-wizard-unt-paciente', require('./components/FormWizardUntPacientes.vue').default);
+Vue.component('vue-multiselect', window.VueMultiselect.default)
 
 Vue.component('contenido', require('./components/Contenido.vue').default);
 Vue.component('contenido-registrar', require('./components/Contenido_Registrar.vue').default);

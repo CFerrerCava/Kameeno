@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterUntPacientes;
+use Illuminate\Support\Facades\Crypt;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ Route::post('/reniec', function (GuzzleHttp\Client $client, Request $request){
 });
 
 Route::post('/sendEmailUntPacientes', function(Request $request){
-    $url = "www.google.com";
+    $cifrado = Crypt::encrypt(json_encode(["names" => $request->names,"dni"=>$request->dni, "email" => $request->email]));
+    $url = 'http://localhost:8000/formulario/'.$cifrado;
     Mail::to($request->email)->send(new RegisterUntPacientes($request->names, $request->dni, $url));
     return response()->json(["msg"=>"Envio exitoso"]);
 });
