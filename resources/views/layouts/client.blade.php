@@ -8,19 +8,11 @@
         <title>@yield('title')</title>
 
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
-        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
-        <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
-
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/assets_client/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Rubik:400,500,700%7cShadows+Into+Light&display=swap">
+        <link rel="stylesheet" href="assets/css/libraries.css" />
+        <!-- <link rel="stylesheet" href="assets/css/animate.css" /> -->
+        <link rel="stylesheet" href="assets/css/style.css" />
         @yield('styles')
     </head>
     <body id="page-top">

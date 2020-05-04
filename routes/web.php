@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('index'); });
+// Route::get('/', function () { return view('index'); });
 Route::get('/formulario/{cifrado}','untPacienteController@showFormRegister');
 Route::get('/unt-a-tus-pacientes', function(){ return view('client.unt_paciente.index'); })->name('untAtusPacientes');
 
@@ -23,3 +23,12 @@ Route::any('/panel/probando','panel_untController@mantenedor');
 Route::any('/panel/unt-a-tu-paciente/{vista?}','panel_untController@mantenedor');
 Route::any('/panel/cuestionario','CuestionarioController@mantenedor');
 Route::any('/panel/cuestionario/{param}','CuestionarioController@mantenedor');
+
+Route::get('/new_index',function(){
+    return view('layouts.design');
+});
+
+Route::get('/', function () { return view('client.index'); });
+Route::get('/empresa', function () {
+    return view('client.list_products');
+});
