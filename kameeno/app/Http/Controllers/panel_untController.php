@@ -11,10 +11,10 @@ class panel_untController extends Controller
     public function mantenedor($vista='.', Request $request){
         switch ($vista) {
             case 'list':
-                return $this->listContenido($request);
+                return $this->listContenido();
                 break;
             case 'alerta':
-                return $this->listContenido($request);
+                return $this->alerta($request);
                 break;
             case 'perfiles':
                 return view('panel.unt_paciente.perfiles');
@@ -43,8 +43,9 @@ class panel_untController extends Controller
         }
     }
 
-    public function listContenido($request){
-	 
+    public function listContenido(){
+        $roles = DB::table('paciente')->pluck(`nombre`,`ap_pat`,`ap_mat`,`dni`,`telefono`,`estado`);
+        return $roles;
     }
     
     public function registraConsulta(Request $request)
