@@ -4222,7 +4222,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     funcionPaciente: function funcionPaciente(DNI) {
-      location.href = "unt-a-tu-paciente/paciente";
+      location.href = "paciente/" + DNI;
     }
   },
   mounted: function mounted() {

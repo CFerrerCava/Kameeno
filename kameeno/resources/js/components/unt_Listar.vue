@@ -267,7 +267,7 @@ export default {
         });
     },
     funcionPaciente: function (DNI) {
-      location.href="unt-a-tu-paciente/paciente";
+      location.href="paciente/"+DNI;
     } 
   },
   mounted() {
