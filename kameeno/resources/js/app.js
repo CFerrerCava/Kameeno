@@ -44,7 +44,8 @@ window.Vue = require('vue');
 
 Vue.component('form-register-unt-paciente', require('./components/FormRegisterUNTPaciente.vue').default);
 Vue.component('form-wizard-unt-paciente', require('./components/FormWizardUntPacientes.vue').default);
-//Vue.component('vue-multiselect', window.VueMultiselect.default)
+Vue.component('form-wizard-unt', require('./components/formWizard/App.vue').default);
+Vue.component('vue-multiselect', window.VueMultiselect.default)
 
 Vue.component('contenido', require('./components/Contenido.vue').default);
 Vue.component('contenido-registrar', require('./components/Contenido_Registrar.vue').default);
@@ -57,7 +58,7 @@ Vue.component('paciente-component', require('./components/pacienteComponent.vue'
 Vue.component('cuestionario-listar', require('./components/Cuestionario_Listar.vue').default);
 Vue.component('cuestionario-registrar', require('./components/Cuestionario_Registrar.vue').default);
 Vue.component('cuestionario-resolver', require('./components/Cuestionario_Resolver.vue').default);
- 
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
