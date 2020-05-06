@@ -187,6 +187,31 @@
       },
       funcionGuarda:function () {
          this.hideModal('modal-consulta');
+         var that = this;
+          axios.post('paciente/registraConsulta')
+          .then(function (response) {
+              that.items = response.data;
+              that.onFiltered(that.items);
+              //totalRows = that.items.length;
+          });
+      },
+      funDataPaciente: function(){
+          var that = this;
+          axios.post('paciente/data')
+          .then(function (response) {
+              that.items = response.data;
+              that.onFiltered(that.items);
+              //totalRows = that.items.length;
+          });
+      },
+       ListaSeguimiento: function(){
+          var that = this;
+          axios.post('paciente/seguimiento')
+          .then(function (response) {
+              that.items = response.data;
+              that.onFiltered(that.items);
+              //totalRows = that.items.length;
+          });
       }
     },
     mounted() { 
