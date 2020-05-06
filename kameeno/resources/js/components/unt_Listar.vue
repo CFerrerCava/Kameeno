@@ -259,7 +259,16 @@ export default {
     },
     cargarContenidos: function(){
         var that = this;
-        axios.post('contenidos/listContenido')
+        axios.post('panel_untController/list')
+        .then(function (response) {
+            that.items = response.data;
+            that.onFiltered(that.items);
+            //totalRows = that.items.length;
+        });
+    },
+    FuncionEstado: function(){
+        var that = this;
+        axios.post('panel_untController/alerta')
         .then(function (response) {
             that.items = response.data;
             that.onFiltered(that.items);

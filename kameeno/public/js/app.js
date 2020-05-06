@@ -3875,6 +3875,25 @@ __webpack_require__.r(__webpack_exports__);
     },
     funcionGuarda: function funcionGuarda() {
       this.hideModal('modal-consulta');
+      var that = this;
+      axios.post('paciente/registraConsulta').then(function (response) {
+        that.items = response.data;
+        that.onFiltered(that.items); //totalRows = that.items.length;
+      });
+    },
+    funDataPaciente: function funDataPaciente() {
+      var that = this;
+      axios.post('paciente/data').then(function (response) {
+        that.items = response.data;
+        that.onFiltered(that.items); //totalRows = that.items.length;
+      });
+    },
+    ListaSeguimiento: function ListaSeguimiento() {
+      var that = this;
+      axios.post('paciente/seguimiento').then(function (response) {
+        that.items = response.data;
+        that.onFiltered(that.items); //totalRows = that.items.length;
+      });
     }
   },
   mounted: function mounted() {
@@ -4216,7 +4235,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     cargarContenidos: function cargarContenidos() {
       var that = this;
-      axios.post('contenidos/listContenido').then(function (response) {
+      axios.post('panel_untController/list').then(function (response) {
+        that.items = response.data;
+        that.onFiltered(that.items); //totalRows = that.items.length;
+      });
+    },
+    FuncionEstado: function FuncionEstado() {
+      var that = this;
+      axios.post('panel_untController/alerta').then(function (response) {
         that.items = response.data;
         that.onFiltered(that.items); //totalRows = that.items.length;
       });
