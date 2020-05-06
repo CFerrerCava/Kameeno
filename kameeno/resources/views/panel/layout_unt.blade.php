@@ -7,7 +7,7 @@
   <link rel="icon" href="{!! asset('img/icono.png') !!}" type="image/png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   Intranet
+   Unt a tu paciente - Intranet
   </title>
   <style>
 /* Center the loader */

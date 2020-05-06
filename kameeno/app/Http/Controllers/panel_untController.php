@@ -13,6 +13,8 @@ class panel_untController extends Controller
          return $this->listContenido($request);
         if ($vista == 'perfiles')
         return view('panel.unt_paciente.perfiles');
+        if ($vista == 'paciente')
+        return view('panel.unt_paciente.paciente');
 	 
         return view('panel.unt_paciente.mantenedor');
     }
