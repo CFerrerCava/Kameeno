@@ -8,7 +8,7 @@
 				<h4 class="card-title">Mantenedor perfiles</h4>
 			</div>
 			<div class="card-body" id="app_vue">
-				 <unt-perfiles></unt-perfiles>
+				 <profile-component></profile-component>
 			</div>
 		</div>
 	</div>

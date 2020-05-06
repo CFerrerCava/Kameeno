@@ -59,8 +59,7 @@
                   >
                     
 
-                    <template v-slot:cell(actions)="row">
-											<a v-if="row.item.estado!='DESACTIVADO'"></a>
+                    <template v-slot:cell(actions)="row"> 
 											<b-dropdown id="dropdown-1" variant="primary" text="Elegir acción" class="m-md-2">
 												<b-dropdown-item v-on:click="funcionPaciente(row.item.DNI)">Atender</b-dropdown-item>
 												<b-dropdown-divider></b-dropdown-divider> 
