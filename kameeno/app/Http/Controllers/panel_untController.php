@@ -20,15 +20,17 @@ class panel_untController extends Controller
                 return view('panel.unt_paciente.perfiles');
                 break;
             case 'DerivarMedico':
-                return view('panel.unt_paciente.perfiles');
+                return $this->derivar($request);
                 break;
             case 'AgregarMedico':
-                return view('panel.unt_paciente.perfiles');
+                return $this->agregarMedico($request);
                 break;
             case 'listaMedicos':
-                return view('panel.unt_paciente.perfiles');
+                return $this->ListarMedico();
                 break;
-            
+            case 'data':
+                return $this->data($request);
+                break;
             default:
                 return view('panel.unt_paciente.mantenedor');
                 break;
@@ -53,10 +55,21 @@ class panel_untController extends Controller
     }
 
     public function listContenido(){
-        $roles = DB::table('paciente')->pluck(`nombre`,`ap_pat`,`ap_mat`,`dni`,`telefono`,`estado`);
+        $roles = DB::table('paciente')->pluck('nombre','ap_pat','ap_mat','dni','telefono','estado');
         return $roles;
     }
-    
+    public function agregarMedico(Request $request)
+    {  
+        return DB::table('medico')->insert(
+                ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'estado'=>'Activo','usuario'=>'s','clave'=>'s']
+            );
+    }
+    public function ListarMedico()
+    {
+        $roles = DB::table('medico')->selectRaw('id_medico ,concat(nombre , " ",ap_pat, " ",ap_mat) as medico,dni,fecharegistro,estado')->get();
+        return $roles;
+    }
+
     public function registraConsulta(Request $request)
     {
          
@@ -69,6 +82,11 @@ class panel_untController extends Controller
     public function alerta(Request $request)
     {
          
+    }
+    public function data(Request $request)
+    {
+         $user= session('_');
+         return $user;
     }
 
 }

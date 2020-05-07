@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class untPacienteController extends Controller
 {
     public function showFormRegister($cifrado){
+         
         try {
             $decrypted = Crypt::decrypt($cifrado);
             $decrypted = json_decode($decrypted);
