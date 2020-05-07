@@ -71,15 +71,17 @@ class CreateUsersTable extends Migration
             $table->integer('id_medico')->unsigned();
             $table->foreign('id_medico')->references('id_medico')->on('medico');
 		});
+		/*
 		Schema::create('rol_medico', function (Blueprint $table) {
             $table->increments('id_rolmedico');
             $table->timestamp('fecha');
             $table->integer('id_medico')->unsigned();
             $table->foreign('id_medico')->references('id_medico')->on('medico');
             $table->integer('id_rol')->unsigned();
-            $table->foreign('id_rol')->references('id_rol')->on('roles');
+            /$table->foreign('id_rol')->references('id_rol')->on('roles');
 			$table->string('estado', 20);
 		});
+		*/
 		//Area Médico
 		//Area Formulario Registro
     	Schema::create('enfermedad', function (Blueprint $table) {
@@ -165,10 +167,12 @@ class CreateUsersTable extends Migration
 		Schema::create('rol_medico_paciente', function (Blueprint $table) {
 			$table->increments('id_pacientexmedico');
 			$table->integer('id_historia')->unsigned();
-			$table->integer('id_rolmedico')->unsigned();
+			//$table->integer('id_rolmedico')->unsigned();
+			$table->integer('id_medico')->unsigned();
 			$table->integer('id_paciente')->unsigned();
 			$table->foreign('id_historia')->references('id_historia')->on('historia_clinica');
-			$table->foreign('id_rolmedico')->references('id_rolmedico')->on('rol_medico');
+			//$table->foreign('id_rolmedico')->references('id_rolmedico')->on('rol_medico');
+			$table->foreign('id_medico')->references('id_medico')->on('medico');
 			$table->foreign('id_paciente')->references('id_paciente')->on('paciente');
 		});
 		//Area Pacientes
@@ -198,7 +202,8 @@ class CreateUsersTable extends Migration
 		});
 		Schema::create('rol_medico_paciente_cuestionarios', function (Blueprint $table) {
 			$table->increments('id_cuestionariopersona');
-			$table->timestamp('fecha');
+			$table->dateTime('fechaGenerado');
+			$table->dateTime('fechaResuelto');
 			$table->text('observacion');
 			$table->string('estado', 20);
 			$table->integer('id_pacientexmedico')->unsigned();
