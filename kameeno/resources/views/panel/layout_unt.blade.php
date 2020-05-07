@@ -139,6 +139,7 @@
   <script type="text/javascript" src="{!! asset('assets_panel/js/plugins/perfect-scrollbar.jquery.min.js') !!}" ></script>
   <script type="text/javascript" src="{!! asset('assets_panel/js/core/popper.min.js') !!}" ></script>
   <script type="text/javascript" src="{!! asset('assets_panel/js/core/bootstrap.min.js') !!}" ></script>
+  <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
   <!--  Google Maps Plugin    -->
   <!--
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>

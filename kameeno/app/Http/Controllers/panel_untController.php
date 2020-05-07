@@ -19,6 +19,15 @@ class panel_untController extends Controller
             case 'perfiles':
                 return view('panel.unt_paciente.perfiles');
                 break;
+            case 'DerivarMedico':
+                return view('panel.unt_paciente.perfiles');
+                break;
+            case 'AgregarMedico':
+                return view('panel.unt_paciente.perfiles');
+                break;
+            case 'listaMedicos':
+                return view('panel.unt_paciente.perfiles');
+                break;
             
             default:
                 return view('panel.unt_paciente.mantenedor');
