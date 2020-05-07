@@ -219,6 +219,8 @@ class CreateUsersTable extends Migration
 			$table->foreign('id_cuestionariopersona')->references('id_cuestionariopersona')->on('rol_medico_paciente_cuestionarios');
 		});
 		//Area Cuestionarios
+		//MIS DATOS DE PRUEBA:3
+		/*
 		DB::table('medico')->insert([
 			'nombre' => 'nombre',
 			'ap_pat' => 'ap_pat',
@@ -268,6 +270,7 @@ class CreateUsersTable extends Migration
 			'id_medico' => 1,
 			'id_paciente' => 1
 		]);
+		*/
     }
 
     /**
