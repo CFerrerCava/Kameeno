@@ -61,7 +61,7 @@ class CreateUsersTable extends Migration
 			$table->string('ap_pat', 20);
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
-            $table->timestamp('fecharegistro');
+      $table->timestamp('fecharegistro');
 			$table->string('estado', 20);
 			$table->integer('idPadre');
 		});
