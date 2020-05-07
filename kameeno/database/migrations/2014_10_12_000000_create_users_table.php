@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
 		//Area Médico
-    	Schema::create('opciones', function (Blueprint $table) {
+    	/*Schema::create('opciones', function (Blueprint $table) {
 			$table->increments('id_op');
             $table->string('nombre', 20);
             $table->string('estado', 20);
@@ -30,7 +30,31 @@ class CreateUsersTable extends Migration
             $table->foreign('id_op')->references('id_op')->on('opciones');
             $table->foreign('id_rol')->references('id_rol')->on('roles');
 			$table->string('estado', 20);
-		});
+        });*/
+
+        Schema::create('permisos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 70);
+        });
+
+        Schema::create('rols_permisos', function (Blueprint $table) {
+            $table->integer('rol_id');
+            $table->integer('permiso_id');
+        });
+
+        Schema::create('rols', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 70);
+            $table->boolean('isAdmin')->default(false);
+        });
+
+        Schema::create('usuarios', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('email', 100)->unique();
+            $table->string('clave', 100);
+            $table->integer('rol_id');
+        });
+
 		Schema::create('medico', function (Blueprint $table) {
 			$table->increments('id_medico');
 			$table->string('nombre', 20);
@@ -39,8 +63,6 @@ class CreateUsersTable extends Migration
 			$table->string('dni', 8);
             $table->timestamp('fecharegistro');
 			$table->string('estado', 20);
-			$table->string('usuario', 20);
-			$table->string('clave', 200);
 		});
 		Schema::create('especialidad', function (Blueprint $table) {
 			$table->increments('id_especialidad');

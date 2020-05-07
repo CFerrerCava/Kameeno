@@ -32,7 +32,7 @@
         </div>
         <div class="field col-6">
             <b-form-group label="¿Sigue algún tratamiento?">
-                <b-form-radio-group id="radio-group-3" v-model="form.tratamiento" name="radio-sub-component">
+                <b-form-radio-group id="radio-group-3" v-model="form.tratamiento">
                     <b-form-radio value="si">Si</b-form-radio>
                     <b-form-radio value="no">No</b-form-radio>
                 </b-form-radio-group>
@@ -42,13 +42,16 @@
         <div class="field col-md-12" v-if="form.tratamiento==='si'">
             <label for="">Especifique el tratamiento</label>
             <textarea cols="30" rows="5" class="input" v-model="form.especificacion"></textarea>
+            <p v-if="$v.form.especificacion.$error" class="help is-danger">Este solo puede contener 150 caracteres</p>
         </div>
     </div>
 </template>
 
 <script>
     import {validationMixin} from 'vuelidate'
-    import {required, numeric, minValue, maxValue} from 'vuelidate/lib/validators'
+    import {required, numeric, maxLength, requiredIf, helpers, not } from 'vuelidate/lib/validators'
+    const alpha = helpers.regex('alpha', /^[a-zA-ZÀ-ÿ\u00f1\u00d10-9\s]*$/)
+    const characters = helpers.regex('characters', /^(\s*[.|s|\-|_|{|}|*|´|,|;|:|?|¡|¿|!|+|´|']*)+$/)
 
     export default {
         props: ['clickedNext', 'currentStep', 'names', 'email', 'dni'],
@@ -59,7 +62,7 @@
                     seguroSalud:'',
                     centroSalud:'',
                     enfermedades:[],
-                    tratamiento:'',
+                    tratamiento:null,
                     especificacion:''
                 },
                 options: [
@@ -83,10 +86,18 @@
                     required
                 },
                 centroSalud:{
-                    required
+                    required,
+                    alpha,
+                    maxLength: maxLength(50)
                 },
                 tratamiento:{
                     required
+                },
+                especificacion:{
+                    required:  requiredIf(function(form){
+                        return form.tratamiento === 'si' ? true : false;
+                    }),
+                    maxLength: maxLength(200)
                 }
             }
         },
@@ -120,6 +131,9 @@
             }
             this.options.push(tag)
             this.value.push(tag)
+            },
+            handleTratamiento () {
+                alert(this.form.tratamiento)
             }
         },
         mounted() {
