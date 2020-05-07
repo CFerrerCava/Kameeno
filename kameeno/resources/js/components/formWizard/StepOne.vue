@@ -18,14 +18,14 @@
                 <input type="email" class="input"  placeholder="Ingrese su correo electrónico" v-model="form.email" disabled>
             </div>
         </div>
-        <div class="field col-6">
+        <div class="field col-12 col-md-6">
             <label class="label">Edad</label>
             <div class="control">
                 <input :class="['input', ($v.form.edad.$error) ? 'is-danger' : '']"  type="text" placeholder="Ingrese su edad" v-model="form.edad">
             </div>
             <p v-if="$v.form.edad.$error" class="help is-danger">Este campo es inválido</p>
         </div>
-        <div class="field col-6">
+        <div class="field col-12 col-md-6">
             <b-form-group label="Sexo">
                 <b-form-radio-group id="radio-group-2" v-model="form.sexo" name="radio-sub-component">
                     <b-form-radio value="masculino">Masculino</b-form-radio>

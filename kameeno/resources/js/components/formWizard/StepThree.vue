@@ -1,6 +1,6 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;" class="row">
-        <div class="field col-6">
+        <div class="field col-12 col-md-6">
             <b-form-group label="Seguro de salud">
                 <b-form-radio-group id="radio-group-2" v-model="form.seguroSalud" name="radio-sub-component2">
                     <b-form-radio value="SIS">SIS</b-form-radio>
@@ -10,7 +10,7 @@
             </b-form-group>
             <p v-if="$v.form.seguroSalud.$error" class="help is-danger">Este campo es requerido</p>
         </div>
-        <div class="field col-6">
+        <div class="field col-12 col-md-6">
             <label >Centro de salud cercano</label>
             <div class="control">
                 <input :class="['input', ($v.form.centroSalud.$error) ? 'is-danger' : '']"  type="text" class="input" placeholder="Ingrese su centro de salud cercano" v-model="form.centroSalud">
@@ -30,7 +30,7 @@
                 @tag="addTag">
             </vue-multiselect>
         </div>
-        <div class="field col-6">
+        <div class="field col-12 col-md-6">
             <b-form-group label="¿Sigue algún tratamiento?">
                 <b-form-radio-group id="radio-group-3" v-model="form.tratamiento">
                     <b-form-radio value="si">Si</b-form-radio>
