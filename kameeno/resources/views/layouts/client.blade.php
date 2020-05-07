@@ -30,7 +30,7 @@
             @yield('content')
              <!-- Copyright Section-->
             <section class="copyright py-4 text-center text-white">
-                <div class="container"><small>Copyright © Nortec © 2020</small></div>
+                <div class="container"><small>Copyright © Nortec © 2020 - Escuela de Ingerieria de Sistemas - UNT</small></div>
             </section>
             <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
             <div class="scroll-to-top d-lg-none position-fixed">

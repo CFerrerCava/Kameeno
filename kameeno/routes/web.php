@@ -24,3 +24,7 @@ Route::any('/panel/unt-a-tu-paciente/{vista?}','panel_untController@mantenedor')
 Route::any('/panel/paciente/{Estado?}','panel_untController@Paciente');
 Route::any('/panel/cuestionario','CuestionarioController@mantenedor');
 Route::any('/panel/cuestionario/{param}','CuestionarioController@mantenedor');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

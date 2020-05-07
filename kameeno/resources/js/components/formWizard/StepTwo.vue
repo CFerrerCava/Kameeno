@@ -33,7 +33,8 @@
 
 <script>
     import {validationMixin} from 'vuelidate'
-    import {required, numeric, minValue, maxValue} from 'vuelidate/lib/validators'
+    import {required, numeric, maxLength, minLength, email, helpers} from 'vuelidate/lib/validators'
+    const alpha = helpers.regex('alpha', /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*$/)
 
     export default {
         props: ['clickedNext', 'currentStep', 'names', 'email', 'dni'],
@@ -51,16 +52,25 @@
         validations: {
             form: {
                 namesFamiliar: {
-                    required
+                    required,
+                    alpha,
+                    maxLength: maxLength(50)
                 },
                 celFamiliar:{
-                    required
+                    required,
+                    numeric,
+                    maxLength:maxLength(12),
+                    minLength: minLength(6)
                 },
                 emailFamiliar: {
-                    required
+                    required,
+                    email,
+                    maxLength: maxLength(50)
+
                 },
                 direccionFamiliar: {
-                    required
+                    required,
+                    maxLength: maxLength(100)
                 }
             }
         },
