@@ -61,7 +61,7 @@ class panel_untController extends Controller
     public function agregarMedico(Request $request)
     {  
         return DB::table('medico')->insert(
-                ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'estado'=>'Activo','usuario'=>'s','clave'=>'s']
+                ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'estado'=>'Activo','idpadre'=>1]
             );
     }
     public function ListarMedico()

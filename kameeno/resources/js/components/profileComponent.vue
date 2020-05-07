@@ -76,7 +76,7 @@
           </b-col>
           <b-col lg="12">
             <label for="">DNI</label>
-            <b-form-input v-model="doctor.dni" placeholder="DNI"></b-form-input>
+            <b-form-input v-model="doctor.dni" placeholder="DNI" type="number" :state="nameState"></b-form-input>
           </b-col>
         </b-row>
           
@@ -91,6 +91,11 @@
 
 <script>
   export default {
+    computed: {
+      nameState() {
+        return this.doctor.dni.length > 8 ? true : false
+      }
+    },
     data() {
       return {
         items: [],
@@ -117,7 +122,7 @@
           content: ''
         },
         doctor:{
-          name:'',appat:'',apmat:'',dni:''
+          name:'',appat:'',apmat:'',dni:0
         },
         selected: null,
         options: [
