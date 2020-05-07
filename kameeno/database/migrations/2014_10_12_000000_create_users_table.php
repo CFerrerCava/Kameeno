@@ -219,6 +219,55 @@ class CreateUsersTable extends Migration
 			$table->foreign('id_cuestionariopersona')->references('id_cuestionariopersona')->on('rol_medico_paciente_cuestionarios');
 		});
 		//Area Cuestionarios
+		DB::table('medico')->insert([
+			'nombre' => 'nombre',
+			'ap_pat' => 'ap_pat',
+			'ap_mat' => 'ap_mat',
+			'dni' => 'dni',
+			'fecharegistro' => null,
+			'estado' => '1'
+		]);
+		DB::table('historia_clinica')->insert([
+			'fecha_creacion' => null,
+			'estado' => '1'
+		]);
+		DB::table('facultad_escuela')->insert([
+			'nombre' => 'nombre',
+			'tipo' => 'tipo',
+			'estado' => '1'
+		]);
+		DB::table('ocupacion')->insert([
+			'nombre' => 'nombre',
+			'estado' => '1'
+		]);
+		DB::table('seguro')->insert([
+			'nombre' => 'nombre',
+			'estado' => '1',
+			'direccion' => 'direccion',
+			'telefono' => 'telefono'
+		]);
+		DB::table('paciente')->insert([
+			'nombre' => 'nombre',
+			'ap_pat' => 'ap_pat',
+			'ap_mat' => 'ap_mat',
+			'dni' => 'dni',
+			'fecharegistro' => null,
+			'sexo' => 'sexo',
+			'estado_civil' => 'estado_civil',
+			'direccion' => 'direccion',
+			'telefono' => 'telefono',
+			'correo' => 'correo',
+			'estado' => '1',
+			'tratamiento' => 'tratamiento',
+			'id_facultad' => 1,
+			'id_seguro' => 1,
+			'id_ocupacion' => 1
+		]);
+		DB::table('rol_medico_paciente')->insert([
+			'id_historia' => 1,
+			'id_medico' => 1,
+			'id_paciente' => 1
+		]);
     }
 
     /**
