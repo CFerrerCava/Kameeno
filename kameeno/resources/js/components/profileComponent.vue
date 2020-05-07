@@ -64,19 +64,19 @@
         <b-row>
           <b-col lg="12">
             <label for="">Nombre</label>
-            <b-form-input v-model="text" placeholder="Nombre"></b-form-input>
+            <b-form-input v-model="doctor.name" placeholder="Nombre"></b-form-input>
           </b-col>
           <b-col lg="12">
             <label for="">Apellido paterno</label>
-            <b-form-input v-model="text" placeholder="Apellido paterno"></b-form-input>
+            <b-form-input v-model="doctor.appat" placeholder="Apellido paterno"></b-form-input>
           </b-col>
           <b-col lg="12">
             <label for="">Apellido materno</label>
-            <b-form-input v-model="text" placeholder="Apellido materno"></b-form-input>
+            <b-form-input v-model="doctor.apmat" placeholder="Apellido materno"></b-form-input>
           </b-col>
           <b-col lg="12">
             <label for="">DNI</label>
-            <b-form-input v-model="text" placeholder="DNI"></b-form-input>
+            <b-form-input v-model="doctor.dni" placeholder="DNI"></b-form-input>
           </b-col>
         </b-row>
           
@@ -121,13 +121,12 @@
           title: '',
           content: ''
         },
+        doctor:{
+          name:'',appat:'',apmat:'',dni:''
+        },
         selected: null,
         options: [
-          { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
+          { value: 0, text: 'Medico' } 
         ]
       }
     },
@@ -160,6 +159,47 @@
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
+      },
+      derivar: function () {
+        this.selected;
+        var that = this;
+        axios.post('panel/unt-a-tu-paciente/DerivarMedico')
+        .then(function (response) {
+            that.items = response.data;
+            that.onFiltered(that.items);
+            //totalRows = that.items.length;
+        });
+      },
+      agregar: function () {
+        this.selected;
+        var that = this;
+        axios.post('panel/unt-a-tu-paciente/AgregarMedico',that.doctor)
+        .then(function (response) {
+            if (response.data) {
+               Vue.swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text:'El Dr. '+(that.doctor.name+' '+that.doctor.appat+' '+that.doctor.apmat)+ ' a sido registrado correctamente'
+                }).then(() => {
+                  this.list();
+                });
+            } else {
+              
+            }
+        });
+      },
+      list: function () {
+        this.selected;
+        var that = this;
+        axios.post('panel/unt-a-tu-paciente/listaMedicos')
+        .then(function (response) {
+            that.items = response.data;
+            that.onFiltered(that.items);
+            //totalRows = that.items.length;
+        });
+      },
+      infoDr: function () {
+        
       }
     }
   }

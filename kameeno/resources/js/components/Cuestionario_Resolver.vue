@@ -54,9 +54,6 @@ export default {
 		}
 	},
 	methods: {
-		funcionBoton: function(){
-			console.log(this.cuestionario);
-		},
 		cargarCuestionario: function(id){
 			var that = this;
 			axios.post('/panel/cuestionario/getCuestionario', {id:id})
@@ -68,7 +65,17 @@ export default {
 
 				//console.log(response.data);
 			});
-		}
+		},
+		funcionBoton: function(){
+			console.log(this.cuestionario);
+			axios.post('/panel/cuestionario/resolve', { cuestionario: this.cuestionario })
+			.then(function(response) {
+			})
+			.catch(function(error){
+			})
+			.finally(function(){
+			});
+		},
 	},
 	mounted() {
 		//this.cargarCuestionario(0);
@@ -79,4 +86,3 @@ export default {
 	}
 }
 </script>
-s

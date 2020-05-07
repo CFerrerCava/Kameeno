@@ -63,7 +63,7 @@
 											<b-dropdown id="dropdown-1" variant="primary" text="Elegir acción" class="m-md-2">
 												<b-dropdown-item v-on:click="funcionPaciente(row.item.DNI)">Atender</b-dropdown-item>
 												<b-dropdown-divider></b-dropdown-divider> 
-												<b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-estado')">Alertar</b-dropdown-item>										 
+												<!-- <b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-derivar')">Alertar</b-dropdown-item>										  -->
 											</b-dropdown>
                     </template>
                     <template v-slot:row-details="row">

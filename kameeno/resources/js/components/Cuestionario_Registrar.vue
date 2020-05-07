@@ -105,10 +105,9 @@ export default {
 			console.log(this.c);
 			var ruta = (this.c.id_cuestionario == 0)?'addCuestionario':'updCuestionario';
 			axios.post('/panel/cuestionario/'+ruta, {datos: this.c})
-            .then(function(response) {
-            })
+			.then(function(response) {
+			})
 			.catch(function(error){
-
 			})
 			.finally(function(){
 			});

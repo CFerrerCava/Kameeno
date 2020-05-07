@@ -19,7 +19,13 @@ class CuestionarioController extends Controller
 		//else if ($param == 'addCuestionario') return $this->addCuestionario($request);
 		else if ($param == 'getCuestionario') return $this->getCuestionario($request);
 		else if ($param == 'updCuestionario') return $this->updCuestionario($request);
+		else if ($param == 'resolve') return $this->resolve($request);
         return view('panel.cuestionario.mantenedor');
+    }
+
+	public function resolve($request){
+		$cuestionario = $request->get('cuestionario');
+		dd($cuestionario);
     }
 
 	public function updCuestionario($request){
