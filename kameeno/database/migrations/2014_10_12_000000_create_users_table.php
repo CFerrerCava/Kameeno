@@ -63,6 +63,7 @@ class CreateUsersTable extends Migration
 			$table->string('dni', 8);
             $table->timestamp('fecharegistro');
 			$table->string('estado', 20);
+			$table->integer('idPadre');
 		});
 		Schema::create('especialidad', function (Blueprint $table) {
 			$table->increments('id_especialidad');

@@ -179,10 +179,16 @@
                 title: 'Éxito',
                 text:'El Dr. '+(that.doctor.name+' '+that.doctor.appat+' '+that.doctor.apmat)+ ' a sido registrado correctamente'
                 }).then(() => {
-                  this.list();
+                  that.list();
                 });
             } else {
-              
+               Vue.swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text:'Recargue la página o contactese al ########'
+                }).then(() => {
+                  this.list();
+                });
             }
         });
       },
@@ -190,11 +196,10 @@
         this.selected;
         var that = this;
         axios.post('listaMedicos',{})
-        .then(function (response) {
-            console.log(response.data);
+        .then(function (response) { 
             that.items = response.data;
             that.onFiltered(that.items);
-             totalRows = that.items.length;
+             //totalRows = that.items.length;
         });
       },
       infoDr: function () {

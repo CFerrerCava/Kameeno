@@ -66,7 +66,7 @@ class panel_untController extends Controller
     }
     public function ListarMedico()
     {
-        $roles = DB::table('medico')->selectRaw('id_medico ,concat(nombre , " ",ap_pat, " ",ap_mat) as medico,dni,fecharegistro,estado')->get();
+        $roles = DB::table('medico')->selectRaw('id_medico ,concat(nombre , " ",ap_pat, " ",ap_mat) as medico,dni,fecharegistro,estado')->orderByDesc('id_medico')->get();
         return $roles;
     }
 
