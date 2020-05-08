@@ -62,13 +62,13 @@ class CreateUsersTable extends Migration
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
             $table->timestamp('fecharegistro');
-			$table->string('estado', 20);
+						$table->string('estado', 20)->default('activo');
 			$table->integer('idPadre');
 		});
 		Schema::create('especialidad', function (Blueprint $table) {
 			$table->increments('id_especialidad');
 			$table->string('nombre', 20);
-			$table->string('estado', 20);
+			$table->string('estado', 20)->default('activo');
             $table->integer('id_medico')->unsigned();
             $table->foreign('id_medico')->references('id_medico')->on('medico');
 		});

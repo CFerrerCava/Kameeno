@@ -164,7 +164,7 @@
       derivar: function () {
         this.selected;
         var that = this;
-        axios.post('panel/unt-a-tu-paciente/DerivarMedico')
+        axios.post('DerivarMedico')
         .then(function (response) {
             that.items = response.data;
             that.onFiltered(that.items);

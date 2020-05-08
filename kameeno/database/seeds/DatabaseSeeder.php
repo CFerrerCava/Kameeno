@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         DB::insert('insert into enfermedad (id_enfermedad, nombre) values (?, ?)', [10, 'Enfermedad reumatológica con uso continuo de antinflamatorios /corticoides']);
         DB::insert('insert into enfermedad (id_enfermedad, nombre) values (?, ?)', [11, 'Uso permanente de antinflamatorios o corticoides por otras causas']);
 
-
+        //Médico
+        DB::insert('insert into medico (id_medico, nombre, ap_pat, ap_mat, dni, fecharegistro, estado, idPadre) values (?, ?, ?, ?, ?, ?, ?, ?)', [1,'Christian Alexis','Ferrer','Cava','73437870','2020-05-07 22:58:23','activo',0]);
     }
 }

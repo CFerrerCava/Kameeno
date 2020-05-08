@@ -57,13 +57,13 @@
         <ul class="nav  " id="accordion">         
         
           <li class=" "   >
-            <a href="{{url('panel/unt-a-tu-paciente')}}"  onclick="return Active('1');">
+            <a href="{{url('paneluap')}}"  >
               <i class="now-ui-icons users_circle-08"></i>
               <p>Inicio</p>
             </a>
           </li>
           <li class=" "   >
-            <a href="{{url('panel/unt-a-tu-paciente/perfiles')}}"  onclick="return Active('1');">
+            <a href="{{url('paneluap/perfiles')}}"   >
               <i class="now-ui-icons users_circle-08"></i>
               <p>Crear perfiles</p>
             </a>
