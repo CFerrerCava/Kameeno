@@ -61,8 +61,9 @@
 
                     <template v-slot:cell(actions)="row"> 
 											<b-dropdown id="dropdown-1" variant="primary" text="Elegir acción" class="m-md-2">
-												<b-dropdown-item v-on:click="funcionPaciente(row.item.DNI)">Atender</b-dropdown-item>
+												<b-dropdown-item v-on:click="funcionPaciente(row.item.id_paciente)">Atender</b-dropdown-item>
 												<b-dropdown-divider></b-dropdown-divider> 
+                        <b-dropdown-item @click="row.toggleDetails">{{ row.detailsShowing ? 'Cerrar' : 'Ver' }} detalles</b-dropdown-item>
 												<!-- <b-dropdown-item v-on:click="verModal(row.item.DNI,'modal-derivar')">Alertar</b-dropdown-item>										  -->
 											</b-dropdown>
                     </template>
@@ -143,7 +144,7 @@ export default {
         ],
       fields: [ 
           { key: 'paciente', label: 'Paciente', sortable: true},
-          { key: 'DNI', label: 'DNI', sortable: true},
+          { key: 'dni', label: 'DNI', sortable: true},
           { key: 'telefono', label: 'Teléfono', sortable: true},
           { key: 'sexo', label: 'Sexo', sortable: true},
           { key: 'seguro', label: 'Seguro', sortable: true},
@@ -250,7 +251,7 @@ export default {
     cargarContenidos: function(){
         var that = this;
         axios.post('paneluap/list')
-        .then(function (response) {
+        .then(function (response) { 
             that.items = response.data;
             that.onFiltered(that.items);
             //totalRows = that.items.length;
@@ -265,8 +266,8 @@ export default {
             //totalRows = that.items.length;
         });
     },
-    funcionPaciente: function (DNI) {
-      location.href="paciente/"+DNI;
+    funcionPaciente: function (id_paciente) {
+      location.href="/paneluap/paciente?id="+id_paciente;
     } 
   },
   mounted() {

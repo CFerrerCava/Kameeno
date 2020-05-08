@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+
        <b-row align="center">           
           <b-col lg="12" sm="12"   >
             <h4>Nombre del paciente</h4>
@@ -12,7 +12,7 @@
           <b-col lg="10" sm="12"  align="left" class="m-0">  
               <b-list-group>
                 <b-list-group-item>
-                  DNI:  
+                  DNI:  {{idPaciente}}
                 </b-list-group-item>
                 <b-list-group-item>                        
                   Fecha de registro: 
@@ -95,7 +95,8 @@
 <script>
   
   export default {
-   
+   	props:['idPaciente']  
+		 , 
     data() {
       return {
         mainProps: {  width: 75, height: 75, class: 'm1' }, 
@@ -197,16 +198,15 @@
       },
       funDataPaciente: function(){
           var that = this;
-          axios.post('paciente/data')
+         
+          axios.post('data',{id:that.idPaciente})
           .then(function (response) {
-              that.items = response.data;
-              that.onFiltered(that.items);
-              //totalRows = that.items.length;
+               console.log(response.data);
           });
       },
        ListaSeguimiento: function(){
           var that = this;
-          axios.post('paciente/seguimiento')
+          axios.post('seguimiento')
           .then(function (response) {
               that.items = response.data;
               that.onFiltered(that.items);
@@ -215,11 +215,11 @@
       }
     },
     mounted() { 
-
-      for (let index = 0; index < 9; index++) { 
-        this.items.push({ fecha: 'xx/xx/xx', consulta: 'CSS class (or classes) to apply to the tr element in the tbody. Can be a function that returns a class (see docs for details)', respuesta: 'CSS class (or classes) to apply to the tr element in the tbody. Can be a function that returns a class (see docs for details)' });
-      }
-       this.totalRows = this.items.length
+      console.dir(this.idPaciente);
+      setTimeout(() => {
+         console.log(this.idPaciente);
+      }, 1500);
+      //this.funDataPaciente();
     }, 
   }
 </script>

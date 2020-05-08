@@ -38,33 +38,32 @@ class panel_untController extends Controller
             case 'data':
                 return $this->data($request);
                 break;
+            case 'registraConsulta':
+                return $this->registrar($request);
+                break;
+            case 'seguimiento':
+                return $this->seguimiento($request);
+                break;
+            case 'data':
+                return $this->data($request);
+                break;
+            case 'paciente':
+                return view('panel.unt_paciente.paciente', ['id' => $request->get('id')]);
+                break;
             default:
                 return view('panel.unt_paciente.mantenedor');
                 break;
         }
     }
-    public function Paciente($vista='.', Request $request)
-    {
-        switch ($vista) {
-            case 'registraConsulta':
-                return $this->registrar($request);
-                break;
-            case 'seguimiento':
-                return $this->registrar($request);
-                break;
-            case 'data':
-                return $this->registrar($request);
-                break;
-            default:
-                return view('panel.unt_paciente.paciente');
-                break;
-        }
-    }
+    
 
     public function listContenido(){
-        $roles = DB::table('paciente')->selectRaw('concat(nombre, " ",ap_pat, " ",ap_mat) as pa,dni,telefono,estado');
-        var_dump($roles);
-       // return $roles;
+        $roles = DB::table('paciente')
+        ->join('ocupacion', 'ocupacion.id_ocupacion', '=', 'paciente.id_ocupacion')
+        ->join('seguro', 'seguro.id_seguro', '=', 'paciente.id_seguro')
+        ->selectRaw('paciente.id_paciente,concat(paciente.nombre, " ",paciente.ap_pat, " ",paciente.ap_mat) as paciente,paciente.dni, paciente.sexo,paciente.telefono,paciente.estado,ocupacion.nombre as ocupacion,seguro.nombre as seguro')->orderByDesc('paciente.id_paciente')->get();
+        
+        return $roles;
     }
     public function agregarMedico(Request $request)
     {  
@@ -110,8 +109,14 @@ class panel_untController extends Controller
     }
     public function data(Request $request)
     {
-         $user= session('_');
-         return $user;
+        $roles = DB::table('paciente')
+        ->join('ocupacion', 'ocupacion.id_ocupacion', '=', 'paciente.id_ocupacion')
+        ->join('seguro', 'seguro.id_seguro', '=', 'paciente.id_seguro')
+        ->selectRaw('paciente.id_paciente,concat(paciente.nombre, " ",paciente.ap_pat, " ",paciente.ap_mat) as paciente,paciente.dni, paciente.sexo,paciente.telefono,paciente.estado,ocupacion.nombre as ocupacion,seguro.nombre as seguro')
+        ->where('paciente.id_paciente','=',$request->get('id'))
+        ->orderByDesc('paciente.id_paciente')->get();
+        
+        return $roles;
     }
     
 
