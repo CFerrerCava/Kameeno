@@ -225,8 +225,7 @@ class CreateUsersTable extends Migration
 		});
 		//Area Cuestionarios
 		//MIS DATOS DE PRUEBA:3
-		/**/
-
+		/*
 		DB::table('especialidad')->insert([
 			'nombre' => 'nombre',
 			'estado' => 'estado'
@@ -283,7 +282,7 @@ class CreateUsersTable extends Migration
 			'id_medico' => 1,
 			'id_paciente' => 1
 		]);
-		/**/
+		/*
     }
 
     /**
