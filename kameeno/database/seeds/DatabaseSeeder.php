@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
 
 
         //Médico
-        DB::insert('insert into medico ( nombre, ap_pat, ap_mat, dni, fecharegistro, estado, idPadre) values (?, ?, ?, ?, ?, ?, ?, ?)', ['Christian Alexis','Ferrer','Cava','73437870','2020-05-07 22:58:23','activo',0]);
+        DB::insert('insert into medico (id_medico, nombre, ap_pat, ap_mat, dni, fecharegistro, estado, idPadre) values (?, ?, ?, ?, ?, ?, ?, ?)', [1,'Christian Alexis','Ferrer','Cava','73437870','2020-05-07 22:58:23','activo',0]);
     }
 }
