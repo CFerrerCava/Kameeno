@@ -1,5 +1,6 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;" class="row">
+        <p class="text-center">Datos de familiar de contacto que viva con usted, en caso de urgencia</p>
         <div class="field col-12">
             <label class="label">Nombres y apellidos de contacto</label>
             <div class="control">
@@ -8,25 +9,11 @@
             <p v-if="$v.form.namesFamiliar.$error" class="help is-danger">Este campo es inválido</p>
         </div>
         <div class="field col-12">
-            <label class="label">Número de celular</label>
+            <label class="label">Número de celular de contacto</label>
             <div class="control">
                 <input :class="['input', ($v.form.celFamiliar.$error) ? 'is-danger' : '']"  type="text" class="input" placeholder="Ingrese número de celular de contácto" v-model="form.celFamiliar">
             </div>
             <p v-if="$v.form.celFamiliar.$error" class="help is-danger">Este campo es inválido</p>
-        </div>
-        <div class="field col-12">
-            <label class="label">Correo electrónico</label>
-            <div class="control">
-                <input :class="['input', ($v.form.emailFamiliar.$error) ? 'is-danger' : '']" type="email" class="input"  placeholder="Ingrese correo electrónico de contacto" v-model="form.emailFamiliar">
-            </div>
-            <p v-if="$v.form.emailFamiliar.$error" class="help is-danger">Este campo es inválido</p>
-        </div>
-        <div class="field col-12">
-            <label class="label">Dirección</label>
-            <div class="control">
-                <input :class="['input', ($v.form.direccionFamiliar.$error) ? 'is-danger' : '']"  type="text" placeholder="Ingrese dirección de contacto" v-model="form.direccionFamiliar">
-            </div>
-            <p v-if="$v.form.direccionFamiliar.$error" class="help is-danger">Este campo es inválido</p>
         </div>
     </div>
 </template>
@@ -43,9 +30,7 @@
             return {
                 form: {
                     namesFamiliar:'',
-                    emailFamiliar:'',
-                    celFamiliar:'',
-                    direccionFamiliar:''
+                    celFamiliar:''
                 }
             }
         },
@@ -61,16 +46,6 @@
                     numeric,
                     maxLength:maxLength(12),
                     minLength: minLength(6)
-                },
-                emailFamiliar: {
-                    required,
-                    email,
-                    maxLength: maxLength(50)
-
-                },
-                direccionFamiliar: {
-                    required,
-                    maxLength: maxLength(100)
                 }
             }
         },

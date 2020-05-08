@@ -3,9 +3,9 @@
         <div class="field col-12 col-md-6">
             <b-form-group label="Seguro de salud">
                 <b-form-radio-group id="radio-group-2" v-model="form.seguroSalud" name="radio-sub-component2">
-                    <b-form-radio value="SIS">SIS</b-form-radio>
-                    <b-form-radio value="EsSalud">EsSalud</b-form-radio>
-                    <b-form-radio value="Otro">Otro</b-form-radio>
+                    <b-form-radio value="1">SIS</b-form-radio>
+                    <b-form-radio value="2">EsSalud</b-form-radio>
+                    <b-form-radio value="3">Otro</b-form-radio>
                 </b-form-radio-group>
             </b-form-group>
             <p v-if="$v.form.seguroSalud.$error" class="help is-danger">Este campo es requerido</p>

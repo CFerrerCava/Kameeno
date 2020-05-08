@@ -97,15 +97,15 @@ class CreateUsersTable extends Migration
         });
     	Schema::create('ocupacion', function (Blueprint $table) {
 			$table->increments('id_ocupacion');
-            $table->string('nombre', 150);
-            $table->string('estado', 20);
+            $table->string('nombre', 40);
+            $table->string('estado', 20)->default('activo');
         });
     	Schema::create('seguro', function (Blueprint $table) {
 			$table->increments('id_seguro');
             $table->string('nombre', 150);
-            $table->string('estado', 20);
-            $table->string('direccion', 100);
-            $table->string('telefono', 20);
+            $table->string('estado', 20)->default('activo');
+            $table->string('direccion', 100)->nullable();
+            $table->string('telefono', 20)->nullable();
         });
 		//Area Formulario Registro
 		//Area Pacientes
@@ -114,21 +114,21 @@ class CreateUsersTable extends Migration
 			$table->string('nombre', 20);
 			$table->string('ap_pat', 20);
 			$table->string('ap_mat', 20);
-			$table->string('dni', 8);
-            $table->timestamp('fecharegistro');
-			$table->string('sexo', 20);
-			$table->string('estado_civil', 20);
-			$table->string('direccion', 40);
+			$table->string('dni', 8)->unique();
+            $table->string('sexo', 20);
+            $table->integer('edad');
+			$table->string('estado_civil', 20)->nullable();
+			$table->string('direccion', 40)->nullable();
 			$table->string('telefono', 20);
 			$table->string('correo', 30);
-			$table->string('estado', 20);
-			$table->text('tratamiento');
+			$table->string('estado', 20)->default('activo');
+			$table->text('tratamiento')->nullable();
 			$table->integer('id_facultad')->unsigned();
 			$table->integer('id_seguro')->unsigned();
 			$table->integer('id_ocupacion')->unsigned();
-			$table->foreign('id_facultad')->references('id_facultad')->on('facultad_escuela');
 			$table->foreign('id_seguro')->references('id_seguro')->on('seguro');
-			$table->foreign('id_ocupacion')->references('id_ocupacion')->on('ocupacion');
+            $table->foreign('id_ocupacion')->references('id_ocupacion')->on('ocupacion');
+            $table->timestamps();
 		});
 		//Area Pacientes
 		//Area Formulario Registro

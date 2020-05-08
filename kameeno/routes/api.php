@@ -29,8 +29,11 @@ Route::post('/reniec', function (GuzzleHttp\Client $client, Request $request){
 });
 
 Route::post('/sendEmailUntPacientes', function(Request $request){
-    $cifrado = Crypt::encrypt(json_encode(["names" => $request->names,"dni"=>$request->dni, "email" => $request->email]));
+    $namesComplete = $request->names.' '.$request->apPaterno.' '.$request->apMaterno;
+    $cifrado = Crypt::encrypt(json_encode(["names" => $request->names,"appaterno" => $request->apPaterno,"apmaterno" => $request->apMaterno,"dni"=>$request->dni, "email" => $request->email]));
     $url = 'http://localhost:8000/formulario/'.$cifrado;
-    Mail::to($request->email)->send(new RegisterUntPacientes($request->names, $request->dni, $url));
+    Mail::to($request->email)->send(new RegisterUntPacientes($namesComplete, $request->dni, $url));
     return response()->json(["msg"=>"Envio exitoso"]);
 });
+
+Route::post('/paciente','untPacienteController@registerForm');

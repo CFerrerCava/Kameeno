@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class panel_untController extends Controller
 {
+
     public function mantenedor($vista='.', Request $request){
         switch ($vista) {
             case 'list':
@@ -28,7 +29,7 @@ class panel_untController extends Controller
             case 'listaMedicos':
                 return view('panel.unt_paciente.perfiles');
                 break;
-            
+
             default:
                 return view('panel.unt_paciente.mantenedor');
                 break;
@@ -56,19 +57,19 @@ class panel_untController extends Controller
         $roles = DB::table('paciente')->pluck(`nombre`,`ap_pat`,`ap_mat`,`dni`,`telefono`,`estado`);
         return $roles;
     }
-    
+
     public function registraConsulta(Request $request)
     {
-         
+
     }
 
     public function derivar(Request $request)
     {
-         
+
     }
     public function alerta(Request $request)
     {
-         
+
     }
 
 }

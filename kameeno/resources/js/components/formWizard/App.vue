@@ -3,12 +3,28 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
 
         <section class="section" style="padding-top: .5rem">
+
             <div class="container">
-                <div class="columns">
+                <div class="card" v-if="busy === false">
+                    <div class="padre">
+                       <h1>{{message}}</h1>
+                    </div>
+                </div>
+                <div class="columns" v-else>
                     <div class="column is-8 is-offset-2">
-                        <horizontal-stepper :steps="demoSteps" @completed-step="completeStep" :top-buttons="true"
-                                            @active-step="isStepActive" @stepper-finished="alert" @data-form="handleData"
-                                            :names="names" :email="email" :dni="dni" ></horizontal-stepper>
+                        <b-overlay
+                            :show="busy"
+                            rounded
+                            opacity="0.6"
+                            spinner-small
+                            spinner-variant="primary"
+                            class="d-inline-block"
+                        >
+                            <horizontal-stepper :steps="demoSteps" @completed-step="completeStep" :top-buttons="true"
+                                            @active-step="isStepActive" @stepper-finished="submit" @data-form="handleData"
+                                            :names="names" :appaterno="appaterno" :apmaterno="apmaterno" :email="email" :dni="dni" >
+                            </horizontal-stepper>
+                        </b-overlay>
                     </div>
                 </div>
             </div>
@@ -32,9 +48,11 @@
         components: {
             HorizontalStepper
         },
-        props: ['names', 'email', 'dni'],
+        props: ['names', 'appaterno', 'apmaterno', 'email', 'dni'],
         data(){
             return {
+                busy:null,
+                message:'Sus datos han sido registrados correctamente',
                 data:{},
                 repoUrl: repoUrl,
                 teamUrl: teamUrl,
@@ -94,9 +112,14 @@
                     }
                 })
             },
-            alert(payload) {
-                alert('Subiendo...');
+            submit: async function (payload) {
+                //alert('up');
                 console.log(this.data);
+                this.busy = true;
+                await axios.post('/api/paciente', this.data).then((response) => {
+                    this.busy = false;
+                    console.log(response.data.message);
+                });
             },
             handleData(payload){
                 this.data = {...this.data, ...payload}
@@ -106,8 +129,23 @@
 </script>
 
 <style scoped>
-
+    h1{
+        font-size: 1.2em;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        padding: 10px;
+    }
+    .padre{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card{
+        width: 100vw;
+        margin-top: 40px;
+    }
     .section{
+        min-height: 100vh;
         background-image: url('/images/logo.png');
         background-position: center center;
         background-repeat: no-repeat;

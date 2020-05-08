@@ -3,8 +3,8 @@
         <div class="field col-12">
             <b-form-group label="Ocupación laboral">
                 <b-form-radio-group id="radio-group-5" v-model="form.ocupacion" name="radio-sub-component">
-                    <b-form-radio value="docente">Docente</b-form-radio>
-                    <b-form-radio value="personal administrativo">Personal Administrativo</b-form-radio>
+                    <b-form-radio value="1">Docente</b-form-radio>
+                    <b-form-radio value="2">Personal Administrativo</b-form-radio>
                 </b-form-radio-group>
             </b-form-group>
             <p v-if="$v.form.ocupacion.$error" class="help is-danger">Este campo es requerido</p>
