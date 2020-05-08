@@ -53,8 +53,7 @@ class untPacienteController extends Controller
         ]);
 
         foreach ($request->enfermedades as $key => $value) {
-            return $value;
-            DB::insert('insert into enfermedad_paciente (id_enfermedad, id_paciente) values (?, ?)', [(int)($value->code), $paciente->id_paciente]);
+            DB::insert('insert into enfermedad_paciente (id_enfermedad, id_paciente) values (?, ?)', [$value["code"], $paciente->id_paciente]);
         }
 
         return response()->json(["message" => "Datos registrados correctamente"]);
