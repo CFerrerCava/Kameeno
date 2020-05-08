@@ -226,12 +226,19 @@ class CreateUsersTable extends Migration
 		//Area Cuestionarios
 		//MIS DATOS DE PRUEBA:3
 		/*
+		DB::table('especialidad')->insert([
+			'nombre' => 'nombre',
+			'estado' => 'estado'
+		]);
 		DB::table('medico')->insert([
 			'nombre' => 'nombre',
 			'ap_pat' => 'ap_pat',
 			'ap_mat' => 'ap_mat',
 			'dni' => 'dni',
+			'telefono' => 'telefono',
 			'fecharegistro' => null,
+			'idPadre' => 0,
+			'id_especialidad' => 1,
 			'estado' => '1'
 		]);
 		DB::table('historia_clinica')->insert([
@@ -258,7 +265,6 @@ class CreateUsersTable extends Migration
 			'ap_pat' => 'ap_pat',
 			'ap_mat' => 'ap_mat',
 			'dni' => 'dni',
-			'fecharegistro' => null,
 			'sexo' => 'sexo',
 			'estado_civil' => 'estado_civil',
 			'direccion' => 'direccion',
@@ -266,6 +272,7 @@ class CreateUsersTable extends Migration
 			'correo' => 'correo',
 			'estado' => '1',
 			'tratamiento' => 'tratamiento',
+			'edad' => 20,
 			'id_facultad' => 1,
 			'id_seguro' => 1,
 			'id_ocupacion' => 1
@@ -275,7 +282,7 @@ class CreateUsersTable extends Migration
 			'id_medico' => 1,
 			'id_paciente' => 1
 		]);
-		*/
+		/*
     }
 
     /**

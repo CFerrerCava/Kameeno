@@ -18,41 +18,40 @@
             </div>
         </div>
 		<div class="text-center">
-			<button @click="solicitarNuevo" class="btn btn-primary">Registrar Nuevo Cuestionario</button>
+			<a href="/panel/cuestionario/mantenedor/">
+				<button class="btn btn-primary">Registrar Nuevo Cuestionario</button>
+			</a>
 		</div>
     </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-	      datos: [],
-	      columnas: [
-			  { key: 'id_cuestionario', label: 'Id' },
-			  { key: 'nombre', label: 'Nombre' },
-			  //{ key: 'estado', label: 'Estado' },
-			  { key: 'actions', label: 'Acciones' }
-	      ]
-    }
-  },
-  methods: {
-	  solicitarNuevo: function(){
-		location.href = "/panel/cuestionario/mantenedor/";
-	  },
-    cargarCuestionario: function(){
-		var that = this;
-        axios.post('/panel/cuestionario/list')
-        .then(function (response) {
-			that.datos = response.data;
-			//console.log(response.data);
-        });
-    }
-  },
-  mounted() {
-  },
-  created: function(){
-      this.cargarCuestionario();
-  }
+	data() {
+		return {
+			datos: [],
+			columnas: [
+				{ key: 'id_cuestionario', label: 'Id' },
+				{ key: 'nombre', label: 'Nombre' },
+				//{ key: 'estado', label: 'Estado' },
+				{ key: 'actions', label: 'Acciones' }
+			]
+		}
+	},
+	methods: {
+		cargarCuestionario: function(){
+			var that = this;
+			axios.post('/panel/cuestionario/list')
+			.then(function (response) {
+				that.datos = response.data;
+				//console.log(response.data);
+			});
+		}
+	},
+	mounted() {
+	},
+	created: function(){
+		this.cargarCuestionario();
+	}
 }
 </script>

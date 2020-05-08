@@ -85,7 +85,7 @@
 <script>
 export default {
 	props: {
-		idcuestionario: Number
+		idcuestionario: String
 	},
     data: function() {
         return {
@@ -155,8 +155,6 @@ export default {
 	mounted() {
 		//this.cargarCuestionario(0);
 		//this.cargarCuestionario(1);
-		this.cargarCuestionario(this.idcuestionario);
-		console.log(this.idcuestionario);
 	},
 	created: function(){
 		this.cargarCuestionario(this.idcuestionario);
