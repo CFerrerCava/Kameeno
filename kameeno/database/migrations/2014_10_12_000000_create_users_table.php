@@ -57,7 +57,7 @@ class CreateUsersTable extends Migration
 		Schema::create('especialidad', function (Blueprint $table) {
 			$table->increments('id_especialidad');
 			$table->string('nombre', 50);
-			$table->string('estado', 20)->default('activo'); 
+			$table->string('estado', 20)->default('activo');
 		});
 		Schema::create('medico', function (Blueprint $table) {
 			$table->increments('id_medico');
@@ -72,7 +72,7 @@ class CreateUsersTable extends Migration
 			$table->integer('id_especialidad')->unsigned();
 			$table->foreign('id_especialidad')->references('id_especialidad')->on('especialidad');
 		});
-	
+
 		/*
 		Schema::create('rol_medico', function (Blueprint $table) {
             $table->increments('id_rolmedico');
@@ -205,7 +205,7 @@ class CreateUsersTable extends Migration
 		Schema::create('rol_medico_paciente_cuestionarios', function (Blueprint $table) {
 			$table->increments('id_cuestionariopersona');
 			$table->dateTime('fechaGenerado');
-			$table->dateTime('fechaResuelto');
+			$table->dateTime('fechaResuelto')->nullable();
 			$table->text('observacion');
 			$table->string('estado', 20);
 			$table->integer('id_pacientexmedico')->unsigned();
