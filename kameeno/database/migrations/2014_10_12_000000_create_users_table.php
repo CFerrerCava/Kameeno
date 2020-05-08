@@ -206,8 +206,11 @@ class CreateUsersTable extends Migration
 			$table->increments('id_cuestionariopersona');
 			$table->dateTime('fechaGenerado');
 			$table->dateTime('fechaResuelto')->nullable();
+			$table->dateTime('fechaObservado')->nullable();
 			$table->text('observacion');
 			$table->string('estado', 20);
+			$table->integer('id_cuestionario')->unsigned();
+			$table->foreign('id_cuestionario')->references('id_cuestionario')->on('cuestionarios');
 			$table->integer('id_pacientexmedico')->unsigned();
 			$table->foreign('id_pacientexmedico')->references('id_pacientexmedico')->on('rol_medico_paciente');
 		});
