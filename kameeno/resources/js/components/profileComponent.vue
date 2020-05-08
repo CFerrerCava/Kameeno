@@ -76,13 +76,13 @@
           </b-col>
           <b-col lg="12">
             <label for="">DNI</label>
-            <b-form-input v-model="doctor.dni" placeholder="DNI"></b-form-input>
+            <b-form-input v-model="doctor.dni" placeholder="DNI" type="number" :state="nameState"></b-form-input>
           </b-col>
         </b-row>
           
       </div>
       <div class=" text-center">
-        <b-button   variant="danger"   @click="hideModal('modal-registro')">Guardar</b-button>
+        <b-button   variant="danger"   @click="agregar">Guardar</b-button>
         <b-button   variant="warning"   @click="hideModal('modal-registro')">Cerrar</b-button>
       </div>     
     </b-modal>
@@ -91,20 +91,20 @@
 
 <script>
   export default {
+    computed: {
+      nameState() {
+        return this.doctor.dni.length > 8 ? true : false
+      }
+    },
     data() {
       return {
-        items: [
-          {doctor:'Dickerson Macdonald',date:'2020/05/05',cant:'5',state:'Activo'},
-          {doctor:'Larsen Shaw',date:'2020/05/05',cant:'5',state:'Inactivo'},
-          {doctor:'Mini Navarro',date:'2020/05/05',cant:'5',state:'Activo'},
-          {doctor:'Geneva Wilson',date:'2020/05/05',cant:'5',state:'Inactivo'},
-          {doctor:'Jami Carney',date:'2020/05/05',cant:'5',state:'Activo'}, 
-        ],
+        items: [],
         fields: [
-          { key: 'doctor', label: 'Médico', sortable: true, sortDirection: 'desc', class: 'text-center' },
-          { key: 'date', label: 'Fecha de registro', sortable: true, sortDirection: 'desc', class: 'text-center' },
-          { key: 'cant', label: 'Cantidad de pacientes', sortable: true, sortDirection: 'desc', class: 'text-center' },
-          { key: 'state', label: 'Estado', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'medico', label: 'Médico', sortable: true, sortDirection: 'desc', class: 'text-center' }, 
+          { key: 'fecharegistro', label: 'Fecha de registro', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'dni', label: 'DNI', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          //{ key: 'cant', label: 'Cantidad de pacientes', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'estado', label: 'Estado', sortable: true, sortDirection: 'desc', class: 'text-center' },
           { key: 'actions', label: 'Actions' }
         ],
         totalRows: 1,
@@ -122,7 +122,7 @@
           content: ''
         },
         doctor:{
-          name:'',appat:'',apmat:'',dni:''
+          name:'',appat:'',apmat:'',dni:0
         },
         selected: null,
         options: [
@@ -143,12 +143,13 @@
     mounted() {
       // Set the initial number of items
       this.totalRows = this.items.length
+      this.list();
     },
     methods: {
       showModal(string) {
         this.$refs[string].show()
       },
-      hideModal() {
+      hideModal(string) {
         this.$refs[string].hide()
       },
       resetInfoModal() {
@@ -171,35 +172,49 @@
         });
       },
       agregar: function () {
+        this.hideModal('modal-registro')
         this.selected;
         var that = this;
-        axios.post('panel/unt-a-tu-paciente/AgregarMedico',that.doctor)
+        axios.post('AgregarMedico',that.doctor)
         .then(function (response) {
+          console.log(response.data);
             if (response.data) {
                Vue.swal.fire({
                 icon: 'success',
                 title: 'Éxito',
                 text:'El Dr. '+(that.doctor.name+' '+that.doctor.appat+' '+that.doctor.apmat)+ ' a sido registrado correctamente'
                 }).then(() => {
-                  this.list();
+                  that.list();
                 });
             } else {
-              
+               Vue.swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text:'Recargue la página o contactese al ########'
+                }).then(() => {
+                  this.list();
+                });
             }
         });
       },
       list: function () {
         this.selected;
         var that = this;
-        axios.post('panel/unt-a-tu-paciente/listaMedicos')
+        axios.post('listaMedicos',{})
+        .then(function (response) { 
+            that.items = response.data;
+            that.onFiltered(that.items);
+             //totalRows = that.items.length;
+        });
+      },
+      infoDr: function () {
+        var that = this;
+        axios.post('data')
         .then(function (response) {
             that.items = response.data;
             that.onFiltered(that.items);
             //totalRows = that.items.length;
         });
-      },
-      infoDr: function () {
-        
       }
     }
   }
