@@ -76,7 +76,11 @@
           </b-col>
           <b-col lg="12">
             <label for="">DNI</label>
-            <b-form-input v-model="doctor.dni" placeholder="DNI" type="number" :state="nameState"></b-form-input>
+            <b-form-input v-model="doctor.dni" placeholder="DNI" type="number"  ></b-form-input>
+          </b-col>
+          <b-col lg="12">
+            <label for="">Especialidad</label>
+            <b-form-select v-model="selected1" :options="options1"></b-form-select>
           </b-col>
         </b-row>
           
@@ -91,11 +95,7 @@
 
 <script>
   export default {
-    computed: {
-      nameState() {
-        return this.doctor.dni.length > 8 ? true : false
-      }
-    },
+    
     data() {
       return {
         items: [],
@@ -122,10 +122,14 @@
           content: ''
         },
         doctor:{
-          name:'',appat:'',apmat:'',dni:0
+          name:'',appat:'',apmat:'',dni:0,especialidad:''
         },
         selected: null,
         options: [
+          { value: 0, text: 'Medico' } 
+        ],
+        selected1: null,
+        options1: [
           { value: 0, text: 'Medico' } 
         ]
       }
@@ -143,7 +147,9 @@
     mounted() {
       // Set the initial number of items
       this.totalRows = this.items.length
-      this.list();
+      this.listPrimeraLinea();
+      this.listEspecialidades();
+      this.listSegundaLinea();
     },
     methods: {
       showModal(string) {
@@ -175,6 +181,7 @@
         this.hideModal('modal-registro')
         this.selected;
         var that = this;
+        that.doctor.especialidad=that.selected1;
         axios.post('AgregarMedico',that.doctor)
         .then(function (response) {
           console.log(response.data);
@@ -197,7 +204,7 @@
             }
         });
       },
-      list: function () {
+      listPrimeraLinea: function () {
         this.selected;
         var that = this;
         axios.post('listaMedicos',{})
@@ -205,6 +212,23 @@
             that.items = response.data;
             that.onFiltered(that.items);
              //totalRows = that.items.length;
+        });
+      },
+      listEspecialidades: function () {
+        this.selected;
+        var that = this;
+        axios.post('listaEspecialidades',{})
+        .then(function (response) { 
+            that.options1 = response.data; 
+         
+        });
+      },
+      listSegundaLinea: function () {
+        this.selected;
+        var that = this;
+        axios.post('listSegundaLinea',{})
+        .then(function (response) { 
+            that.options = response.data; 
         });
       },
       infoDr: function () {

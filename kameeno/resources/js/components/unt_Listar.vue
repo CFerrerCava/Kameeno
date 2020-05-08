@@ -140,23 +140,14 @@ export default {
     return {
 			
      	items: [
-          { paciente: 'Dickerson Macdonald', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Larsen Shaw', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Geneva Wilson', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Jami Carney', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Dickerson Macdonald', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Larsen Shaw', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Geneva Wilson', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Jami Carney', DNI:'73437870', telefono:'902007640',estado:'?' },
-					{ paciente: 'Dickerson Macdonald', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Larsen Shaw', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Geneva Wilson', DNI:'73437870', telefono:'902007640',estado:'?' },
-          { paciente: 'Jami Carney', DNI:'73437870', telefono:'902007640',estado:'?' }
         ],
       fields: [ 
           { key: 'paciente', label: 'Paciente', sortable: true},
           { key: 'DNI', label: 'DNI', sortable: true},
           { key: 'telefono', label: 'Teléfono', sortable: true},
+          { key: 'sexo', label: 'Sexo', sortable: true},
+          { key: 'seguro', label: 'Seguro', sortable: true},
+          { key: 'ocupacion', label: 'Ocupación', sortable: true},
           { key: 'estado', label: 'Estado', sortable: true},           
           { key: 'actions', label: 'Aciones'}
       ],
@@ -258,7 +249,7 @@ export default {
     },
     cargarContenidos: function(){
         var that = this;
-        axios.post('panel_untController/list')
+        axios.post('list')
         .then(function (response) {
             that.items = response.data;
             that.onFiltered(that.items);
@@ -267,7 +258,7 @@ export default {
     },
     FuncionEstado: function(){
         var that = this;
-        axios.post('panel_untController/alerta')
+        axios.post('alerta')
         .then(function (response) {
             that.items = response.data;
             that.onFiltered(that.items);

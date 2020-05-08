@@ -54,24 +54,25 @@ class CreateUsersTable extends Migration
             $table->string('clave', 100);
             $table->integer('rol_id');
         });
-
+		Schema::create('especialidad', function (Blueprint $table) {
+			$table->increments('id_especialidad');
+			$table->string('nombre', 50);
+			$table->string('estado', 20)->default('activo'); 
+		});
 		Schema::create('medico', function (Blueprint $table) {
 			$table->increments('id_medico');
 			$table->string('nombre', 20);
 			$table->string('ap_pat', 20);
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
-            $table->timestamp('fecharegistro');
-						$table->string('estado', 20)->default('activo');
-			$table->integer('idPadre');
-		});
-		Schema::create('especialidad', function (Blueprint $table) {
-			$table->increments('id_especialidad');
-			$table->string('nombre', 20);
+			$table->string('telefono', 20);
+			$table->timestamp('fecharegistro');
 			$table->string('estado', 20)->default('activo');
-            $table->integer('id_medico')->unsigned();
-            $table->foreign('id_medico')->references('id_medico')->on('medico');
+			$table->integer('idPadre');
+			$table->integer('id_especialidad')->unsigned();
+			$table->foreign('id_especialidad')->references('id_especialidad')->on('especialidad');
 		});
+	
 		/*
 		Schema::create('rol_medico', function (Blueprint $table) {
             $table->increments('id_rolmedico');
