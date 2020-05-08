@@ -84,6 +84,9 @@
 
 <script>
 export default {
+	props: {
+		idcuestionario: Number
+	},
     data: function() {
         return {
             c: {
@@ -151,9 +154,12 @@ export default {
     },
 	mounted() {
 		//this.cargarCuestionario(0);
-		this.cargarCuestionario(1);
+		//this.cargarCuestionario(1);
+		this.cargarCuestionario(this.idcuestionario);
+		console.log(this.idcuestionario);
 	},
 	created: function(){
+		this.cargarCuestionario(this.idcuestionario);
 		//this.cargarCuestionario(this.id);
 	}
 };

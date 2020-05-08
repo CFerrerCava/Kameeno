@@ -10,10 +10,16 @@
                     :items="datos"
                     :fields="columnas"
                   >
+					  <template v-slot:cell(actions)="row">
+						  <a :href="'/panel/cuestionario/mantenedor/' + row.item.id_cuestionario">Ver</a>
+					  </template>
                   </b-table>
                 </b-container>
             </div>
         </div>
+		<div class="text-center">
+			<button @click="solicitarNuevo" class="btn btn-primary">Registrar Nuevo Cuestionario</button>
+		</div>
     </div>
 </template>
 
@@ -25,11 +31,15 @@ export default {
 	      columnas: [
 			  { key: 'id_cuestionario', label: 'Id' },
 			  { key: 'nombre', label: 'Nombre' },
-			  { key: 'estado', label: 'Estado' }
+			  //{ key: 'estado', label: 'Estado' },
+			  { key: 'actions', label: 'Acciones' }
 	      ]
     }
   },
   methods: {
+	  solicitarNuevo: function(){
+		location.href = "/panel/cuestionario/mantenedor/";
+	  },
     cargarCuestionario: function(){
 		var that = this;
         axios.post('/panel/cuestionario/list')

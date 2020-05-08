@@ -9,7 +9,8 @@ class Cuestionarios extends Model {
     public $timestamps = false;
     protected $primaryKey = 'id_cuestionario';
 	public static function listar(){
-		return Cuestionarios::select('id_cuestionario', 'nombre', 'fecharegistro','estado')->get();
+		return Cuestionarios::where(['estado' => '1'])
+			->select('id_cuestionario', 'nombre', 'fecharegistro','estado')->get();
 	}
 	public static function agregar($nombre, $descripcion){
 		return Cuestionarios::create([
