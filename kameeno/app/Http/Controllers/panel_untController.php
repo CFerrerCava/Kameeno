@@ -62,13 +62,14 @@ class panel_untController extends Controller
     }
 
     public function listContenido(){
-        $roles = DB::table('paciente')->selectRaw('concat(nombre, " ",ap_pat, " ",ap_mat) as paciente,dni,telefono,estado');
-        return $roles;
+        $roles = DB::table('paciente')->selectRaw('concat(nombre, " ",ap_pat, " ",ap_mat) as pa,dni,telefono,estado');
+        var_dump($roles);
+       // return $roles;
     }
     public function agregarMedico(Request $request)
     {  
         return DB::table('medico')->insert(
-            ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'idpadre'=>1,'id_especialidad'=>$request->get('especialidad')]
+            ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'idpadre'=>1,'id_especialidad'=>$request->get('especialidad'), 'telefono'=>$request->get('telefono')]
         );
     }
     public function ListarMedico()

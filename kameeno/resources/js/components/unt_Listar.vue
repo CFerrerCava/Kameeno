@@ -249,7 +249,7 @@ export default {
     },
     cargarContenidos: function(){
         var that = this;
-        axios.post('list')
+        axios.post('paneluap/list')
         .then(function (response) {
             that.items = response.data;
             that.onFiltered(that.items);
@@ -270,7 +270,7 @@ export default {
     } 
   },
   mounted() {
-      this.totalRows = this.items.length
+      this.cargarContenidos();
   },
   created: function(){
       //this.cargarContenidos();

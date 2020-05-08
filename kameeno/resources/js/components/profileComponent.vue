@@ -79,6 +79,10 @@
             <b-form-input v-model="doctor.dni" placeholder="DNI" type="number"  ></b-form-input>
           </b-col>
           <b-col lg="12">
+            <label for="">Teléfono</label>
+            <b-form-input v-model="doctor.telefono" placeholder="DNI" type="number"  ></b-form-input>
+          </b-col>
+          <b-col lg="12">
             <label for="">Especialidad</label>
             <b-form-select v-model="selected1" :options="options1"></b-form-select>
           </b-col>
@@ -122,7 +126,7 @@
           content: ''
         },
         doctor:{
-          name:'',appat:'',apmat:'',dni:0,especialidad:''
+          name:'',appat:'',apmat:'',dni:0,especialidad:'',telefono:0
         },
         selected: null,
         options: [
@@ -181,7 +185,7 @@
         this.hideModal('modal-registro')
         this.selected;
         var that = this;
-        that.doctor.especialidad=that.selected1;
+        that.doctor.especialidad=that.selected1;      
         axios.post('AgregarMedico',that.doctor)
         .then(function (response) {
           console.log(response.data);
@@ -191,7 +195,7 @@
                 title: 'Éxito',
                 text:'El Dr. '+(that.doctor.name+' '+that.doctor.appat+' '+that.doctor.apmat)+ ' a sido registrado correctamente'
                 }).then(() => {
-                  that.list();
+                  that.listPrimeraLinea();
                 });
             } else {
                Vue.swal.fire({
@@ -199,7 +203,7 @@
                 title: 'ERROR',
                 text:'Recargue la página o contactese al ########'
                 }).then(() => {
-                  this.list();
+                  that.listPrimeraLinea();
                 });
             }
         });
