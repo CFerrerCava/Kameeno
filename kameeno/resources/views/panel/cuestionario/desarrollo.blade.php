@@ -13,7 +13,7 @@
 					<cuestionario-registrar></cuestionario-registrar>
 					<cuestionario-resolver></cuestionario-resolver>
 				-->
-				<cuestionario-resolver></cuestionario-resolver>
+				<cuestionario-resolver idcuestionario="{{$id}}"></cuestionario-resolver>
 			</div>
 		</div>
 	</div>
