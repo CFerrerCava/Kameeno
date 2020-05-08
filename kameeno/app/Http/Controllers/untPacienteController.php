@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contacto;
 use App\Paciente;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
@@ -13,7 +14,7 @@ class untPacienteController extends Controller
 {
 
     public function showFormRegister($cifrado){
-         
+
         try {
             $decrypted = Crypt::decrypt($cifrado);
             $decrypted = json_decode($decrypted);
@@ -27,7 +28,7 @@ class untPacienteController extends Controller
     }
 
     public function registerForm(Request $request){
-        Paciente::create([
+        $paciente = Paciente::create([
             "nombre" => $request->names,
             "ap_pat" =>$request->appaterno,
             "ap_mat" => $request->apmaterno,
@@ -42,6 +43,20 @@ class untPacienteController extends Controller
             "id_ocupacion" => (int)$request->ocupacion,
             "id_seguro" => (int)$request->seguroSalud
         ]);
+
+        Contacto::create([
+            "id_paciente" => $paciente->id_paciente,
+            "nombre" => $request->namesFamiliar,
+            "ap_pat" => $request->appaternoFamiliar,
+            "ap_mat" => $request->apmaternoFamiliar,
+            "telefono" => $request->celFamiliar
+        ]);
+
+        foreach ($request->enfermedades as $key => $value) {
+            return $value;
+            DB::insert('insert into enfermedad_paciente (id_enfermedad, id_paciente) values (?, ?)', [(int)($value->code), $paciente->id_paciente]);
+        }
+
         return response()->json(["message" => "Datos registrados correctamente"]);
     }
 }

@@ -61,7 +61,7 @@ class CreateUsersTable extends Migration
 			$table->string('ap_pat', 20);
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
-      $table->timestamp('fecharegistro');
+            $table->timestamp('fecharegistro');
 			$table->string('estado', 20);
 			$table->integer('idPadre');
 		});
@@ -88,7 +88,7 @@ class CreateUsersTable extends Migration
     	Schema::create('enfermedad', function (Blueprint $table) {
 			$table->increments('id_enfermedad');
             $table->string('nombre', 150);
-            $table->string('estado', 20);
+            $table->string('estado', 20)->default('activo');
         });
     	Schema::create('facultad_escuela', function (Blueprint $table) {
 			$table->increments('id_facultad');
@@ -138,7 +138,7 @@ class CreateUsersTable extends Migration
 			$table->integer('id_paciente')->unsigned();
 			$table->foreign('id_enfermedad')->references('id_enfermedad')->on('enfermedad');
 			$table->foreign('id_paciente')->references('id_paciente')->on('paciente');
-			$table->string('estado', 20);
+			$table->string('estado', 20)->default('activo');
         });
 		Schema::create('contacto', function (Blueprint $table) {
 			$table->increments('id_contacto');
@@ -146,7 +146,7 @@ class CreateUsersTable extends Migration
 			$table->string('ap_pat', 20);
 			$table->string('ap_mat', 20);
 			$table->string('telefono', 20);
-			$table->string('parentesco', 30);
+			$table->string('parentesco', 30)->nullable();
 			$table->integer('id_paciente')->unsigned();
 			$table->foreign('id_paciente')->references('id_paciente')->on('paciente');
         });
