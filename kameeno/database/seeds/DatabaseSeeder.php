@@ -18,5 +18,10 @@ class DatabaseSeeder extends Seeder
 
         DB::insert('insert into ocupacion (id_ocupacion, nombre) values (?, ?)', [1, 'Docente']);
         DB::insert('insert into ocupacion (id_ocupacion, nombre) values (?, ?)', [2, 'Personal Administrativo']);
+
+
+
+        //Médico
+        DB::insert('insert into medico ( nombre, ap_pat, ap_mat, dni, fecharegistro, estado, idPadre) values (?, ?, ?, ?, ?, ?, ?, ?)', ['Christian Alexis','Ferrer','Cava','73437870','2020-05-07 22:58:23','activo',0]);
     }
 }

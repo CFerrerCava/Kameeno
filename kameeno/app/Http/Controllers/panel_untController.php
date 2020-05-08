@@ -32,10 +32,6 @@ class panel_untController extends Controller
             case 'data':
                 return $this->data($request);
                 break;
-<<<<<<< HEAD
-
-=======
->>>>>>> ddfb1bcc1c935c8c51dcf4b2a76d8a625cc558f4
             default:
                 return view('panel.unt_paciente.mantenedor');
                 break;
@@ -66,7 +62,7 @@ class panel_untController extends Controller
     public function agregarMedico(Request $request)
     {  
         return DB::table('medico')->insert(
-                ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'estado'=>'Activo','idpadre'=>1]
+                ['nombre'=>$request->get('name'), 'ap_pat'=>$request->get('appat'), 'ap_mat'=>$request->get('apmat'), 'dni'=>$request->get('dni'), 'idpadre'=>1]
             );
     }
     public function ListarMedico()
