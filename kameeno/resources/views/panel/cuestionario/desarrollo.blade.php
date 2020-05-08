@@ -5,7 +5,7 @@
 	<div class="col-12 col-sm-12 col-lg-12">
 		<div class="card">
 			<div class="card-header">
-				<h4 class="card-title">Registrar / Editar Cuestionario</h4>
+				<h4 class="card-title">Responder cuestionario</h4>
 			</div>
 			<div class="card-body" id="app_vue">
 				<!--
@@ -13,7 +13,7 @@
 					<cuestionario-registrar></cuestionario-registrar>
 					<cuestionario-resolver></cuestionario-resolver>
 				-->
-				<cuestionario-registrar idcuestionario="{{$id}}"></cuestionario-registrar>
+				<cuestionario-resolver></cuestionario-resolver>
 			</div>
 		</div>
 	</div>

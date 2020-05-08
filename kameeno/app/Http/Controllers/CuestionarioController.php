@@ -14,13 +14,17 @@ class CuestionarioController extends Controller
 {
 	//https://desarrollowebtutorial.com/laravel-eloquent-orm-query-builder-consultas-sql/
 	//updCuestionario puede reemplazar a addCuestionario, queda por revisar
-    public function mantenedor($param='', Request $request){
-        if ($param == 'list') return $this->listContenido($request);
-		//else if ($param == 'addCuestionario') return $this->addCuestionario($request);
+    public function mantenedor($param='', $id='0', Request $request){
+        if ($param == 'list') return $this->listCuestionario($request);
+		else if ($param == 'addCuestionario') return $this->addCuestionario($request);
 		else if ($param == 'getCuestionario') return $this->getCuestionario($request);
 		else if ($param == 'updCuestionario') return $this->updCuestionario($request);
 		else if ($param == 'resolve') return $this->resolve($request);
-        return view('panel.cuestionario.mantenedor');
+		else if ($param == 'mantenedor')
+			return view('panel.cuestionario.mantenedor', ['id' => $id]);
+		else if ($param == 'resolver')
+			return view('panel.cuestionario.desarrollo');
+        return view('panel.cuestionario.listar');
     }
 
 	public function resolve($request){
@@ -88,10 +92,12 @@ class CuestionarioController extends Controller
 			/***/
 			$preguntas = array();
 			$preguntas['pregunta'] = "";
+			$preguntas['estado'] = "1";
 			$preguntas['detalle'] = array();
 			/**/
 			$detalle = array();
 			$detalle['opcion'] = "";
+			$detalle['estado'] = "1";
 			$detalle['valor'] = "";
 			/**/
 			$preguntas['detalle'][] = $detalle;
@@ -132,7 +138,7 @@ class CuestionarioController extends Controller
 		}
     }
 
-	public function listContenido($request){
+	public function listCuestionario($request){
 		return Cuestionarios::listar();
 	}
 }
