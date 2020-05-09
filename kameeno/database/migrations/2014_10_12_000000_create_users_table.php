@@ -57,24 +57,25 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
+		Schema::create('especialidad', function (Blueprint $table) {
+			$table->increments('id_especialidad');
+			$table->string('nombre', 50);
+			$table->string('estado', 20)->default('activo');
+		});
 		Schema::create('medico', function (Blueprint $table) {
 			$table->increments('id_medico');
 			$table->string('nombre', 20);
 			$table->string('ap_pat', 20);
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
-            $table->timestamp('fecharegistro');
+			$table->string('telefono', 20);
+			$table->timestamp('fecharegistro');
 			$table->string('estado', 20)->default('activo');
 			$table->integer('idPadre');
+			$table->integer('id_especialidad')->unsigned();
+			$table->foreign('id_especialidad')->references('id_especialidad')->on('especialidad');
 		});
-		Schema::create('especialidad', function (Blueprint $table) {
-			$table->increments('id_especialidad');
-			$table->string('nombre', 20);
-			$table->string('estado', 20)->default('activo');
-            $table->integer('id_medico')->unsigned();
-            $table->foreign('id_medico')->references('id_medico')->on('medico');
-		});
+
 		/*
 		Schema::create('rol_medico', function (Blueprint $table) {
             $table->increments('id_rolmedico');
@@ -207,9 +208,12 @@ class CreateUsersTable extends Migration
 		Schema::create('rol_medico_paciente_cuestionarios', function (Blueprint $table) {
 			$table->increments('id_cuestionariopersona');
 			$table->dateTime('fechaGenerado');
-			$table->dateTime('fechaResuelto');
+			$table->dateTime('fechaResuelto')->nullable();
+			$table->dateTime('fechaObservado')->nullable();
 			$table->text('observacion');
 			$table->string('estado', 20);
+			$table->integer('id_cuestionario')->unsigned();
+			$table->foreign('id_cuestionario')->references('id_cuestionario')->on('cuestionarios');
 			$table->integer('id_pacientexmedico')->unsigned();
 			$table->foreign('id_pacientexmedico')->references('id_pacientexmedico')->on('rol_medico_paciente');
 		});
@@ -225,12 +229,19 @@ class CreateUsersTable extends Migration
 		//Area Cuestionarios
 		//MIS DATOS DE PRUEBA:3
 		/*
+		DB::table('especialidad')->insert([
+			'nombre' => 'nombre',
+			'estado' => 'estado'
+		]);
 		DB::table('medico')->insert([
 			'nombre' => 'nombre',
 			'ap_pat' => 'ap_pat',
 			'ap_mat' => 'ap_mat',
 			'dni' => 'dni',
+			'telefono' => 'telefono',
 			'fecharegistro' => null,
+			'idPadre' => 0,
+			'id_especialidad' => 1,
 			'estado' => '1'
 		]);
 		DB::table('historia_clinica')->insert([
@@ -257,7 +268,6 @@ class CreateUsersTable extends Migration
 			'ap_pat' => 'ap_pat',
 			'ap_mat' => 'ap_mat',
 			'dni' => 'dni',
-			'fecharegistro' => null,
 			'sexo' => 'sexo',
 			'estado_civil' => 'estado_civil',
 			'direccion' => 'direccion',
@@ -265,6 +275,7 @@ class CreateUsersTable extends Migration
 			'correo' => 'correo',
 			'estado' => '1',
 			'tratamiento' => 'tratamiento',
+			'edad' => 20,
 			'id_facultad' => 1,
 			'id_seguro' => 1,
 			'id_ocupacion' => 1
@@ -274,7 +285,7 @@ class CreateUsersTable extends Migration
 			'id_medico' => 1,
 			'id_paciente' => 1
 		]);
-		*/
+		/*
     }
 
     /**

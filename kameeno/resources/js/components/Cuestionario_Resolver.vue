@@ -42,6 +42,9 @@
 
 <script>
 export default {
+	props: {
+		idcuestionario: String
+	},
 	data() {
 		return {
 			cuestionario: { preguntas:[] },
@@ -56,7 +59,7 @@ export default {
 	methods: {
 		cargarCuestionario: function(id){
 			var that = this;
-			axios.post('/panel/cuestionario/getCuestionario', {id:id})
+			axios.post('/panel/cuestionario/getCuestionarioResolver', {id:id})
 			.then(function (response) {
 				that.cuestionario = response.data;
 				that.cuestionario.preguntas.forEach((item, i) => {
@@ -79,9 +82,10 @@ export default {
 	},
 	mounted() {
 		//this.cargarCuestionario(0);
-		this.cargarCuestionario(1);
+		//this.cargarCuestionario(1);
 	},
 	created: function(){
+		this.cargarCuestionario(this.idcuestionario);
 		//this.cargarCuestionario(this.id);
 	}
 }

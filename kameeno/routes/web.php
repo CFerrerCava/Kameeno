@@ -21,9 +21,9 @@ Route::any('/panel','ContenidoController@mantenedor');
 Route::any('/paneluap','panel_untController@mantenedor');
 Route::any('/panel/probando','panel_untController@mantenedor');
 Route::any('/paneluap/{vista?}','panel_untController@mantenedor');
-Route::any('/panel/paciente/{Estado?}','panel_untController@Paciente');
 Route::any('/panel/cuestionario','CuestionarioController@mantenedor');
 Route::any('/panel/cuestionario/{param}','CuestionarioController@mantenedor');
+Route::any('/panel/cuestionario/{param}/{id}','CuestionarioController@mantenedor');
 
 Auth::routes();
 

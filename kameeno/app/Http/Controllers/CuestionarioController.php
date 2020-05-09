@@ -9,24 +9,50 @@ use Illuminate\Support\Facades\DB;
 use App\Cuestionarios;
 use App\Preguntas;
 use App\DetallePregunta;
+use App\RespuestaCuestionario;
+use App\RolMedicoPacienteCuestionarios;
 
 class CuestionarioController extends Controller
 {
 	//https://desarrollowebtutorial.com/laravel-eloquent-orm-query-builder-consultas-sql/
 	//updCuestionario puede reemplazar a addCuestionario, queda por revisar
-    public function mantenedor($param='', Request $request){
-        if ($param == 'list') return $this->listContenido($request);
-		//else if ($param == 'addCuestionario') return $this->addCuestionario($request);
+    public function mantenedor($param='', $id='0', Request $request){
+        if ($param == 'list') return $this->listCuestionario($request);
+		else if ($param == 'addCuestionario') return $this->addCuestionario($request);
 		else if ($param == 'getCuestionario') return $this->getCuestionario($request);
+		else if ($param == 'getCuestionarioResolver') return $this->getCuestionarioResolver($request);
 		else if ($param == 'updCuestionario') return $this->updCuestionario($request);
 		else if ($param == 'resolve') return $this->resolve($request);
-        return view('panel.cuestionario.mantenedor');
+		else if ($param == 'mantenedor')
+			return view('panel.cuestionario.mantenedor', ['id' => $id]);
+		else if ($param == 'resolver')
+			return view('panel.cuestionario.desarrollo', ['id' => $id]);
+        return view('panel.cuestionario.listar');
     }
 
 	public function resolve($request){
 		$cuestionario = $request->get('cuestionario');
-		dd($cuestionario);
+		$id_cuestionariopersona = RolMedicoPacienteCuestionarios::buscar_id_cuestionario($cuestionario['id_cuestionario']);
+		/*TRANSACCION*/
+		$preguntas = $cuestionario['preguntas'];
+		foreach ($preguntas as $respuesta) {
+			RespuestaCuestionario::agregar(
+				$id_cuestionariopersona,
+				$respuesta['id_preguntas'],
+				$respuesta['seleccionado']
+			);
+		}
+		RolMedicoPacienteCuestionarios::registrarRespuesta($id_cuestionariopersona);
+		/*TRANSACCION*/
     }
+
+	public function getCuestionarioResolver($request){
+		//$request->get('id');
+		//validar si esta logueado, se obtiene id_cuestionariopersona de RolMedicoPacienteCuestionarios
+		//revisar: se busca si se tiene asignado el cuestionario
+		//RolMedicoPacienteCuestionarios::buscar_id_cuestionario($request->get('id'));
+		return $this->getCuestionario($request);
+	}
 
 	public function updCuestionario($request){
 		$cuestionario = $request->get('datos');
@@ -88,10 +114,12 @@ class CuestionarioController extends Controller
 			/***/
 			$preguntas = array();
 			$preguntas['pregunta'] = "";
+			$preguntas['estado'] = "1";
 			$preguntas['detalle'] = array();
 			/**/
 			$detalle = array();
 			$detalle['opcion'] = "";
+			$detalle['estado'] = "1";
 			$detalle['valor'] = "";
 			/**/
 			$preguntas['detalle'][] = $detalle;
@@ -132,7 +160,7 @@ class CuestionarioController extends Controller
 		}
     }
 
-	public function listContenido($request){
+	public function listCuestionario($request){
 		return Cuestionarios::listar();
 	}
 }

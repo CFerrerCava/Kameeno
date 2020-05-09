@@ -8,7 +8,8 @@
 				<h4 class="card-title">Pacientes</h4>
 			</div>
 			<div class="card-body" id="app_vue"> 
-				 <paciente-component></paciente-component>
+			
+				 <paciente-component  :idPaciente="{{json_encode($id)}}"></paciente-component>
 			</div>
 		</div>
 	</div>
