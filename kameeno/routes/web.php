@@ -28,3 +28,4 @@ Route::any('/panel/cuestionario/{param}','CuestionarioController@mantenedor');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/iniciarSesion', function(){ return view('auth.miLogin');});

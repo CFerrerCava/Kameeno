@@ -48,11 +48,14 @@ class CreateUsersTable extends Migration
             $table->boolean('isAdmin')->default(false);
         });
 
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email', 100)->unique();
-            $table->string('clave', 100);
-            $table->integer('rol_id');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->integer('rol_id')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
 
 		Schema::create('medico', function (Blueprint $table) {
@@ -62,7 +65,7 @@ class CreateUsersTable extends Migration
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
             $table->timestamp('fecharegistro');
-						$table->string('estado', 20)->default('activo');
+			$table->string('estado', 20)->default('activo');
 			$table->integer('idPadre');
 		});
 		Schema::create('especialidad', function (Blueprint $table) {
