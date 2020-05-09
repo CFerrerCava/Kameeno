@@ -80,8 +80,10 @@ class DatabaseSeeder extends Seeder
          DB::insert('insert into especialidad (id_especialidad, nombre) values (?, ?)', [40,'Odontología. Rehabilitación Oral']);
 
          //Médico
-        DB::insert('insert into medico (id_medico, nombre, ap_pat, ap_mat, dni, telefono, estado, idPadre,id_especialidad) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [1,'Christian Alexis','Ferrer','Cava','73437870','902007640','activo',0,2]);
-        DB::insert('insert into medico (id_medico, nombre, ap_pat, ap_mat, dni, telefono, estado, idPadre,id_especialidad) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [2,'Javier Rodolfo','Briceño','Montaño','14789632','902007640','activo',1,18]);
-        DB::insert('insert into medico (id_medico, nombre, ap_pat, ap_mat, dni, telefono, estado, idPadre,id_especialidad) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [3,'Jairo Raúl','Navez','Aroca','12345678','902007640','activo',1,34]);
+        DB::insert('insert into users (email, rol_id, password) values (?, ?, ?)', ['medico@hotmail.com',1,'$2y$10$3DzfSZIc6X/Ub7pvdoJksu1Sn1DQ5mEF2FCA1MqVsEh/1e4o6zLUi']); //clave: 123456789
+
+        DB::insert('insert into medico (id_medico, user_id, nombre, ap_pat, ap_mat, dni, telefono, estado, idPadre,id_especialidad) values (?,?, ?, ?, ?, ?, ?, ?, ?, ?)', [1,1,'Christian Alexis','Ferrer','Cava','73437870','902007640','activo',0,2]);
+        DB::insert('insert into medico (id_medico, user_id,nombre, ap_pat, ap_mat, dni, telefono, estado, idPadre,id_especialidad) values (?, ?,?, ?, ?, ?, ?, ?, ?, ?)', [2,1,'Javier Rodolfo','Briceño','Montaño','14789632','902007640','activo',1,18]);
+        DB::insert('insert into medico (id_medico, user_id,nombre, ap_pat, ap_mat, dni, telefono, estado, idPadre,id_especialidad) values (?, ?,?, ?, ?, ?, ?, ?, ?, ?)', [3,1,'Jairo Raúl','Navez','Aroca','12345678','902007640','activo',1,34]);
     }
 }

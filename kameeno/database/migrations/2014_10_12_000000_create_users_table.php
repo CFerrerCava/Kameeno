@@ -69,11 +69,12 @@ class CreateUsersTable extends Migration
 			$table->string('ap_mat', 20);
 			$table->string('dni', 8);
 			$table->string('telefono', 20);
-			$table->timestamp('fecharegistro');
 			$table->string('estado', 20)->default('activo');
-			$table->integer('idPadre');
+            $table->integer('idPadre');
+            $table->integer('user_id');
 			$table->integer('id_especialidad')->unsigned();
-			$table->foreign('id_especialidad')->references('id_especialidad')->on('especialidad');
+            $table->foreign('id_especialidad')->references('id_especialidad')->on('especialidad');
+            $table->timestamps();
 		});
 
 		/*
@@ -225,7 +226,9 @@ class CreateUsersTable extends Migration
 			$table->foreign('id_det_pre')->references('id_det_pre')->on('detalle_pregunta');
 			$table->foreign('id_preguntas')->references('id_preguntas')->on('preguntas');
 			$table->foreign('id_cuestionariopersona')->references('id_cuestionariopersona')->on('rol_medico_paciente_cuestionarios');
-		});
+        });
+
+    }
 		//Area Cuestionarios
 		//MIS DATOS DE PRUEBA:3
 		/*

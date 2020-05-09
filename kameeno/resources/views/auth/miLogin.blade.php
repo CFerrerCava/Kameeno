@@ -24,12 +24,7 @@
            		   </div>
            		   <div class="div">
                         <h5>Email</h5>
-                        <input id="email" type="email" class="input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <input id="email" type="email" class="input form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" autofocus>
                     </div>
            		</div>
            		<div class="input-div pass">
@@ -39,12 +34,7 @@
            		   <div class="div">
            		    	<h5>Contraseña</h5>
            		    	<input id="password" type="password" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-            	   </div>
+                   </div>
             	</div>
             	<a href="#">¿Olvidaste tu contraseña?</a>
             	<input type="submit" class="btn" value="Iniciar Sesión" style="background: rgb(72, 136, 219);">

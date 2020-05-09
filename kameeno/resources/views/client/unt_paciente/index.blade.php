@@ -3,7 +3,7 @@
 @section('nav')
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">KAMEENO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="/images/untpacientes.png" alt="Logo" width="100"></a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">¿Quiénes somos?</a></li>
@@ -98,19 +98,19 @@
 @section('styles')
 <style>
     .fixed-top{
-        background: #3f51b5 !important;
+        background: #2c3e50 !important;
     }
     .bg-primary{
         background: #1abc9c !important;
     }
     @media (min-width: 992px) {
         .fixed-top{
-            background: #3f51b5 !important;
+            background: #2c3e50 !important;
             height: 80px !important;
         }
     }
     #mainNav.navbar-shrink{
-        background: #3f51b5 !important;
+        background: #2c3e50 !important;
     }
 
     .text-content{
@@ -119,7 +119,7 @@
     }
 
     .copyright{
-        background: #3f51b5 !important;
+        background: #2c3e50 !important;
     }
 </style>
 @endsection

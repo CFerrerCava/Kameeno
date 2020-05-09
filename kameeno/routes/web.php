@@ -26,6 +26,7 @@ Route::any('/panel/cuestionario/{param}','CuestionarioController@mantenedor');
 Route::any('/panel/cuestionario/{param}/{id}','CuestionarioController@mantenedor');
 
 Auth::routes();
+//Route::post('/login', 'Auth/LoginController@authenticate')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/iniciarSesion', function(){ return view('auth.miLogin');});
