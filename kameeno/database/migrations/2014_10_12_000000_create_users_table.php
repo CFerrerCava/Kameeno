@@ -190,6 +190,15 @@ class CreateUsersTable extends Migration
 			$table->text('descripcion');
 			$table->string('estado', 20);
 		});
+		Schema::create('resultado_cuestionarios', function (Blueprint $table) {
+			$table->increments('id_resultadocuestionario');
+			$table->string('descripcion', 100);
+			$table->integer('rango_minimo')->unsigned();
+			$table->integer('rango_maximo')->unsigned();
+			$table->string('estado', 20);
+			$table->integer('id_cuestionario')->unsigned();
+			$table->foreign('id_cuestionario')->references('id_cuestionario')->on('cuestionarios');
+		});
 		Schema::create('preguntas', function (Blueprint $table) {
 			$table->increments('id_preguntas');
 			$table->string('pregunta', 100);
